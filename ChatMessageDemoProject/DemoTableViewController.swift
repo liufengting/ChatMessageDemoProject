@@ -14,7 +14,7 @@ class DemoTableViewController: FTChatMessageTableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "ChatMessage"
+//        self.title = "ChatMessage"
         
         
     }

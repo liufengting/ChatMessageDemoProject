@@ -20,7 +20,7 @@ import UIKit
 
 class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UITableViewDataSource{
     
-    var tableView : UITableView!
+    var messageTableView : UITableView!
     
     
     var messageArray : [FTChatMessageModel] = []
@@ -30,12 +30,29 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         super.viewDidLoad()
         
         
-        let sender = FTChatMessageSenderModel.init(id: "", name: "", icon_url: "", extra_data: nil, isSelf: false)
-        let message = FTChatMessageModel.init(data: "奥斯卡的那款就卡死多久奥斯卡的那款就卡死多久奥斯卡的那款就卡死多久奥斯卡的那款就卡死多久奥斯卡的那款就卡死多久", time: "", from: sender, type: .Text)
+        let sender1 = FTChatMessageSenderModel.init(id: "", name: "", icon_url: "", extra_data: nil, isSelf: false)
+        let sender2 = FTChatMessageSenderModel.init(id: "", name: "", icon_url: "", extra_data: nil, isSelf: true)
+
+        
+        let message1 = FTChatMessageModel(data: "周末有点无聊，抽点时间写了这个聊天的UI框架。", time: "", from: sender1, type: .Text)
+        let message2 = FTChatMessageModel(data: "有什么功能", time: "", from: sender2, type: .Text)
+        let message3 = FTChatMessageModel(data: "纯Swift编写，目前只写了纯文本消息，后续会有更多功能，TODO：图片视频语音定位等。这一版本还有很多需要优化，希望可以改成一个易拓展的方便大家使用，哈哈哈哈", time: "", from: sender1, type: .Text)
+        let message4 = FTChatMessageModel(data: "不足的地方", time: "", from: sender2, type: .Text)
+        let message5 = FTChatMessageModel(data: "文字背景不是图片，是用贝塞尔曲线画的，效率应该不高，后期优化", time: "", from: sender1, type: .Text)
+        let message6 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈", time: "", from: sender2, type: .Text)
+
         
         
         
-        messageArray = [message]
+        
+        
+        
+        messageArray = [message1,message2,message3,message4,message5,message6,
+        message1,message2,message3,message4,message5,message6,
+        message1,message2,message3,message4,message5,message6,
+        message1,message2,message3,message4,message5,message6,
+        message1,message2,message3,message4,message5,message6,
+        message1,message2,message3,message4,message5,message6,]
         
         
         
@@ -45,25 +62,28 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         
         
         
-        tableView = UITableView(frame: CGRectMake(0, 0, FTMarcors.screen_width, FTMarcors.screen_height), style: .Plain)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .None;
-        tableView.allowsSelection = false
-        self.view.addSubview(tableView)
+        messageTableView = UITableView(frame: CGRectMake(0, 0, FTScreenWidth, FTScreenHeight), style: .Plain)
+        messageTableView.delegate = self
+        messageTableView.dataSource = self
+        messageTableView.separatorStyle = .None;
+        messageTableView.allowsSelection = false
+        self.view.addSubview(messageTableView)
 
     }
     /**
      UITableViewDelegate,UITableViewDataSource
      */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 100;
+        return messageArray.count;
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1;
     }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = FTChatMessageHeader(frame: CGRectMake(0,0,FTMarcors.screen_width,40), isSender: false, image: nil)
+        
+        let message = messageArray[section]
+
+        let header = FTChatMessageHeader(frame: CGRectMake(0,0,FTScreenWidth,40), isSender: message.messageSender.isUserSelf, image: nil)
 
         return header
     }
@@ -75,17 +95,18 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         return 0
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100
+        
+        let cell : FTChatMessageCell = self.tableView(self.messageTableView, cellForRowAtIndexPath: indexPath) as! FTChatMessageCell
+        
+        return cell.cellDesiredHeight;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let message = messageArray[indexPath.row]
+        let message = messageArray[indexPath.section]
         
-        let cell = FTChatMessageCell.init(style: UITableViewCellStyle.Default, reuseIdentifier: FTChatMessageCellReuseIndentifier, aMessage: message, maxTextWidth: 300);
-        
-        //        cell.content = self.data[indexPath.row]
-        
+        let cell = FTChatMessageCell.init(style: UITableViewCellStyle.Default, reuseIdentifier: FTChatMessageCellReuseIndentifier, aMessage: message, maxTextWidth: FTScreenWidth*0.7);
+                
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

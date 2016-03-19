@@ -8,20 +8,32 @@
 
 import UIKit
 
-let FTChatMessageCellReuseIndentifier = "ChatMessageCellReuseIndentifier"
+let FTChatMessageCellReuseIndentifier = "FTChatMessageCellReuseIndentifier"
 
-//let FTChatMessageLongitudeKey = "FTChatMessageLongitudeKey"
-//let FTChatMessageLatitudeKey = "FTChatMessageLatitudeKey"
+let FTScreenWidth = UIScreen.mainScreen().bounds.size.width
+let FTScreenHeight = UIScreen.mainScreen().bounds.size.height
+
+let FTDefaultMargin : CGFloat = 5.0
+let FTDefaultIconToMessageMargin : CGFloat = 10.0
+let FTDefaultTextMargin : CGFloat = 8.0
+let FTDefaultLineSpacing : CGFloat = 2.0
+
+let FTDefaultSectionHeight : CGFloat = 40.0
+let FTDefaultIconSize : CGFloat = 30.0
+
+let FTDefaultMessageRoundCorner : CGFloat = 8
+
+let FTDefaultFontSize : UIFont = UIFont.systemFontOfSize(16)
+
+let FTDefaultOutgoingColor : UIColor = UIColor(red: 1/255, green: 123/255, blue: 225/255, alpha: 1)
+let FTDefaultIncomingColor : UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
 
 /**
  *  FTMarcors
  */
 struct FTMarcors {
-    static let screen_width = UIScreen.mainScreen().bounds.size.width
-    static let screen_height = UIScreen.mainScreen().bounds.size.height
-    static let default_margin : CGFloat = 5.0
-    static let default_icon_size : CGFloat = 30.0
-    static let default_Line_spacing : CGFloat = 2.0
+//    static let default_margin : CGFloat = 5.0
+//    static let default_icon_size : CGFloat = 30.0
     
 
 
@@ -53,13 +65,13 @@ enum FTChatMessageType {
 class FTChatMessagePublicMethods{
     class func getHeightWithWidth(width:CGFloat,text:NSString,font:UIFont)->CGFloat{
         let paragraphStyle : NSMutableParagraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = FTMarcors.default_Line_spacing
+        paragraphStyle.lineSpacing = FTDefaultLineSpacing
         let rect = text.boundingRectWithSize(CGSizeMake(width,CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:font,NSParagraphStyleAttributeName: paragraphStyle], context: nil)
         return rect.size.height
     }
     class func getWidthWithHeight(height:CGFloat,text:NSString,font:UIFont)->CGFloat{
         let paragraphStyle : NSMutableParagraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = FTMarcors.default_Line_spacing
+        paragraphStyle.lineSpacing = FTDefaultLineSpacing
         let rect = text.boundingRectWithSize(CGSizeMake(CGFloat(MAXFLOAT),height), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:font,NSParagraphStyleAttributeName: paragraphStyle], context: nil)
         return rect.size.width
     }

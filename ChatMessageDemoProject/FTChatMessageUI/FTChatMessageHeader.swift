@@ -28,13 +28,13 @@ class FTChatMessageHeader: UIView {
     private func setupHeader(image: UIImage?, imageUrl : NSURL?, isSender: Bool){
         self.backgroundColor = UIColor.clearColor()
         
-        let iconRect = isSender ? CGRectMake(self.frame.width-FTMarcors.default_margin-FTMarcors.default_icon_size, FTMarcors.default_margin, FTMarcors.default_icon_size, FTMarcors.default_icon_size) : CGRectMake(FTMarcors.default_margin, FTMarcors.default_margin, FTMarcors.default_icon_size, FTMarcors.default_icon_size)
+        let iconRect = isSender ? CGRectMake(self.frame.width-FTDefaultMargin-FTDefaultIconSize, FTDefaultMargin, FTDefaultIconSize, FTDefaultIconSize) : CGRectMake(FTDefaultMargin, FTDefaultMargin, FTDefaultIconSize, FTDefaultIconSize)
         if iconButton == nil{
-            iconButton = UIButton.init()
+            iconButton = UIButton()
         }
         iconButton.frame = iconRect
-        iconButton.backgroundColor = UIColor.blackColor()
-        iconButton.layer.cornerRadius = FTMarcors.default_icon_size/2;
+        iconButton.backgroundColor = isSender ? FTDefaultOutgoingColor : FTDefaultIncomingColor
+        iconButton.layer.cornerRadius = FTDefaultIconSize/2;
         iconButton.clipsToBounds = true
         if image != nil{
             iconButton.setImage(image, forState: UIControlState.Normal)
