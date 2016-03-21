@@ -32,6 +32,7 @@ class FTChatMessageSenderModel : NSObject{
 
 class FTChatMessageModel: NSObject {
     
+    var isUserSelf : Bool = false;
     var messageText : String!
     var messageTimeStamp : String!
     var messageType : FTChatMessageType!
@@ -53,6 +54,7 @@ class FTChatMessageModel: NSObject {
         messageText = data
         messageTimeStamp = time
         messageSender = from
+        isUserSelf = from.isUserSelf
         if (extraDic != nil) {
             messageExtraData = extraDic;
         }
