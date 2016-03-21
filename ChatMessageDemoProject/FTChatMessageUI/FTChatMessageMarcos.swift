@@ -30,6 +30,10 @@ let FTScreenWidth = UIScreen.mainScreen().bounds.size.width
 let FTScreenHeight = UIScreen.mainScreen().bounds.size.height
 let FTDefaultMargin : CGFloat = 5.0
 let FTDefaultIconToMessageMargin : CGFloat = 10.0
+
+let FTDefaultTimeLabelHeight : CGFloat = 15.0
+let FTDefaultTimeFontSize : UIFont = UIFont.systemFontOfSize(11)
+
 let FTDefaultTextMargin : CGFloat = 8.0
 let FTDefaultLineSpacing : CGFloat = 2.0
 let FTDefaultSectionHeight : CGFloat = 40.0

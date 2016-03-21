@@ -33,8 +33,22 @@ class FTChatMessageCell: UITableViewCell {
         
         message = aMessage
         
+        let timeLabel = UILabel(frame: CGRectMake(0, -FTDefaultSectionHeight ,FTScreenWidth, FTDefaultTimeLabelHeight+FTDefaultTextMargin));
+        timeLabel.text = "3月21日 16:44"
+        timeLabel.numberOfLines = 0
+        timeLabel.textAlignment = .Center
+        timeLabel.textColor = UIColor.lightGrayColor()
+        timeLabel.font = FTDefaultTimeFontSize
+        self.addSubview(timeLabel)
+        
+        
+        
+        
         
         let att = NSString(string: message.messageText)
+        
+        
+        
 
         
         let rect = att.boundingRectWithSize(CGSizeMake(maxTextWidth,CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:FTDefaultFontSize,NSParagraphStyleAttributeName: FTChatMessagePublicMethods.getFTDefaultMessageParagraphStyle()], context: nil)
@@ -77,7 +91,7 @@ class FTChatMessageCell: UITableViewCell {
         
         
         
-        cellDesiredHeight = max(messageBubbleRect.height + FTDefaultMargin*2 - FTDefaultSectionHeight, 0)
+        cellDesiredHeight = max(messageBubbleRect.height + FTDefaultMargin*2 - FTDefaultSectionHeight + FTDefaultTimeLabelHeight, 0)
 
         
     }
@@ -96,10 +110,10 @@ class FTChatMessageCell: UITableViewCell {
         var y : CGFloat = 0
         if (isUserSelf){
             x = FTScreenWidth - (FTDefaultIconSize + FTDefaultMargin*3) - bubbleWidth
-            y = -FTDefaultSectionHeight + FTDefaultMargin
+            y = FTDefaultTimeLabelHeight - FTDefaultSectionHeight + FTDefaultMargin
         }else{
             x = FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin
-            y = -FTDefaultSectionHeight + FTDefaultMargin
+            y = FTDefaultTimeLabelHeight - FTDefaultSectionHeight + FTDefaultMargin
         }
         return CGRectMake(x,y,bubbleWidth,bubbleHeight);
     }
@@ -117,10 +131,11 @@ class FTChatMessageCell: UITableViewCell {
 
         let bubbleWidth = size.width + FTDefaultTextMargin*2
         let bubbleHeight = size.height + FTDefaultTextMargin*2
-        
+        let y = FTDefaultTimeLabelHeight - FTDefaultSectionHeight + FTDefaultMargin
+
         if (isUserSelf){
             let x = FTScreenWidth - (FTDefaultIconSize + FTDefaultMargin*3) - bubbleWidth
-            let y = -FTDefaultSectionHeight + FTDefaultMargin
+
             path.moveToPoint(CGPointMake(x+bubbleWidth-FTDefaultMessageRoundCorner, y))
             path.addLineToPoint(CGPointMake(x+FTDefaultMessageRoundCorner, y))
             path.addArcWithCenter(CGPointMake(x+FTDefaultMessageRoundCorner, y+FTDefaultMessageRoundCorner), radius: FTDefaultMessageRoundCorner, startAngle: CGFloat(-M_PI_2), endAngle: CGFloat(-M_PI), clockwise: false);
@@ -136,7 +151,6 @@ class FTChatMessageCell: UITableViewCell {
             path.closePath()
         }else{
             let x = FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin
-            let y = -FTDefaultSectionHeight + FTDefaultMargin
             path.moveToPoint(CGPointMake(x+FTDefaultMessageRoundCorner, y))
             path.addLineToPoint(CGPointMake(x+bubbleWidth-FTDefaultMessageRoundCorner, y))
             path.addArcWithCenter(CGPointMake(x+bubbleWidth-FTDefaultMessageRoundCorner, y+FTDefaultMessageRoundCorner), radius: FTDefaultMessageRoundCorner, startAngle: CGFloat(-M_PI_2), endAngle: 0, clockwise: true);
