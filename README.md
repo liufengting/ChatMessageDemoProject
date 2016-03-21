@@ -1,4 +1,4 @@
-# ChatMessageDemoProject
+# FTChatMessageDemoProject
 
 ##Working in progress
 
