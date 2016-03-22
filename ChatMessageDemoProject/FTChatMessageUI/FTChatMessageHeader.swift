@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 class FTChatMessageHeader: UIView {
     
@@ -39,7 +38,7 @@ class FTChatMessageHeader: UIView {
         if image != nil{
             iconButton.setImage(image, forState: UIControlState.Normal)
         }else{
-            iconButton.sd_setImageWithURL(imageUrl, forState: UIControlState.Normal, placeholderImage: UIImage())
+//            iconButton.sd_setImageWithURL(imageUrl, forState: UIControlState.Normal, placeholderImage: UIImage())
         }
         self.addSubview(iconButton)
 

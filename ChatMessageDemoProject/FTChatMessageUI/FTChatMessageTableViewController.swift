@@ -21,7 +21,8 @@ import UIKit
 class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UITableViewDataSource{
     
     var messageTableView : UITableView!
-    
+    var messageInputView : FTChatMessageInputView!
+
     
     var messageArray : [FTChatMessageModel] = []
 
@@ -65,11 +66,53 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         messageTableView = UITableView(frame: CGRectMake(0, 0, FTScreenWidth, FTScreenHeight), style: .Plain)
         messageTableView.delegate = self
         messageTableView.dataSource = self
-        messageTableView.separatorStyle = .None;
+        messageTableView.separatorStyle = .None
         messageTableView.allowsSelection = false
+        messageTableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag
+        messageTableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, FTDefaultInputViewHeight, 0)
         self.view.addSubview(messageTableView)
+        
+        let footer = UIView(frame: CGRectMake( 0, 0, FTScreenWidth, FTDefaultInputViewHeight))
+        messageTableView.tableFooterView = footer
+        
+        messageInputView = FTChatMessageInputView(frame: CGRectMake(0, FTScreenHeight-FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight), otherButtons: "")
+        self.view.addSubview(messageInputView)
 
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FTChatMessageTableViewController.keyboradWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    func keyboradWillChangeFrame(notification : NSNotification){
+        
+        if let userInfo = notification.userInfo {
+            let duration = userInfo["UIKeyboardAnimationDurationUserInfoKey"]!.doubleValue
+            let keyFrame = userInfo["UIKeyboardFrameEndUserInfoKey"]!.CGRectValue()
+            
+            let keyboradOriginY = min(keyFrame.origin.y, FTScreenHeight)
+            
+            UIView.animateWithDuration(duration, animations: { 
+                
+                self.messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, keyboradOriginY)
+                self.messageInputView.frame = CGRectMake(0, keyboradOriginY-FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
+                
+                }, completion: { (finished) in
+                    if (finished){
+//                        self.messageTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messageArray.count-1), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+                    }
+            })
+        }
+    }
+    
+    
+    
     /**
      UITableViewDelegate,UITableViewDataSource
      */

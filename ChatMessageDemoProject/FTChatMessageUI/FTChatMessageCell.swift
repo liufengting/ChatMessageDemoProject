@@ -15,11 +15,11 @@ import UIKit
 
 class FTChatMessageCell: UITableViewCell {
 
-    var cellDesiredHeight : CGFloat = 60
+//    var cellDesiredHeight : CGFloat = 60
 
     var messageLabel : UILabel!
     var messageTimeLabel: UILabel!
-    var messageBubbleRect : CGRect!
+    var messageBubbleRect : CGRect! = CGRectZero
     var messageBubblePath = UIBezierPath()
     var message : FTChatMessageModel!
     
@@ -33,7 +33,7 @@ class FTChatMessageCell: UITableViewCell {
         
         message = aMessage
         
-        let timeLabel = UILabel(frame: CGRectMake(0, -FTDefaultSectionHeight ,FTScreenWidth, FTDefaultTimeLabelHeight+FTDefaultTextMargin));
+        let timeLabel = UILabel(frame: CGRectMake(0, -FTDefaultSectionHeight ,FTScreenWidth, FTDefaultTimeLabelHeight));
         timeLabel.text = "3月21日 16:44"
         timeLabel.numberOfLines = 0
         timeLabel.textAlignment = .Center
@@ -58,24 +58,37 @@ class FTChatMessageCell: UITableViewCell {
         messageBubblePath = self.getBubbleShapePathWithSize(rect.size, isUserSelf: aMessage.isUserSelf)
 
         
-//        let maskLayer = CAShapeLayer();
-//        maskLayer.path = messageBubblePath.CGPath
-//        maskLayer.fillColor =  aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
-//        maskLayer.contentsCenter = CGRectMake(0.5, 0.5, 0.1, 0.1);
-//        maskLayer.contentsScale = UIScreen.mainScreen().scale;
-//        
+        
+        
         let layer = CAShapeLayer()
         layer.path = messageBubblePath.CGPath
         layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
         self.layer.addSublayer(layer)
+
+        //image
+//        let maskLayer = CAShapeLayer();
+//        maskLayer.path = UIBezierPath.init(roundedRect: messageBubbleRect, cornerRadius: 10).CGPath
+//        maskLayer.fillColor =  aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
+//        maskLayer.strokeColor =  aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
+//        maskLayer.contentsCenter = CGRectMake(0, 0, 0.5, 0.5);
+//        maskLayer.frame = messageBubbleRect
+//        maskLayer.contentsScale = UIScreen.mainScreen().scale;
+//
+//        let layer = CAShapeLayer()
+//        layer.mask = maskLayer
+//        layer.frame = messageBubbleRect
+//        self.layer.addSublayer(layer)
+//        
+//        if let image = UIImage(named: "dog.jpg"){
+//            layer.contents = image.CGImage
+//        }
+        
+        
+        
+        
         
 
-        
-        
-        
-        
-
-        
+        //text
         messageLabel = UILabel(frame: CGRectMake(messageBubbleRect.origin.x+FTDefaultTextMargin,
             messageBubbleRect.origin.y+FTDefaultTextMargin, rect.width, rect.height));
         messageLabel.text = message.messageText
@@ -95,6 +108,21 @@ class FTChatMessageCell: UITableViewCell {
 
         
     }
+    
+    var cellDesiredHeight : CGFloat {
+        get{
+            if (messageBubbleRect != nil) {
+                return max(messageBubbleRect.height + FTDefaultMargin*2 - FTDefaultSectionHeight + FTDefaultTimeLabelHeight, 0)
+            }
+            return 60.0
+        }
+        set{
+            
+        }
+    }
+    
+    
+    
     /**
      getBubbleRectWithSize
      
