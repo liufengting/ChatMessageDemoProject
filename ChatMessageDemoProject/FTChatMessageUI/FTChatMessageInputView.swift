@@ -25,7 +25,7 @@ class FTChatMessageInputView: UIView {
         
         
         textView = UITextView(frame: CGRectMake(FTDefaultMargin, FTDefaultMargin, frame.width-FTDefaultMargin*10, frame.height-FTDefaultMargin*2))
-        
+        textView.layer.cornerRadius = FTDefaultTextMargin
         
         self.addSubview(textView)
         

@@ -35,7 +35,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         let sender2 = FTChatMessageSenderModel.init(id: "", name: "", icon_url: "", extra_data: nil, isSelf: true)
 
         
-        let message1 = FTChatMessageModel(data: "周末有点无聊，抽点时间写了这个聊天的UI框架。", time: "", from: sender1, type: .Text)
+        let message1 = FTChatMessageModel(data: "最近有点无聊，抽点时间写了这个聊天的UI框架。", time: "", from: sender1, type: .Text)
         let message2 = FTChatMessageModel(data: "有什么功能", time: "", from: sender2, type: .Text)
         let message3 = FTChatMessageModel(data: "纯Swift编写，目前只写了纯文本消息，后续会有更多功能，TODO：图片视频语音定位等。这一版本还有很多需要优化，希望可以改成一个易拓展的方便大家使用，哈哈哈哈", time: "", from: sender1, type: .Text)
         let message4 = FTChatMessageModel(data: "不足的地方", time: "", from: sender2, type: .Text)

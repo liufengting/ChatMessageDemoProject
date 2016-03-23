@@ -35,7 +35,7 @@ class FTChatMessageModel: NSObject {
     var isUserSelf : Bool = false;
     var messageText : String!
     var messageTimeStamp : String!
-    var messageType : FTChatMessageType!
+    var messageType : FTChatMessageType = .Text
     var messageSender : FTChatMessageSenderModel!
     var messageExtraData : NSDictionary?
 

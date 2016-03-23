@@ -24,6 +24,7 @@
 		5AC509AD1C82CA630040F2A7 /* FTChatMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC509AC1C82CA630040F2A7 /* FTChatMessageTableViewController.swift */; };
 		5AC509AF1C82D5A30040F2A7 /* FTChatMessageTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC509AE1C82D5A30040F2A7 /* FTChatMessageTableView.swift */; };
 		5AD3344C1CA198E30064C30B /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AD3344B1CA198E30064C30B /* dog.jpg */; };
+		5AFAD0631CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFAD0621CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift */; };
 		BBD81C02F37A5CD1EF9C0A18 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95AC03B81F67E81161B82DC /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		5AC509AC1C82CA630040F2A7 /* FTChatMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageTableViewController.swift; sourceTree = "<group>"; };
 		5AC509AE1C82D5A30040F2A7 /* FTChatMessageTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageTableView.swift; sourceTree = "<group>"; };
 		5AD3344B1CA198E30064C30B /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
+		5AFAD0621CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleItem.swift; sourceTree = "<group>"; };
 		66C362F1F6693746ACE0BC2A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B95AC03B81F67E81161B82DC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2637B34880EA258B42A6325 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				5A57A1371C82ED4500D8906E /* FTChatMessageModel.swift */,
 				5A7E0D701C82B2760046483E /* FTChatMessageHeader.swift */,
 				5AC509A61C82C3240040F2A7 /* FTChatMessageCell.swift */,
+				5AFAD0621CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift */,
 				5A07C8CF1CA18006009F2460 /* FTChatMessageInputView.swift */,
 				5AC509AE1C82D5A30040F2A7 /* FTChatMessageTableView.swift */,
 				5AC509AC1C82CA630040F2A7 /* FTChatMessageTableViewController.swift */,
@@ -384,6 +387,7 @@
 				5A07C8CB1CA17CA6009F2460 /* ImageSize.m in Sources */,
 				5A57A1381C82ED4500D8906E /* FTChatMessageModel.swift in Sources */,
 				5A7E0D711C82B2760046483E /* FTChatMessageHeader.swift in Sources */,
+				5AFAD0631CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift in Sources */,
 				5AC509AD1C82CA630040F2A7 /* FTChatMessageTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
