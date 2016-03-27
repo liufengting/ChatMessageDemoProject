@@ -4,5 +4,11 @@
 
 Still a lot of work to do. Please be patient.
 
-![ChatMessageDemoProject Sample](/ResourceImages/chatMessages.jpg)
 
+<table>
+  <tr>
+    <th><img src="/ResourceImages/chatmessage01.jpg" width="250"/></th>
+    <th><img src="/ResourceImages/chatmessage02.jpg" width="250"/></th>
+    <th><img src="/ResourceImages/chatmessage03.jpg" width="250"/></th>
+  </tr>
+</table>
