@@ -31,26 +31,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let message1 = FTChatMessageModel(data: "最近有点无聊，抽点时间写了这个聊天的UI框架。", time: "", from: sender1, type: .Text)
-        let message2 = FTChatMessageModel(data: "有什么功能", time: "", from: sender2, type: .Text)
-        let message3 = FTChatMessageModel(data: "纯Swift编写，目前只写了纯文本消息，后续会有更多功能，TODO：图片视频语音定位等。这一版本还有很多需要优化，希望可以改成一个易拓展的方便大家使用，哈哈哈哈", time: "", from: sender1, type: .Text)
-        let message4 = FTChatMessageModel(data: "不足的地方", time: "", from: sender2, type: .Text)
-        let message5 = FTChatMessageModel(data: "文字背景不是图片，是用贝塞尔曲线画的，效率应该不高，后期优化", time: "", from: sender1, type: .Text)
-        let message6 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "", from: sender2, type: .Text)
-
-        
-        
-        
-        
-        
-        
-        messageArray = [message1,message2,message3,message4,message5,message6,
-        message1,message2,message3,message4,message5,message6,
-        message1,message2,message3,message4,message5,message6,
-        message1,message2,message3,message4,message5,message6,
-        message1,message2,message3,message4,message5,message6,
-        message1,message2,message3,message4,message5,message6,]
-        
+        self.loadDefaultMessages()
 
         
         messageTableView = UITableView(frame: CGRectMake(0, 0, FTScreenWidth, FTScreenHeight), style: .Plain)
@@ -62,16 +43,39 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         messageTableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, FTDefaultInputViewHeight, 0)
         self.view.addSubview(messageTableView)
         
-        let footer = UIView(frame: CGRectMake( 0, 0, FTScreenWidth, FTDefaultInputViewHeight))
+        let footer = UIView(frame: CGRectMake( 0, 0, FTScreenWidth, FTDefaultInputViewHeight+FTDefaultMargin))
         messageTableView.tableFooterView = footer
         
         messageInputView = FTChatMessageInputView(frame: CGRectMake(0, FTScreenHeight-FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight), otherButtons: "")
         messageInputView.delegate = self
         self.view.addSubview(messageInputView)
 
-        self.scrollToBottom()
+        
+        dispatch_after( dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            self.messageTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messageArray.count-1), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+        }
+        
 
     }
+    func loadDefaultMessages(){
+        let message1 = FTChatMessageModel(data: "最近有点无聊，抽点时间写了这个聊天的UI框架。", time: "", from: sender1, type: .Text)
+        let message2 = FTChatMessageModel(data: "有什么功能", time: "", from: sender2, type: .Text)
+        let message3 = FTChatMessageModel(data: "纯Swift编写，目前只写了纯文本消息，后续会有更多功能，TODO：图片视频语音定位等。这一版本还有很多需要优化，希望可以改成一个易拓展的方便大家使用，哈哈哈哈", time: "", from: sender1, type: .Text)
+        let message4 = FTChatMessageModel(data: "不足的地方", time: "", from: sender2, type: .Text)
+        let message5 = FTChatMessageModel(data: "文字背景不是图片，是用贝塞尔曲线画的，效率应该不高，后期优化", time: "", from: sender1, type: .Text)
+        let message6 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "", from: sender2, type: .Text)
+        
+        
+        
+        messageArray = [message1,message2,message3,message4,message5,message6,
+                        message1,message2,message3,message4,message5,message6,
+                        message1,message2,message3,message4,message5,message6,
+                        message1,message2,message3,message4,message5,message6,
+                        message1,message2,message3,message4,message5,message6,
+                        message1,message2,message3,message4,message5,message6,]
+
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -190,7 +194,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         
         let message = messageArray[indexPath.section]
         
-        let cell = FTChatMessageCell.init(style: UITableViewCellStyle.Default, reuseIdentifier: FTChatMessageCellReuseIndentifier, aMessage: message, maxTextWidth: FTScreenWidth*0.7);
+        let cell = FTChatMessageCell.init(style: UITableViewCellStyle.Default, reuseIdentifier: FTChatMessageCellReuseIndentifier, aMessage: message, maxTextWidth: (FTScreenWidth - FTDefaultMargin*2 - FTDefaultIconSize*2 - FTDefaultIconToMessageMargin*2 - FTDefaultTextMargin*2));
                 
         return cell
     }
@@ -198,5 +202,8 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
+    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+        return UIInterfaceOrientation.Portrait
+    }
 
 }
