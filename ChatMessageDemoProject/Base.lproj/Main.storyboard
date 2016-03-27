@@ -1,10 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E61b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sLt-0S-ro8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sLt-0S-ro8">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+        <!--FTChatMessageDemo-->
+        <scene sceneID="U4z-W8-ALu">
+            <objects>
+                <viewController id="fPI-dH-F6x" customClass="ViewController" customModule="ChatMessageDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YwQ-cB-NzR"/>
+                        <viewControllerLayoutGuide type="bottom" id="OAh-CC-wFl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pLl-w4-3Zg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="FTChatMessageDemo" id="blF-yx-7HT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="GhO-fd-pTW">
+                            <connections>
+                                <segue destination="yp7-sx-RoE" kind="show" id="PGr-YR-m4l"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xNg-od-XWv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="361" y="880"/>
+        </scene>
         <!--FTChatMessageDemo-->
         <scene sceneID="i1J-a0-n9S">
             <objects>
@@ -23,7 +49,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OJx-pi-pYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="592" y="1031"/>
+            <point key="canvasLocation" x="717" y="880"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="K8C-T8-1eL">
@@ -37,12 +63,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="yp7-sx-RoE" kind="relationship" relationship="rootViewController" id="jNr-5W-b8Y"/>
+                        <segue destination="fPI-dH-F6x" kind="relationship" relationship="rootViewController" id="sBw-ZW-2Ie"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2Y-ir-Qzs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="147" y="1031"/>
+            <point key="canvasLocation" x="8" y="880"/>
         </scene>
     </scenes>
 </document>

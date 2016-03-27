@@ -29,6 +29,8 @@ let FTChatMessageCellReuseIndentifier = "FTChatMessageCellReuseIndentifier"
 let FTScreenWidth = UIScreen.mainScreen().bounds.size.width
 let FTScreenHeight = UIScreen.mainScreen().bounds.size.height
 let FTDefaultMargin : CGFloat = 5.0
+let FTDefaultButtonSize : CGFloat = 30.0
+let FTDefaultTextViewMargin : CGFloat = 7.0
 let FTDefaultIconToMessageMargin : CGFloat = 2.0
 let FTDefaultTimeLabelHeight : CGFloat = 15.0
 let FTDefaultTimeLabelFont : UIFont = UIFont.systemFontOfSize(11)
@@ -36,13 +38,14 @@ let FTDefaultAngleWidth : CGFloat = 8.0
 let FTDefaultTextMargin : CGFloat = 8.0
 let FTDefaultLineSpacing : CGFloat = 2.0
 let FTDefaultSectionHeight : CGFloat = 40.0
-let FTDefaultInputViewHeight : CGFloat = 40.0
+let FTDefaultInputViewHeight : CGFloat = 44.0
+let FTDefaultInputViewMAXHeight : CGFloat = 150.0
 let FTDefaultIconSize : CGFloat = 30.0
 let FTDefaultMessageRoundCorner : CGFloat = 10.0
 let FTDefaultFontSize : UIFont = UIFont.systemFontOfSize(16)
 let FTDefaultOutgoingColor : UIColor = UIColor(red: 1/255, green: 123/255, blue: 225/255, alpha: 1)
 let FTDefaultIncomingColor : UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-let FTDefaultInputViewBackgroundColor : UIColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+let FTDefaultInputViewBackgroundColor : UIColor = UIColor(red: 73/255, green: 196/255, blue: 250/255, alpha: 1)
 
 
 
