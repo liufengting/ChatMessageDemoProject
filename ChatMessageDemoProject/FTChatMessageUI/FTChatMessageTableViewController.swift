@@ -64,22 +64,17 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         let message4 = FTChatMessageModel(data: "不足的地方", time: "", from: sender2, type: .Text)
         let message5 = FTChatMessageModel(data: "文字背景不是图片，是用贝塞尔曲线画的，效率应该不高，后期优化", time: "", from: sender1, type: .Text)
         let message6 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "", from: sender2, type: .Text)
+        let message7 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "", from: sender1, type: .Image)
+
         
         
-        
-        messageArray = [message1,message2,message3,message4,message5,message6,
-                        message1,message2,message3,message4,message5,message6,
-                        message1,message2,message3,message4,message5,message6,
-                        message1,message2,message3,message4,message5,message6,
-                        message1,message2,message3,message4,message5,message6,
-                        message1,message2,message3,message4,message5,message6,]
+        messageArray = [message1,message2,message3,message4,message5,message6,message7]
 
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FTChatMessageTableViewController.keyboradDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FTChatMessageTableViewController.keyboradWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
 
     }
@@ -93,24 +88,15 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     /**
      notification functions
      */
-    func keyboradDidShow(notification : NSNotification) {
-        self.scrollToBottom()
-    }
     func keyboradWillChangeFrame(notification : NSNotification) {
         
         if let userInfo = notification.userInfo {
             let duration = userInfo["UIKeyboardAnimationDurationUserInfoKey"]!.doubleValue
             let keyFrame = userInfo["UIKeyboardFrameEndUserInfoKey"]!.CGRectValue()
-            let messageInputViewHeight = self.messageInputView.frame.height
             let keyboradOriginY = min(keyFrame.origin.y, FTScreenHeight)
             
-            UIView.animateWithDuration(duration, animations: { 
-                
-                
-                
-                self.messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, keyboradOriginY+FTDefaultInputViewHeight-messageInputViewHeight)
-                self.messageInputView.frame = CGRectMake(0, keyboradOriginY-messageInputViewHeight, FTScreenWidth, messageInputViewHeight)
-                
+            UIView.animateWithDuration(duration, animations: {
+                self.view.frame = CGRectMake(0, keyboradOriginY-FTScreenHeight, FTScreenWidth, FTScreenHeight)
                 }, completion: { (finished) in
                     if (finished){
                         
@@ -131,7 +117,6 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         origin.size.height = desiredHeight;
         
         messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, origin.origin.y + FTDefaultInputViewHeight)
-        self.scrollToBottom()
         messageInputView.frame = origin
         messageInputView.setNeedsDisplay()
     }

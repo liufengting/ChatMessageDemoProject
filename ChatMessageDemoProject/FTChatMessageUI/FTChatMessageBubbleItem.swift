@@ -17,27 +17,60 @@ class FTChatMessageBubbleItem: UIButton {
     
     convenience init(frame: CGRect, aMessage : FTChatMessageModel) {
         self.init(frame: frame)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.redColor()
         message = aMessage
         
         messageBubblePath = self.getBubbleShapePathWithSize(frame.size, isUserSelf: aMessage.isUserSelf)
         
-        let layer = CAShapeLayer()
-        layer.path = messageBubblePath.CGPath
-        layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
-        self.layer.addSublayer(layer)
-
         
-        //text
-        messageLabel = UILabel(frame: self.getTextRectWithSize(frame.size, isUserSelf: aMessage.isUserSelf));
-        messageLabel.text = message.messageText
-        messageLabel.numberOfLines = 0
-        messageLabel.textColor = aMessage.messageSender.isUserSelf ? UIColor.whiteColor() : UIColor.blackColor()
-        messageLabel.font = FTDefaultFontSize
-        self.addSubview(messageLabel)
-        let attributeString = NSMutableAttributedString(attributedString: messageLabel.attributedText!)
-        attributeString.addAttributes([NSFontAttributeName:FTDefaultFontSize,NSParagraphStyleAttributeName: FTChatMessagePublicMethods.getFTDefaultMessageParagraphStyle()], range: NSMakeRange(0, (messageLabel.text! as NSString).length))
-        messageLabel.attributedText = attributeString
+        
+        
+        if message.messageType == .Image {
+            
+//            let imageRect = self.getImageFrameWithSize(frame.size, isUserSelf: aMessage.isUserSelf);
+            
+            let maskLayer = CAShapeLayer();
+            maskLayer.path = messageBubblePath.CGPath
+            maskLayer.frame = self.bounds
+            maskLayer.contentsScale = UIScreen.mainScreen().scale;
+
+            let layer = CAShapeLayer()
+            layer.mask = maskLayer
+//            layer.frame = imageRect
+            layer.frame = self.bounds
+
+            self.layer.addSublayer(layer)
+            
+            if let image = UIImage(named : "setting.jpg"){
+                layer.contents = image.CGImage
+            }
+            
+            
+
+            
+            
+            
+            
+        }else{
+            let layer = CAShapeLayer()
+            layer.path = messageBubblePath.CGPath
+            layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
+            self.layer.addSublayer(layer)
+            
+            
+            //text
+            messageLabel = UILabel(frame: self.getTextRectWithSize(frame.size, isUserSelf: aMessage.isUserSelf));
+            messageLabel.text = message.messageText
+            messageLabel.numberOfLines = 0
+            messageLabel.textColor = aMessage.messageSender.isUserSelf ? UIColor.whiteColor() : UIColor.blackColor()
+            messageLabel.font = FTDefaultFontSize
+            self.addSubview(messageLabel)
+            let attributeString = NSMutableAttributedString(attributedString: messageLabel.attributedText!)
+            attributeString.addAttributes([NSFontAttributeName:FTDefaultFontSize,NSParagraphStyleAttributeName: FTChatMessagePublicMethods.getFTDefaultMessageParagraphStyle()], range: NSMakeRange(0, (messageLabel.text! as NSString).length))
+            messageLabel.attributedText = attributeString
+        }
+        
+
 
         
         
@@ -50,10 +83,10 @@ class FTChatMessageBubbleItem: UIButton {
     
     
     func getTextRectWithSize(size:CGSize , isUserSelf : Bool) -> CGRect {
-        let bubbleWidth = size.width - FTDefaultAngleWidth - FTDefaultMargin - FTDefaultTextMargin*2
-        let bubbleHeight = size.height - FTDefaultMargin*2 - FTDefaultTextMargin*2
-        let y = FTDefaultMargin + FTDefaultTextMargin
-        let x : CGFloat = isUserSelf ? FTDefaultMargin + FTDefaultTextMargin : FTDefaultAngleWidth + FTDefaultTextMargin
+        let bubbleWidth = size.width - FTDefaultAngleWidth  - FTDefaultTextMargin*2
+        let bubbleHeight = size.height - FTDefaultTextMargin*2
+        let y = FTDefaultTextMargin
+        let x : CGFloat = isUserSelf ? FTDefaultTextMargin : FTDefaultAngleWidth + FTDefaultTextMargin
         return CGRectMake(x,y,bubbleWidth,bubbleHeight);
     }
     /**
@@ -67,12 +100,12 @@ class FTChatMessageBubbleItem: UIButton {
     func getBubbleShapePathWithSize(size:CGSize , isUserSelf : Bool) -> UIBezierPath {
         let path = UIBezierPath()
         
-        let bubbleWidth = size.width - FTDefaultAngleWidth - FTDefaultMargin
-        let bubbleHeight = size.height - FTDefaultMargin*2
-        let y = FTDefaultMargin
+        let bubbleWidth = size.width - FTDefaultAngleWidth
+        let bubbleHeight = size.height
+        let y : CGFloat = 0
         
         if (isUserSelf){
-            let x : CGFloat = FTDefaultMargin
+            let x : CGFloat = 0
             
             path.moveToPoint(CGPointMake(x+bubbleWidth-FTDefaultMessageRoundCorner, y))
             path.addLineToPoint(CGPointMake(x+FTDefaultMessageRoundCorner, y))
@@ -106,31 +139,16 @@ class FTChatMessageBubbleItem: UIButton {
         return path;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    var desiredHeight : CGFloat {
-        get{
-            return 100
+    func getImageFrameWithSize(size:CGSize , isUserSelf : Bool) -> CGRect {
+        let bubbleWidth = size.width - FTDefaultAngleWidth
+        let bubbleHeight = size.height - FTDefaultMargin*2
+        let y : CGFloat = 0
+        var x : CGFloat = 0
+        if (!isUserSelf){
+            x = FTDefaultAngleWidth
         }
+        return CGRectMake(x, y, bubbleWidth, bubbleHeight)
     }
-    
     
 
 

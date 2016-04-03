@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// FTChatMessageSenderModel
+ /// FTChatMessageSenderModel
 
 class FTChatMessageSenderModel : NSObject{
     
@@ -28,10 +28,11 @@ class FTChatMessageSenderModel : NSObject{
     }
 }
 
-/// FTChatMessageModel
+ /// FTChatMessageModel
 
 class FTChatMessageModel: NSObject {
     
+    var targetId : String!
     var isUserSelf : Bool = false;
     var messageText : String!
     var messageTimeStamp : String!
