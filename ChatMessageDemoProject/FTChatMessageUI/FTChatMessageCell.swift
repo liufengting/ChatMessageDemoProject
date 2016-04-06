@@ -77,7 +77,7 @@ class FTChatMessageCell: UITableViewCell {
 ////                image.drawInRect(messageBubbleRect)
 //            }
             
-            let image = UIImage(named : "setting.jpg")
+            let image = UIImage(named : "dog.jpg")
             
             let bubbleWidth : CGFloat = 200
             let bubbleHeight : CGFloat = (image?.size.height)! * (200/(image?.size.width)!)

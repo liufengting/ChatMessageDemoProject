@@ -45,7 +45,7 @@ let FTDefaultMessageRoundCorner : CGFloat = 10.0
 let FTDefaultFontSize : UIFont = UIFont.systemFontOfSize(16)
 let FTDefaultOutgoingColor : UIColor = UIColor(red: 1/255, green: 123/255, blue: 225/255, alpha: 1)
 let FTDefaultIncomingColor : UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-let FTDefaultInputViewBackgroundColor : UIColor = UIColor(red: 73/255, green: 196/255, blue: 250/255, alpha: 1)
+let FTDefaultInputViewBackgroundColor : UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
 
 
 

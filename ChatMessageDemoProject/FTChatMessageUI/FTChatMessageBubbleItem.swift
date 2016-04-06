@@ -17,7 +17,7 @@ class FTChatMessageBubbleItem: UIButton {
     
     convenience init(frame: CGRect, aMessage : FTChatMessageModel) {
         self.init(frame: frame)
-        self.backgroundColor = UIColor.redColor()
+        self.backgroundColor = UIColor.clearColor()
         message = aMessage
         
         messageBubblePath = self.getBubbleShapePathWithSize(frame.size, isUserSelf: aMessage.isUserSelf)
@@ -41,7 +41,7 @@ class FTChatMessageBubbleItem: UIButton {
 
             self.layer.addSublayer(layer)
             
-            if let image = UIImage(named : "setting.jpg"){
+            if let image = UIImage(named : "dog.jpg"){
                 layer.contents = image.CGImage
             }
             
