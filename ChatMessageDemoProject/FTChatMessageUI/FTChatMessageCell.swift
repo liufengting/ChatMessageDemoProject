@@ -16,102 +16,109 @@ import UIKit
 class FTChatMessageCell: UITableViewCell {
 
     var messageTimeLabel: UILabel!
+    var messageSenderLabel: UILabel!
+    var messageBubbleItem: FTChatMessageBubbleItem!
     var message : FTChatMessageModel!
+    
     var cellDesiredHeight : CGFloat = 60
 
 
     
     
     
-    convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, aMessage : FTChatMessageModel, maxTextWidth : CGFloat) {
+    convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, theMessage : FTChatMessageModel, shouldShowSendTime : Bool , shouldShowSenderName : Bool) {
         self.init(style: style, reuseIdentifier: reuseIdentifier)
 
         
-        message = aMessage
-        
-        let timeLabel = UILabel(frame: CGRectMake(0, -FTDefaultSectionHeight ,FTScreenWidth, FTDefaultTimeLabelHeight));
-        timeLabel.text = "3月21日 16:44"
-        timeLabel.numberOfLines = 0
-        timeLabel.textAlignment = .Center
-        timeLabel.textColor = UIColor.lightGrayColor()
-        timeLabel.font = FTDefaultTimeLabelFont
-        self.addSubview(timeLabel)
         
         
         
         
+        message = theMessage
         
         
         
         
-//        image
+        var timeLabelRect = CGRectZero
+        var nameLabelRect = CGRectZero
+        var bubbleRect = CGRectZero
+        
+        
+        if shouldShowSendTime {
+            
+            timeLabelRect = CGRectMake(0, -FTDefaultSectionHeight ,FTScreenWidth, FTDefaultTimeLabelHeight);
+            nameLabelRect = CGRectMake(0, FTDefaultTimeLabelHeight - FTDefaultSectionHeight, FTScreenWidth, 0);
+
+            messageTimeLabel = UILabel(frame: timeLabelRect);
+            messageTimeLabel.text = "3月21日 16:44"
+            messageTimeLabel.textAlignment = .Center
+            messageTimeLabel.textColor = UIColor.lightGrayColor()
+            messageTimeLabel.font = FTDefaultTimeLabelFont
+            self.addSubview(messageTimeLabel)
+        }else{
+            nameLabelRect = CGRectMake(0, -FTDefaultSectionHeight, FTScreenWidth, 0);
+        }
+        
+        if shouldShowSenderName {
+            var nameLabelTextAlignment : NSTextAlignment = .Left
+            
+            if theMessage.isUserSelf {
+                nameLabelRect = CGRectMake( 0, (FTDefaultSectionHeight - FTDefaultNameLabelHeight)/2  - FTDefaultSectionHeight  , FTScreenWidth - (FTDefaultMargin + FTDefaultIconSize + FTDefaultAngleWidth), FTDefaultNameLabelHeight)
+                nameLabelTextAlignment =  .Right
+            }else{
+                nameLabelRect = CGRectMake(FTDefaultMargin + FTDefaultIconSize + FTDefaultAngleWidth, (FTDefaultSectionHeight - FTDefaultNameLabelHeight)/2  - FTDefaultSectionHeight ,FTScreenWidth, FTDefaultNameLabelHeight)
+                nameLabelTextAlignment = .Left
+            }
+            messageSenderLabel = UILabel(frame: nameLabelRect);
+            messageSenderLabel.text = "路人甲"
+            messageSenderLabel.textAlignment = nameLabelTextAlignment
+            messageSenderLabel.textColor = UIColor.lightGrayColor()
+            messageSenderLabel.font = FTDefaultTimeLabelFont
+            self.addSubview(messageSenderLabel)
+        }
+        
+        
+        
+        
+        
+        var x : CGFloat = 0
+        let y : CGFloat = nameLabelRect.origin.y + nameLabelRect.height + FTDefaultMargin
+        var bubbleWidth : CGFloat = 200
+        var bubbleHeight : CGFloat = 200
+
+        
+        
+
+
         
         if message.messageType == .Image {
             
-//            messageBubbleRect = CGRectMake(FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin, FTDefaultTimeLabelHeight - FTDefaultSectionHeight + FTDefaultMargin, 200, 150)
-//
-//            messageBubblePath = self.getBubbleShapePathWithSize(CGSizeMake(200, 150), isUserSelf: aMessage.isUserSelf)
-//            
-//            
-//            let maskLayer = CAShapeLayer();
-//            maskLayer.path = messageBubblePath.CGPath
-//            maskLayer.frame = CGRectMake(0, -(FTDefaultTimeLabelHeight - FTDefaultSectionHeight + FTDefaultMargin), 200, 150)
-//
-//            maskLayer.contentsScale = UIScreen.mainScreen().scale;
-//
-//            
-//            let layer = CAShapeLayer()
-//            layer.mask = maskLayer
-//            layer.frame = CGRectMake(FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin, FTDefaultTimeLabelHeight - FTDefaultSectionHeight + FTDefaultMargin, 200, 150)
-//
-//            
-//            
-//            
-////            layer.fillColor =  aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
-////            layer.strokeColor =  aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
-//
-//            self.layer.addSublayer(layer)
-//            
-//            if let image = UIImage(named : "Desktop.png"){
-//                layer.contents = image.CGImage
-////                image.drawInRect(messageBubbleRect)
-//            }
-            
             let image = UIImage(named : "dog.jpg")
+            bubbleWidth = 200
+            bubbleHeight = image == nil ? 200 : (image?.size.height)! * (200/(image?.size.width)!)
+            x = theMessage.isUserSelf ? FTScreenWidth - (FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin) - bubbleWidth : FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin
             
-            let bubbleWidth : CGFloat = 200
-            let bubbleHeight : CGFloat = (image?.size.height)! * (200/(image?.size.width)!)
-            let x : CGFloat = aMessage.isUserSelf ? FTScreenWidth - (FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin) - bubbleWidth : FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin
-            let y = FTDefaultTimeLabelHeight - FTDefaultSectionHeight
-
-            
-            
-            
-            self.cellDesiredHeight = bubbleHeight - FTDefaultSectionHeight + FTDefaultTimeLabelHeight
-
-            
-            let item = FTChatMessageBubbleItem(frame: CGRectMake(x,y,bubbleWidth,bubbleHeight), aMessage: aMessage)
-            self.addSubview(item)
-
-
         }else{
+            
             let att = NSString(string: message.messageText)
-            let rect = att.boundingRectWithSize(CGSizeMake(maxTextWidth,CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:FTDefaultFontSize,NSParagraphStyleAttributeName: FTChatMessagePublicMethods.getFTDefaultMessageParagraphStyle()], context: nil)
+            let rect = att.boundingRectWithSize(CGSizeMake(FTDefaultTextInViewMaxWidth,CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:FTDefaultFontSize,NSParagraphStyleAttributeName: FTChatMessagePublicMethods.getFTDefaultMessageParagraphStyle()], context: nil)
             
-            
+            bubbleWidth = rect.width + FTDefaultTextMargin*2 + FTDefaultAngleWidth
+            bubbleHeight = rect.height + FTDefaultTextMargin*2
+            x = theMessage.isUserSelf ? FTScreenWidth - (FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin) - bubbleWidth : FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin
 
-            let bubbleWidth = rect.width + FTDefaultTextMargin*2 + FTDefaultAngleWidth
-            let bubbleHeight = rect.height + FTDefaultTextMargin*2
-            let x : CGFloat = aMessage.isUserSelf ? FTScreenWidth - (FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin) - bubbleWidth : FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin
-            let y = FTDefaultTimeLabelHeight - FTDefaultSectionHeight + FTDefaultMargin
             
-            self.cellDesiredHeight = bubbleHeight - FTDefaultSectionHeight + FTDefaultTimeLabelHeight + FTDefaultMargin*2
-
-            let item = FTChatMessageBubbleItem(frame: CGRectMake(x,y,bubbleWidth,bubbleHeight), aMessage: aMessage)
-            self.addSubview(item)
-            
-
         }
+        
+        bubbleRect = CGRectMake(x, y, bubbleWidth, bubbleHeight)
+        self.cellDesiredHeight = bubbleRect.origin.y + bubbleHeight + FTDefaultMargin*2
+
+        
+        messageBubbleItem = FTChatMessageBubbleItem(frame: bubbleRect, aMessage: theMessage)
+        self.addSubview(messageBubbleItem)
+
+        
+        
         
     }
 

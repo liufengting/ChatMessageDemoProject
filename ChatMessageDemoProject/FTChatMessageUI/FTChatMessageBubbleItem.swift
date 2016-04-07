@@ -26,9 +26,7 @@ class FTChatMessageBubbleItem: UIButton {
         
         
         if message.messageType == .Image {
-            
-//            let imageRect = self.getImageFrameWithSize(frame.size, isUserSelf: aMessage.isUserSelf);
-            
+                        
             let maskLayer = CAShapeLayer();
             maskLayer.path = messageBubblePath.CGPath
             maskLayer.frame = self.bounds
@@ -36,7 +34,6 @@ class FTChatMessageBubbleItem: UIButton {
 
             let layer = CAShapeLayer()
             layer.mask = maskLayer
-//            layer.frame = imageRect
             layer.frame = self.bounds
 
             self.layer.addSublayer(layer)
@@ -114,10 +111,11 @@ class FTChatMessageBubbleItem: UIButton {
             path.addArcWithCenter(CGPointMake(x+FTDefaultMessageRoundCorner, y+bubbleHeight-FTDefaultMessageRoundCorner), radius: FTDefaultMessageRoundCorner, startAngle: CGFloat(M_PI), endAngle: CGFloat(M_PI_2), clockwise: false);
             path.addLineToPoint(CGPointMake(x+bubbleWidth-FTDefaultMessageRoundCorner, y+bubbleHeight))
             path.addArcWithCenter(CGPointMake(x+bubbleWidth-FTDefaultMessageRoundCorner, y+bubbleHeight-FTDefaultMessageRoundCorner), radius: FTDefaultMessageRoundCorner, startAngle: CGFloat(M_PI_2), endAngle: 0, clockwise: false);
-            path.addLineToPoint(CGPointMake(x+bubbleWidth, y+FTDefaultMessageRoundCorner*2+FTDefaultAngleWidth))
-            path.addQuadCurveToPoint(CGPointMake(x+bubbleWidth+FTDefaultAngleWidth, y+FTDefaultMessageRoundCorner), controlPoint: CGPointMake(x+bubbleWidth+2.5, y+FTDefaultMessageRoundCorner+3))
-            path.addQuadCurveToPoint(CGPointMake(x+bubbleWidth, y+FTDefaultMessageRoundCorner+2), controlPoint: CGPointMake(x+bubbleWidth+4, y+FTDefaultMessageRoundCorner+1))
-            path.addLineToPoint(CGPointMake(x+bubbleWidth, y+FTDefaultMessageRoundCorner))
+            path.addLineToPoint(CGPointMake(x+bubbleWidth, y+FTDefaultMessageRoundCorner*2+8))
+            
+            path.addQuadCurveToPoint(CGPointMake(x+bubbleWidth+FTDefaultAngleWidth, y+FTDefaultMessageRoundCorner-2), controlPoint: CGPointMake(x+bubbleWidth+2.5, y+FTDefaultMessageRoundCorner+2))
+            path.addQuadCurveToPoint(CGPointMake(x+bubbleWidth, y+FTDefaultMessageRoundCorner), controlPoint: CGPointMake(x+bubbleWidth+4, y+FTDefaultMessageRoundCorner-1))
+
             path.addArcWithCenter(CGPointMake(x+bubbleWidth-FTDefaultMessageRoundCorner, y+FTDefaultMessageRoundCorner), radius: FTDefaultMessageRoundCorner, startAngle: CGFloat(0), endAngle: CGFloat(-M_PI_2), clockwise: false);
             path.closePath()
         }else{
@@ -129,10 +127,11 @@ class FTChatMessageBubbleItem: UIButton {
             path.addArcWithCenter(CGPointMake(x+bubbleWidth-FTDefaultMessageRoundCorner, y+bubbleHeight-FTDefaultMessageRoundCorner), radius: FTDefaultMessageRoundCorner, startAngle: 0, endAngle: CGFloat(M_PI_2), clockwise: true);
             path.addLineToPoint(CGPointMake(x+FTDefaultMessageRoundCorner, y+bubbleHeight))
             path.addArcWithCenter(CGPointMake(x+FTDefaultMessageRoundCorner, y+bubbleHeight-FTDefaultMessageRoundCorner), radius: FTDefaultMessageRoundCorner, startAngle: CGFloat(M_PI_2), endAngle: CGFloat(M_PI), clockwise: true);
-            path.addLineToPoint(CGPointMake(x, y+FTDefaultMessageRoundCorner*2+FTDefaultAngleWidth))
-            path.addQuadCurveToPoint(CGPointMake(x-FTDefaultAngleWidth, y+FTDefaultMessageRoundCorner), controlPoint: CGPointMake(x-2.5, y+FTDefaultMessageRoundCorner+3))
-            path.addQuadCurveToPoint(CGPointMake(x, y+FTDefaultMessageRoundCorner+2), controlPoint: CGPointMake(x-4, y+FTDefaultMessageRoundCorner+1))
-            path.addLineToPoint(CGPointMake(x, y+FTDefaultMessageRoundCorner))
+            path.addLineToPoint(CGPointMake(x, y+FTDefaultMessageRoundCorner*2+8))
+            
+            path.addQuadCurveToPoint(CGPointMake(x-FTDefaultAngleWidth, y+FTDefaultMessageRoundCorner-2), controlPoint: CGPointMake(x-2.5, y+FTDefaultMessageRoundCorner+2))
+            path.addQuadCurveToPoint(CGPointMake(x, y+FTDefaultMessageRoundCorner), controlPoint: CGPointMake(x-4, y+FTDefaultMessageRoundCorner-1))
+            
             path.addArcWithCenter(CGPointMake(x+FTDefaultMessageRoundCorner, y+FTDefaultMessageRoundCorner), radius: FTDefaultMessageRoundCorner, startAngle: CGFloat(M_PI), endAngle: CGFloat(-M_PI_2), clockwise: true);
             path.closePath()
         }
