@@ -34,7 +34,7 @@ class FTChatMessageHeader: UIView {
         iconButton.frame = iconRect
         iconButton.backgroundColor = isSender ? FTDefaultOutgoingColor : FTDefaultIncomingColor
         iconButton.layer.cornerRadius = FTDefaultIconSize/2;
-        iconButton.clipsToBounds = true
+        iconButton.layer.masksToBounds = true
         if image != nil{
             iconButton.setImage(image, forState: UIControlState.Normal)
         }else{

@@ -50,10 +50,11 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         let footer = UIView(frame: CGRectMake( 0, 0, FTScreenWidth, FTDefaultInputViewHeight+FTDefaultMargin))
         messageTableView.tableFooterView = footer
         
-        messageInputView = FTChatMessageInputView(frame: CGRectMake(0, FTScreenHeight-FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight), otherButtons: "")
-        messageInputView.delegate = self
+        messageInputView = FTChatMessageInputView(frame: CGRectMake(0, FTScreenHeight-FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight))
+        messageInputView.inputDelegate = self
         self.view.addSubview(messageInputView)
 
+        
         
         dispatch_after( dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
             self.messageTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messageArray.count-1), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
@@ -109,10 +110,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
             })
         }
     }
-//    func keyboradDidHide(notification : NSNotification) {
-//        self.messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, keyboradOriginY)
-//        self.messageInputView.frame = CGRectMake(0, keyboradOriginY-FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
-//    }
+
     
     
     //FTChatMessageInputViewDelegate
@@ -123,7 +121,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         
         messageTableView.frame = CGRectMake(0, origin.origin.y + FTDefaultInputViewHeight - FTScreenHeight, FTScreenWidth, FTScreenHeight)
         messageInputView.frame = origin
-        messageInputView.setNeedsDisplay()
+        messageInputView.updateSubViewFrame()
     }
     func FTChatMessageInputViewShouldDoneWithText(textString: String) {
         
