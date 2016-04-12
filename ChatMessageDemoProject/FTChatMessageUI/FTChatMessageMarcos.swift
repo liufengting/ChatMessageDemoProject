@@ -50,6 +50,10 @@ let FTDefaultOutgoingColor : UIColor = UIColor(red: 1/255, green: 123/255, blue:
 let FTDefaultIncomingColor : UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
 let FTDefaultInputViewBackgroundColor : UIColor = UIColor(red: 210/255, green: 210/255, blue: 210/255, alpha: 1)
 
+let FTDefaultMessageBubbleWidth : CGFloat = FTScreenWidth*0.48
+let FTDefaultMessageBubbleHeight : CGFloat = FTScreenWidth*0.30
+let FTDefaultMessageBubbleAudioHeight : CGFloat = 40.0
+
 
 
 

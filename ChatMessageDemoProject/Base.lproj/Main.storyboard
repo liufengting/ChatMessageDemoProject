@@ -32,7 +32,7 @@
                                             <subviews>
                                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DKl-Q2-9U7">
                                                     <rect key="frame" x="8" y="8" width="53" height="53"/>
-                                                    <color key="backgroundColor" red="0.1450980392" green="0.7843137255" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.0039215686274509803" green="0.4823529411764706" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="43" id="C0p-1f-N1a"/>
                                                         <constraint firstAttribute="width" secondItem="DKl-Q2-9U7" secondAttribute="height" multiplier="1:1" id="UA3-cf-x9U"/>
@@ -132,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OJx-pi-pYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="717" y="880"/>
+            <point key="canvasLocation" x="753" y="880"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="K8C-T8-1eL">

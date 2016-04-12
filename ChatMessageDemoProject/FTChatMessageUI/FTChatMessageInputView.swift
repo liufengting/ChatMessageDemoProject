@@ -30,7 +30,7 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
         
         recordButton = UIButton(frame:CGRectMake(FTDefaultMargin, self.bounds.height - FTDefaultButtonSize - buttonBottomMargin, FTDefaultButtonSize,FTDefaultButtonSize))
         recordButton.setBackgroundImage(UIImage(named: "FT_Record"), forState: .Normal)
-        recordButton.backgroundColor = FTDefaultInputViewBackgroundColor
+        recordButton.backgroundColor = UIColor.clearColor()
         self.addSubview(recordButton)
         
         
@@ -49,7 +49,7 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
         
         addButton = UIButton(frame:CGRectMake(FTScreenWidth - FTDefaultButtonSize - FTDefaultMargin, self.bounds.height - FTDefaultButtonSize - buttonBottomMargin, FTDefaultButtonSize,FTDefaultButtonSize))
         addButton.setBackgroundImage(UIImage(named: "FT_Add"), forState: .Normal)
-        addButton.backgroundColor = FTDefaultInputViewBackgroundColor
+        addButton.backgroundColor = UIColor.clearColor()
         self.addSubview(addButton)
 
     }
@@ -58,20 +58,6 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
         fatalError("init(coder:) has not been implemented")
     }
     
-    /**
-     convenience init
-     
-     - parameter frame:        frame
-     - parameter otherButtons: otherButtons
-     
-     - returns:
-     */
-//    convenience init(frame: CGRect, otherButtons: String) {
-//        self.init(frame : frame)
-//        
-//
-//    }
-
     /**
      clearText
      */
@@ -103,8 +89,10 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
-            if (inputDelegate != nil) {
-                inputDelegate!.FTChatMessageInputViewShouldDoneWithText(textView.text)
+            if (textView.text as NSString).length > 0 {
+                if (inputDelegate != nil) {
+                    inputDelegate!.FTChatMessageInputViewShouldDoneWithText(textView.text)
+                }
             }
             return false;
         }

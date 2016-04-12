@@ -40,6 +40,7 @@ class FTChatMessageModel: NSObject {
     var messageSender : FTChatMessageSenderModel!
     var messageExtraData : NSDictionary?
 
+    
     convenience init(data : String? ,time : String?, from : FTChatMessageSenderModel, type : FTChatMessageType){
         self.init()
         self.transformMessage(data,time : time,extraDic: nil,from: from,type: type)

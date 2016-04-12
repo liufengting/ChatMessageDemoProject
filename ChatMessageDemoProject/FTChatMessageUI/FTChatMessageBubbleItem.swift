@@ -23,32 +23,8 @@ class FTChatMessageBubbleItem: UIButton {
         messageBubblePath = self.getBubbleShapePathWithSize(frame.size, isUserSelf: aMessage.isUserSelf)
         
         
-        
-        
-        if message.messageType == .Image {
-                        
-            let maskLayer = CAShapeLayer();
-            maskLayer.path = messageBubblePath.CGPath
-            maskLayer.frame = self.bounds
-            maskLayer.contentsScale = UIScreen.mainScreen().scale;
-
-            let layer = CAShapeLayer()
-            layer.mask = maskLayer
-            layer.frame = self.bounds
-
-            self.layer.addSublayer(layer)
-            
-            if let image = UIImage(named : "dog.jpg"){
-                layer.contents = image.CGImage
-            }
-            
-            
-
-            
-            
-            
-            
-        }else{
+        switch message.messageType {
+        case .Text:
             let layer = CAShapeLayer()
             layer.path = messageBubblePath.CGPath
             layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
@@ -65,15 +41,48 @@ class FTChatMessageBubbleItem: UIButton {
             let attributeString = NSMutableAttributedString(attributedString: messageLabel.attributedText!)
             attributeString.addAttributes([NSFontAttributeName:FTDefaultFontSize,NSParagraphStyleAttributeName: FTChatMessagePublicMethods.getFTDefaultMessageParagraphStyle()], range: NSMakeRange(0, (messageLabel.text! as NSString).length))
             messageLabel.attributedText = attributeString
+        case .Image:
+            
+            
+            let maskLayer = CAShapeLayer();
+            maskLayer.path = messageBubblePath.CGPath
+            maskLayer.frame = self.bounds
+            maskLayer.contentsScale = UIScreen.mainScreen().scale;
+            
+            let layer = CAShapeLayer()
+            layer.mask = maskLayer
+            layer.frame = self.bounds
+            self.layer.addSublayer(layer)
+            
+            if let image = UIImage(named : "dog.jpg") {
+                layer.contents = image.CGImage
+            }
+
+        case .Audio:
+            let layer = CAShapeLayer()
+            layer.path = messageBubblePath.CGPath
+            layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
+            self.layer.addSublayer(layer)
+
+        case .Location:
+            let layer = CAShapeLayer()
+            layer.path = messageBubblePath.CGPath
+            layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
+            self.layer.addSublayer(layer)
+
+        case .Video:
+            let layer = CAShapeLayer()
+            layer.path = messageBubblePath.CGPath
+            layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
+            self.layer.addSublayer(layer)
+
+            
         }
         
 
+        
+        
 
-        
-        
-        
-        
-        
         
     }
     
