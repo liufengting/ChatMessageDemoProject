@@ -17,6 +17,7 @@ Still a lot of work to do. Please be patient.
 * 2016.04.09 -- change inputbar into UIToolBar instead of UIView
 * 2016.04.12 -- it's getting better
 * 2016.04.19 -- I have been busy.
+* 2016.04.20 -- add record view. functions and animations not ready.
 * 2016.04.__ -- more media ui coming up
 
 
