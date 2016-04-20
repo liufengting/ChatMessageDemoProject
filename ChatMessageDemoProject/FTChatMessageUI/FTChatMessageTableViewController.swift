@@ -22,6 +22,8 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     
     var messageTableView : UITableView!
     var messageInputView : FTChatMessageInputView!
+    var messageRecordView : FTChatMessageRecordView!
+    var messageMoreFunctionView : FTChatMessageMoreFunctionView!
 
     
     var messageArray : [FTChatMessageModel] = []
@@ -56,7 +58,11 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         messageInputView.inputDelegate = self
         self.view.addSubview(messageInputView)
 
+        messageRecordView = FTChatMessageRecordView(frame: CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight))
+        self.view.addSubview(messageRecordView)
         
+        messageMoreFunctionView = FTChatMessageMoreFunctionView(frame: CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight))
+        self.view.addSubview(messageMoreFunctionView)
         
         dispatch_after( dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
             self.messageTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messageArray.count-1), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
@@ -66,7 +72,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     }
     func loadDefaultMessages(){
         let message1 = FTChatMessageModel(data: "最近有点无聊，抽点时间写了这个聊天的UI框架。", time: "4.12 21:09:50", from: sender1, type: .Text)
-        let message2 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:51", from: sender2, type: .Text)
+        let message2 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:51", from: sender2, type: .Audio)
         let message3 = FTChatMessageModel(data: "纯Swift编写，目前只写了纯文本消息，后续会有更多功能，图片视频语音定位等。这一版本还有很多需要优化，希望可以改成一个易拓展的方便大家使用，哈哈哈哈", time: "4.12 21:09:52", from: sender1, type: .Text)
         let message4 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:53", from: sender2, type: .Text)
         let message5 = FTChatMessageModel(data: "文字背景不是图片，是用贝塞尔曲线画的，效率应该不高，后期优化", time: "", from: sender1, type: .Text)
@@ -95,6 +101,8 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
      */
     func keyboradWillChangeFrame(notification : NSNotification) {
         
+        //TODO:
+
         if let userInfo = notification.userInfo {
             let duration = userInfo["UIKeyboardAnimationDurationUserInfoKey"]!.doubleValue
             let keyFrame = userInfo["UIKeyboardFrameEndUserInfoKey"]!.CGRectValue()
@@ -112,7 +120,9 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
 
     
     
-    //FTChatMessageInputViewDelegate
+    /**
+     FTChatMessageInputViewDelegate
+     */
     func FTChatMessageInputViewShouldUpdateHeight(desiredHeight: CGFloat) {
         var origin = messageInputView.frame;
         origin.origin.y = origin.origin.y + origin.size.height - desiredHeight;
@@ -129,7 +139,40 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         messageInputView.clearText()
         
     }
+    func FTChatMessageInputViewShouldShowRecordView(shouldShowRecordView : Bool){
+        //TODO:
+
+        if shouldShowRecordView {
+            messageInputView.frame = CGRectMake(0, FTScreenHeight - FTDefaultInputViewHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
+            messageRecordView.frame = CGRectMake(0, FTScreenHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+        }else{
+            messageInputView.frame = CGRectMake(0, FTScreenHeight - FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
+            messageRecordView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+
+        }
+        
+
+    }
     
+    func FTChatMessageInputViewShouldShowMoreFunctionView(shouldShowMoreFunctionView : Bool){
+        //TODO:
+        if shouldShowMoreFunctionView {
+            messageInputView.frame = CGRectMake(0, FTScreenHeight - FTDefaultInputViewHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
+            messageMoreFunctionView.frame = CGRectMake(0, FTScreenHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+        }else{
+            messageInputView.frame = CGRectMake(0, FTScreenHeight - FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
+            messageMoreFunctionView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+            
+        }
+        
+    }
+    
+    
+    
+    
+    /**
+     addNewIncomingMessage
+     */
     func addNewIncomingMessage() {
         
         let message8 = FTChatMessageModel(data: "New Message", time: "4.12 22:42", from: sender1, type: .Text)
@@ -173,7 +216,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         
         let message = messageArray[section]
 
-        let header = FTChatMessageHeader(frame: CGRectMake(0,0,FTScreenWidth,40), isSender: message.messageSender.isUserSelf, image: nil)
+        let header = FTChatMessageHeader(frame: CGRectMake(0,0,FTScreenWidth,40), isSender: message.messageSender.isUserSelf, imageUrl: NSURL(string: message.messageSender.senderIconUrl))
 
         return header
     }

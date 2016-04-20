@@ -30,8 +30,6 @@ let FTScreenWidth = UIScreen.mainScreen().bounds.size.width
 let FTScreenHeight = UIScreen.mainScreen().bounds.size.height
 let FTDefaultMargin : CGFloat = 5.0
 let FTDefaultTextInViewMaxWidth : CGFloat = FTScreenWidth*0.65
-let FTDefaultButtonSize : CGFloat = 30.0
-let FTDefaultInputTextViewMargin : CGFloat = 7.0
 let FTDefaultIconToMessageMargin : CGFloat = 2.0
 let FTDefaultTimeLabelHeight : CGFloat = 10.0
 let FTDefaultNameLabelHeight : CGFloat = 20.0
@@ -41,14 +39,23 @@ let FTDefaultAngleWidth : CGFloat = 8.0
 let FTDefaultTextMargin : CGFloat = 8.0
 let FTDefaultLineSpacing : CGFloat = 2.0
 let FTDefaultSectionHeight : CGFloat = 40.0
-let FTDefaultInputViewHeight : CGFloat = 44.0
-let FTDefaultInputViewMAXHeight : CGFloat = 150.0
 let FTDefaultIconSize : CGFloat = 30.0
 let FTDefaultMessageRoundCorner : CGFloat = 10.0
 let FTDefaultFontSize : UIFont = UIFont.systemFontOfSize(16)
 let FTDefaultOutgoingColor : UIColor = UIColor(red: 1/255, green: 123/255, blue: 225/255, alpha: 1)
 let FTDefaultIncomingColor : UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+
+let FTDefaultInputViewMargin : CGFloat = 8.0
+let FTDefaultInputButtonSize : CGFloat = 25.0
+let FTDefaultInputViewHeight : CGFloat = 44.0
+let FTDefaultInputViewMaxHeight : CGFloat = 150.0
+let FTDefaultInputTextViewMargin : CGFloat = 7.0
+let FTDefaultInputViewMAXHeight : CGFloat = 150.0
 let FTDefaultInputViewBackgroundColor : UIColor = UIColor(red: 210/255, green: 210/255, blue: 210/255, alpha: 1)
+
+let FTDefaultRecordButtonSize : CGFloat = 100.0
+let FTDefaultRecordViewHeight : CGFloat = 216.0
+
 
 let FTDefaultMessageBubbleWidth : CGFloat = FTScreenWidth*0.48
 let FTDefaultMessageBubbleHeight : CGFloat = FTScreenWidth*0.30

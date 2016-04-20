@@ -14,8 +14,7 @@ class FTChatMessageBubbleItem: UIButton {
     var messageBubblePath = UIBezierPath()
     var messageLabel : UILabel!
 
-    
-    convenience init(frame: CGRect, aMessage : FTChatMessageModel) {
+    convenience init(frame: CGRect, aMessage : FTChatMessageModel , image : UIImage?) {
         self.init(frame: frame)
         self.backgroundColor = UIColor.clearColor()
         message = aMessage
@@ -88,13 +87,7 @@ class FTChatMessageBubbleItem: UIButton {
     
     
     
-    func getTextRectWithSize(size:CGSize , isUserSelf : Bool) -> CGRect {
-        let bubbleWidth = size.width - FTDefaultAngleWidth  - FTDefaultTextMargin*2
-        let bubbleHeight = size.height - FTDefaultTextMargin*2
-        let y = FTDefaultTextMargin
-        let x : CGFloat = isUserSelf ? FTDefaultTextMargin : FTDefaultAngleWidth + FTDefaultTextMargin
-        return CGRectMake(x,y,bubbleWidth,bubbleHeight);
-    }
+
     /**
      getBubbleShapePathWithSize
      
@@ -146,10 +139,17 @@ class FTChatMessageBubbleItem: UIButton {
         }
         return path;
     }
-
+    
+    func getTextRectWithSize(size:CGSize , isUserSelf : Bool) -> CGRect {
+        let bubbleWidth = size.width - FTDefaultAngleWidth  - FTDefaultTextMargin*2
+        let bubbleHeight = size.height - FTDefaultTextMargin*2
+        let y = FTDefaultTextMargin
+        let x : CGFloat = isUserSelf ? FTDefaultTextMargin : FTDefaultAngleWidth + FTDefaultTextMargin
+        return CGRectMake(x,y,bubbleWidth,bubbleHeight);
+    }
     func getImageFrameWithSize(size:CGSize , isUserSelf : Bool) -> CGRect {
         let bubbleWidth = size.width - FTDefaultAngleWidth
-        let bubbleHeight = size.height - FTDefaultMargin*2
+        let bubbleHeight = size.height
         let y : CGFloat = 0
         var x : CGFloat = 0
         if (!isUserSelf){
@@ -157,8 +157,9 @@ class FTChatMessageBubbleItem: UIButton {
         }
         return CGRectMake(x, y, bubbleWidth, bubbleHeight)
     }
-    
-
-
-    
 }
+
+
+
+
+

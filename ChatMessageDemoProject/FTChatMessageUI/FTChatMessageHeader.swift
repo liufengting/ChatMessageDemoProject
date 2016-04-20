@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FTChatMessageHeader: UIView {
     
@@ -37,9 +38,10 @@ class FTChatMessageHeader: UIView {
         iconButton.layer.masksToBounds = true
         if image != nil{
             iconButton.setImage(image, forState: UIControlState.Normal)
-        }else{
-//            iconButton.sd_setImageWithURL(imageUrl, forState: UIControlState.Normal, placeholderImage: UIImage())
+        }else if (imageUrl != nil){
+            iconButton.kf_setImageWithURL(imageUrl!, forState: .Normal)
         }
+//        (imageUrl, forState: UIControlState.Normal, placeholderImage: UIImage())
         self.addSubview(iconButton)
 
     }

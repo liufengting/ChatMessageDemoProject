@@ -19,8 +19,8 @@ class FTChatMessageCell: UITableViewCell {
     var messageSenderLabel: UILabel!
     var messageBubbleItem: FTChatMessageBubbleItem!
     var message : FTChatMessageModel!
-    
     var cellDesiredHeight : CGFloat = 60
+    var imageResource : UIImage?
 
 
     
@@ -78,9 +78,9 @@ class FTChatMessageCell: UITableViewCell {
             bubbleWidth = rect.width + FTDefaultTextMargin*2 + FTDefaultAngleWidth
             bubbleHeight = rect.height + FTDefaultTextMargin*2
         case .Image:
-            let image =  UIImage(named : "dog.jpg")
+            imageResource =  UIImage(named : "dog.jpg")
             bubbleWidth = FTDefaultMessageBubbleWidth
-            bubbleHeight = image == nil ? FTDefaultMessageBubbleWidth : (image?.size.height)! * (FTDefaultMessageBubbleWidth/(image?.size.width)!)
+            bubbleHeight = imageResource == nil ? FTDefaultMessageBubbleWidth : (imageResource?.size.height)! * (FTDefaultMessageBubbleWidth/(imageResource?.size.width)!)
         case .Audio:
             bubbleWidth = FTDefaultMessageBubbleWidth
             bubbleHeight = FTDefaultMessageBubbleAudioHeight
@@ -97,7 +97,11 @@ class FTChatMessageCell: UITableViewCell {
         bubbleRect = CGRectMake(x, y, bubbleWidth, bubbleHeight)
         self.cellDesiredHeight = bubbleRect.origin.y + bubbleHeight + FTDefaultMargin*2
         
-        messageBubbleItem = FTChatMessageBubbleItem(frame: bubbleRect, aMessage: message)
+        if message.messageType == .Image {
+            messageBubbleItem = FTChatMessageBubbleItem(frame: bubbleRect, aMessage: message ,image: imageResource)
+        }else{
+            messageBubbleItem = FTChatMessageBubbleItem(frame: bubbleRect, aMessage: message ,image: nil)
+        }
         self.addSubview(messageBubbleItem)
 
     }

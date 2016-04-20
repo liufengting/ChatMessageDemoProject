@@ -11,6 +11,8 @@ import UIKit
 protocol FTChatMessageInputViewDelegate {
     func FTChatMessageInputViewShouldUpdateHeight(desiredHeight : CGFloat)
     func FTChatMessageInputViewShouldDoneWithText(textString : String)
+    func FTChatMessageInputViewShouldShowRecordView(shouldShowRecordView : Bool)
+    func FTChatMessageInputViewShouldShowMoreFunctionView(shouldShowMoreFunctionView : Bool)
 }
 
 class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
@@ -22,23 +24,28 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
     var buttonBottomMargin : CGFloat = 0
     var textViewWidth : CGFloat = FTScreenWidth
     var textEdgeInset: UIEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
+    
+    var isRecordViewOn : Bool = false
+    var isMoreFunctionViewOn : Bool = false
+
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        buttonBottomMargin = (self.bounds.height - FTDefaultButtonSize)/2
+        buttonBottomMargin = (self.bounds.height - FTDefaultInputButtonSize)/2
         
-        recordButton = UIButton(frame:CGRectMake(FTDefaultMargin, self.bounds.height - FTDefaultButtonSize - buttonBottomMargin, FTDefaultButtonSize,FTDefaultButtonSize))
+        recordButton = UIButton(frame:CGRectMake(FTDefaultInputViewMargin, self.bounds.height - FTDefaultInputButtonSize - buttonBottomMargin, FTDefaultInputButtonSize,FTDefaultInputButtonSize))
         recordButton.setBackgroundImage(UIImage(named: "FT_Record"), forState: .Normal)
         recordButton.backgroundColor = UIColor.clearColor()
+        recordButton.addTarget(self, action: #selector(self.recordButtonTapped(_:)), forControlEvents: .TouchUpInside)
         self.addSubview(recordButton)
         
         
-        textViewWidth = FTScreenWidth - (FTDefaultMargin*4 + FTDefaultButtonSize*2)
+        textViewWidth = FTScreenWidth - (FTDefaultInputViewMargin*4 + FTDefaultInputButtonSize*2)
         
-        inputTextView = UITextView(frame: CGRectMake(FTDefaultMargin*2 + FTDefaultButtonSize, FTDefaultInputTextViewMargin , textViewWidth, self.bounds.height - FTDefaultInputTextViewMargin*2))
+        inputTextView = UITextView(frame: CGRectMake(FTDefaultInputViewMargin*2 + FTDefaultInputButtonSize, FTDefaultInputTextViewMargin , textViewWidth, self.bounds.height - FTDefaultInputTextViewMargin*2))
         inputTextView.font = FTDefaultFontSize
-        inputTextView.layer.cornerRadius = FTDefaultMargin
+        inputTextView.layer.cornerRadius = FTDefaultInputViewMargin
         inputTextView.layer.borderColor = FTDefaultIncomingColor.CGColor
         inputTextView.layer.borderWidth = 0.8
         inputTextView.delegate = self
@@ -47,9 +54,10 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
         inputTextView.textContainerInset = textEdgeInset
         self.addSubview(inputTextView)
         
-        addButton = UIButton(frame:CGRectMake(FTScreenWidth - FTDefaultButtonSize - FTDefaultMargin, self.bounds.height - FTDefaultButtonSize - buttonBottomMargin, FTDefaultButtonSize,FTDefaultButtonSize))
+        addButton = UIButton(frame:CGRectMake(FTScreenWidth - FTDefaultInputButtonSize - FTDefaultInputViewMargin, self.bounds.height - FTDefaultInputButtonSize - buttonBottomMargin, FTDefaultInputButtonSize,FTDefaultInputButtonSize))
         addButton.setBackgroundImage(UIImage(named: "FT_Add"), forState: .Normal)
         addButton.backgroundColor = UIColor.clearColor()
+        addButton.addTarget(self, action: #selector(self.addButtonTapped(_:)), forControlEvents: .TouchUpInside)
         self.addSubview(addButton)
 
     }
@@ -57,6 +65,23 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    /**
+     recordButtonTapped:
+     */
+    func recordButtonTapped(sender : UIButton) {
+        if (inputDelegate != nil) {
+            inputDelegate!.FTChatMessageInputViewShouldShowRecordView(!isRecordViewOn)
+            isRecordViewOn = !isRecordViewOn
+        }
+    }
+    func addButtonTapped(sender : UIButton) {
+        if (inputDelegate != nil) {
+            inputDelegate!.FTChatMessageInputViewShouldShowMoreFunctionView(isMoreFunctionViewOn)
+            isMoreFunctionViewOn = !isMoreFunctionViewOn
+        }
+    }
+    
     
     /**
      clearText
@@ -82,7 +107,7 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
             let textRect = text.boundingRectWithSize(CGSizeMake(textViewWidth - textView.textContainerInset.left - textView.textContainerInset.right, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:FTDefaultFontSize], context: nil);
 
             if (inputDelegate != nil) {
-                inputDelegate!.FTChatMessageInputViewShouldUpdateHeight(min(max(textRect.height + FTDefaultInputTextViewMargin*2 + textView.textContainerInset.top + textView.textContainerInset.bottom, FTDefaultInputViewHeight), 150))
+                inputDelegate!.FTChatMessageInputViewShouldUpdateHeight(min(max(textRect.height + FTDefaultInputTextViewMargin*2 + textView.textContainerInset.top + textView.textContainerInset.bottom, FTDefaultInputViewHeight), FTDefaultInputViewMaxHeight))
             }
         }
     }
@@ -108,11 +133,11 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
      */
     func updateSubViewFrame() {
     
-        self.recordButton.frame = CGRectMake(FTDefaultMargin, self.bounds.height - FTDefaultButtonSize - buttonBottomMargin, FTDefaultButtonSize,FTDefaultButtonSize)
+        self.recordButton.frame = CGRectMake(FTDefaultInputViewMargin, self.bounds.height - FTDefaultInputButtonSize - buttonBottomMargin, FTDefaultInputButtonSize,FTDefaultInputButtonSize)
         
-        self.addButton.frame = CGRectMake(FTScreenWidth - FTDefaultButtonSize - FTDefaultMargin, self.bounds.height - FTDefaultButtonSize - buttonBottomMargin, FTDefaultButtonSize,FTDefaultButtonSize)
+        self.addButton.frame = CGRectMake(FTScreenWidth - FTDefaultInputButtonSize - FTDefaultInputViewMargin, self.bounds.height - FTDefaultInputButtonSize - buttonBottomMargin, FTDefaultInputButtonSize,FTDefaultInputButtonSize)
         
-        self.inputTextView.frame = CGRectMake(FTDefaultMargin*2 + FTDefaultButtonSize, FTDefaultInputTextViewMargin, self.textViewWidth, self.bounds.height - FTDefaultInputTextViewMargin*2)
+        self.inputTextView.frame = CGRectMake(FTDefaultInputViewMargin*2 + FTDefaultInputButtonSize, FTDefaultInputTextViewMargin, self.textViewWidth, self.bounds.height - FTDefaultInputTextViewMargin*2)
     }
     
 }
