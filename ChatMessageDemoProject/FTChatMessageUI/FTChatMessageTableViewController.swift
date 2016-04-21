@@ -23,7 +23,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     var messageTableView : UITableView!
     var messageInputView : FTChatMessageInputView!
     var messageRecordView : FTChatMessageRecordView!
-    var messageMoreFunctionView : FTChatMessageMoreFunctionView!
+    var messageAccessoryView : FTChatMessageAccessoryView!
 
     
     var messageArray : [FTChatMessageModel] = []
@@ -61,8 +61,8 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         messageRecordView = FTChatMessageRecordView(frame: CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight))
         self.view.addSubview(messageRecordView)
         
-        messageMoreFunctionView = FTChatMessageMoreFunctionView(frame: CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight))
-        self.view.addSubview(messageMoreFunctionView)
+        messageAccessoryView = FTChatMessageAccessoryView(frame: CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight))
+        self.view.addSubview(messageAccessoryView)
         
         dispatch_after( dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
             self.messageTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messageArray.count-1), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
@@ -154,14 +154,14 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
 
     }
     
-    func FTChatMessageInputViewShouldShowMoreFunctionView(shouldShowMoreFunctionView : Bool){
+    func FTChatMessageInputViewShouldShowAccessoryView(shouldShowAccessoryView : Bool){
         //TODO:
-        if shouldShowMoreFunctionView {
+        if shouldShowAccessoryView {
             messageInputView.frame = CGRectMake(0, FTScreenHeight - FTDefaultInputViewHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
-            messageMoreFunctionView.frame = CGRectMake(0, FTScreenHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+            messageAccessoryView.frame = CGRectMake(0, FTScreenHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultRecordViewHeight)
         }else{
             messageInputView.frame = CGRectMake(0, FTScreenHeight - FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
-            messageMoreFunctionView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+            messageAccessoryView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
             
         }
         
@@ -239,7 +239,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         let message = messageArray[indexPath.section]
         
         let cell = FTChatMessageCell.init(style: UITableViewCellStyle.Default, reuseIdentifier: FTChatMessageCellReuseIndentifier, theMessage: message, shouldShowSendTime: true , shouldShowSenderName: true);
-                
+
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
