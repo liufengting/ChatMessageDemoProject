@@ -78,9 +78,14 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         let message5 = FTChatMessageModel(data: "文字背景不是图片，是用贝塞尔曲线画的，效率应该不高，后期优化", time: "", from: sender1, type: .Text)
         let message6 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:54", from: sender2, type: .Text)
         let message7 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:55", from: sender1, type: .Text)
-        let message8 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:56", from: sender2, type: .Image)
+        let message8 = FTChatMessageModel(data: "https://raw.githubusercontent.com/liufengting/liufengting.github.io/master/img/macbookpro.jpg", time: "4.12 21:09:56", from: sender2, type: .Image)
         
-        messageArray = [message1,message2,message3,message4,message5,message6,message7,message8]
+        messageArray = [message1,message2,message3,message4,message5,message6,message7,message8,
+        message1,message2,message3,message4,message5,message6,message7,message8,
+        message1,message2,message3,message4,message5,message6,message7,message8,
+        message1,message2,message3,message4,message5,message6,message7,message8,
+        message1,message2,message3,message4,message5,message6,message7,message8,
+        message1,message2,message3,message4,message5,message6,message7,message8,]
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -229,9 +234,11 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        let cell : FTChatMessageCell = self.tableView(self.messageTableView, cellForRowAtIndexPath: indexPath) as! FTChatMessageCell
+//        let cell : FTChatMessageCell = self.tableView(self.messageTableView, cellForRowAtIndexPath: indexPath) as! FTChatMessageCell
+//        
+//        return cell.cellDesiredHeight;
         
-        return cell.cellDesiredHeight;
+        return FTChatMessageCell.getCellHeightWithMessage(messageArray[indexPath.section], shouldShowSendTime: true, shouldShowSenderName: true)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

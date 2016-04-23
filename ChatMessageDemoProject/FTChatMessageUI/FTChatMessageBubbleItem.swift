@@ -7,6 +7,18 @@
 //
 
 import UIKit
+import SDWebImage
+
+extension FTChatMessageBubbleItem {
+    
+    
+    
+    
+    
+}
+
+
+
 
 class FTChatMessageBubbleItem: UIButton {
     
@@ -56,6 +68,21 @@ class FTChatMessageBubbleItem: UIButton {
             if let image = UIImage(named : "dog.jpg") {
                 layer.contents = image.CGImage
             }
+//
+            SDWebImageManager.sharedManager().downloadWithURL(NSURL(string : message.messageText),
+                                                              options: .ProgressiveDownload,
+                                                              progress: { (a, b) in
+                                                                
+                },
+                                                              completed: { (imageDownloaded, error, cachType, finished) in
+                                     
+                                                                layer.contents = imageDownloaded.CGImage
+
+            })
+
+            
+            
+            
 
         case .Audio:
             let layer = CAShapeLayer()
@@ -159,7 +186,23 @@ class FTChatMessageBubbleItem: UIButton {
     }
 }
 
+class FTChatMessageBubbleTextItem: FTChatMessageBubbleItem {
+    
+}
 
+class FTChatMessageBubbleImageItem: FTChatMessageBubbleItem {
+    
+}
+class FTChatMessageBubbleVideoItem: FTChatMessageBubbleItem {
+    
+}
+class FTChatMessageBubbleAudioItem: FTChatMessageBubbleItem {
+    
+}
+
+class FTChatMessageBubbleLocationItem: FTChatMessageBubbleItem {
+    
+}
 
 
 

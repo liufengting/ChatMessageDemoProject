@@ -11,8 +11,6 @@ import UIKit
 
 
 
-
-
 class FTChatMessageCell: UITableViewCell {
 
     var messageTimeLabel: UILabel!
@@ -80,7 +78,12 @@ class FTChatMessageCell: UITableViewCell {
         case .Image:
             imageResource =  UIImage(named : "dog.jpg")
             bubbleWidth = FTDefaultMessageBubbleWidth
-            bubbleHeight = imageResource == nil ? FTDefaultMessageBubbleWidth : (imageResource?.size.height)! * (FTDefaultMessageBubbleWidth/(imageResource?.size.width)!)
+            bubbleHeight = imageResource == nil ? FTDefaultMessageBubbleHeight : (imageResource?.size.height)! * (FTDefaultMessageBubbleWidth/(imageResource?.size.width)!)
+            
+            
+            
+            
+            
         case .Audio:
             bubbleWidth = FTDefaultMessageBubbleWidth
             bubbleHeight = FTDefaultMessageBubbleAudioHeight
@@ -97,15 +100,85 @@ class FTChatMessageCell: UITableViewCell {
         bubbleRect = CGRectMake(x, y, bubbleWidth, bubbleHeight)
         self.cellDesiredHeight = bubbleRect.origin.y + bubbleHeight + FTDefaultMargin*2
         
-        if message.messageType == .Image {
-            messageBubbleItem = FTChatMessageBubbleItem(frame: bubbleRect, aMessage: message ,image: imageResource)
-        }else{
-            messageBubbleItem = FTChatMessageBubbleItem(frame: bubbleRect, aMessage: message ,image: nil)
-        }
-        self.addSubview(messageBubbleItem)
+//        if message.messageType == .Image {
+//            messageBubbleItem = FTChatMessageBubbleItem(frame: bubbleRect, aMessage: message ,image: imageResource)
+//        }else{
+//            messageBubbleItem = FTChatMessageBubbleItem(frame: bubbleRect, aMessage: message ,image: nil)
+//        }
+//        self.addSubview(messageBubbleItem)
+        
+        self.setupCellBubbleItem(bubbleRect)
 
     }
+    
+    func setupCellBubbleItem(bubbleFrame: CGRect) {
+    
+        switch message.messageType {
+        case .Text:
 
+            messageBubbleItem = FTChatMessageBubbleTextItem(frame: bubbleFrame, aMessage: message ,image: nil)
+
+        
+        case .Image:
+            messageBubbleItem = FTChatMessageBubbleImageItem(frame: bubbleFrame, aMessage: message ,image: imageResource)
+        case .Audio:
+
+            messageBubbleItem = FTChatMessageBubbleAudioItem(frame: bubbleFrame, aMessage: message ,image: nil)
+
+        case .Location:
+
+            messageBubbleItem = FTChatMessageBubbleLocationItem(frame: bubbleFrame, aMessage: message ,image: nil)
+
+        case .Video:
+        
+            messageBubbleItem = FTChatMessageBubbleVideoItem(frame: bubbleFrame, aMessage: message ,image: nil)
+
+            
+        }
+
+        self.addSubview(messageBubbleItem)
+
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+
+    class func getCellHeightWithMessage(theMessage : FTChatMessageModel, shouldShowSendTime : Bool , shouldShowSenderName : Bool) -> CGFloat{
+        var cellDesiredHeight : CGFloat = 0;
+        if shouldShowSendTime {
+            cellDesiredHeight = FTDefaultTimeLabelHeight
+        }
+        if shouldShowSenderName {
+            cellDesiredHeight = (FTDefaultSectionHeight - FTDefaultNameLabelHeight)/2 + FTDefaultNameLabelHeight
+        }
+        cellDesiredHeight += FTDefaultMargin
+        switch theMessage.messageType {
+        case .Text:
+            let att = NSString(string: theMessage.messageText)
+            let textRect = att.boundingRectWithSize(CGSizeMake(FTDefaultTextInViewMaxWidth,CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:FTDefaultFontSize,NSParagraphStyleAttributeName: FTChatMessagePublicMethods.getFTDefaultMessageParagraphStyle()], context: nil)
+            cellDesiredHeight += textRect.height + FTDefaultTextMargin*2
+        case .Image:
+            cellDesiredHeight += FTDefaultMessageBubbleHeight
+        case .Audio:
+            cellDesiredHeight += FTDefaultMessageBubbleAudioHeight
+        case .Location:
+            cellDesiredHeight += FTDefaultMessageBubbleHeight
+        case .Video:
+            cellDesiredHeight += FTDefaultMessageBubbleHeight
+        }
+        cellDesiredHeight += FTDefaultMargin*2 - FTDefaultSectionHeight
+
+        return cellDesiredHeight
+    }
+    
+    
     
     
 }
