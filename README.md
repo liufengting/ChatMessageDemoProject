@@ -8,7 +8,11 @@
 
 ##Working in progress
 
-Still a lot of work to do. Please be patient.
+Still working in progress. Please be patient.
+
+#Preview
+
+<center><img src="/ResourceImages/ChatMessageDemo.jpg" width="300"/></center>
 
 ##Update Log
 
@@ -18,6 +22,7 @@ Still a lot of work to do. Please be patient.
 * 2016.04.12 -- it's getting better
 * 2016.04.19 -- I have been busy.
 * 2016.04.20 -- add record view. functions and animations not ready.
+* 2016.04.26 -- switch input view done !
 * 2016.04.__ -- more media ui coming up
 
 
