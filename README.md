@@ -12,7 +12,7 @@ Still working in progress. Please be patient.
 
 #Preview
 
-<center><img src="/ResourceImages/ChatMessageDemo.jpg" width="300"/></center>
+<center><img src="/ResourceImages/ChatMessageDemo.gif" width="300"/></center>
 
 ##Update Log
 
