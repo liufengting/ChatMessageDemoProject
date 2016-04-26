@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import Kingfisher
+import SDWebImage
 
 class FTChatMessageHeader: UIView {
     
-    internal var iconButton : UIButton!
+    var iconButton : UIButton!
 
     
     convenience init(frame: CGRect, isSender: Bool , imageUrl : NSURL?) {
@@ -29,21 +29,16 @@ class FTChatMessageHeader: UIView {
         self.backgroundColor = UIColor.clearColor()
         
         let iconRect = isSender ? CGRectMake(self.frame.width-FTDefaultMargin-FTDefaultIconSize, FTDefaultMargin, FTDefaultIconSize, FTDefaultIconSize) : CGRectMake(FTDefaultMargin, FTDefaultMargin, FTDefaultIconSize, FTDefaultIconSize)
-        if iconButton == nil{
-            iconButton = UIButton()
-        }
-        iconButton.frame = iconRect
+        iconButton = UIButton(frame: iconRect)
         iconButton.backgroundColor = isSender ? FTDefaultOutgoingColor : FTDefaultIncomingColor
         iconButton.layer.cornerRadius = FTDefaultIconSize/2;
         iconButton.layer.masksToBounds = true
         if image != nil{
-            iconButton.setImage(image, forState: UIControlState.Normal)
+            iconButton.setImage(image!, forState: UIControlState.Normal)
         }else if (imageUrl != nil){
-            iconButton.kf_setImageWithURL(imageUrl!, forState: .Normal)
+            iconButton.sd_setImageWithURL(imageUrl!, forState: .Normal)
         }
-//        (imageUrl, forState: UIControlState.Normal, placeholderImage: UIImage())
         self.addSubview(iconButton)
-
     }
     
     

@@ -13,7 +13,7 @@ class FTChatMessageAccessoryView: UIView {
     override init(frame: CGRect) {
         super.init(frame:frame)
         
-        self.backgroundColor = FTDefaultOutgoingColor
+        self.backgroundColor = FTDefaultIncomingColor
     }
     
     required init?(coder aDecoder: NSCoder) {

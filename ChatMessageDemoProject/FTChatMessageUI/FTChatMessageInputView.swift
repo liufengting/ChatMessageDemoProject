@@ -12,13 +12,16 @@ enum FTChatMessageInputMode {
     case Keyboard
     case Record
     case Accessory
+    case None
 }
 
 protocol FTChatMessageInputViewDelegate {
+    func FTChatMessageInputViewShouldBeginEditing()
+    func FTChatMessageInputViewShouldEndEditing()
     func FTChatMessageInputViewShouldUpdateHeight(desiredHeight : CGFloat)
     func FTChatMessageInputViewShouldDoneWithText(textString : String)
-    func FTChatMessageInputViewShouldShowRecordView(shouldShowRecordView : Bool)
-    func FTChatMessageInputViewShouldShowAccessoryView(shouldShowAccessoryView : Bool)
+    func FTChatMessageInputViewShouldShowRecordView()
+    func FTChatMessageInputViewShouldShowAccessoryView()
 }
 
 class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
@@ -31,8 +34,6 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
     var textViewWidth : CGFloat = FTScreenWidth
     var textEdgeInset: UIEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
     
-    var isRecordViewOn : Bool = false
-    var isAccessoryViewOn : Bool = false
 
 
     override init(frame: CGRect) {
@@ -77,14 +78,12 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
      */
     func recordButtonTapped(sender : UIButton) {
         if (inputDelegate != nil) {
-            inputDelegate!.FTChatMessageInputViewShouldShowRecordView(!isRecordViewOn)
-            isRecordViewOn = !isRecordViewOn
+            inputDelegate!.FTChatMessageInputViewShouldShowRecordView()
         }
     }
     func addButtonTapped(sender : UIButton) {
         if (inputDelegate != nil) {
-            inputDelegate!.FTChatMessageInputViewShouldShowAccessoryView(isAccessoryViewOn)
-            isAccessoryViewOn = !isAccessoryViewOn
+            inputDelegate!.FTChatMessageInputViewShouldShowAccessoryView()
         }
     }
     
@@ -106,7 +105,18 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
      - parameter textView: textView
      */
     
-
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        if (inputDelegate != nil) {
+            inputDelegate!.FTChatMessageInputViewShouldBeginEditing()
+        }
+        return true
+    }
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        if (inputDelegate != nil) {
+            inputDelegate!.FTChatMessageInputViewShouldEndEditing()
+        }
+        return true
+    }
     
     func textViewDidChange(textView: UITextView) {
         if let text : NSString = textView.text as NSString {
@@ -123,11 +133,12 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
             if (textView.text as NSString).length > 0 {
                 if (inputDelegate != nil) {
                     inputDelegate!.FTChatMessageInputViewShouldDoneWithText(textView.text)
+                    self.clearText()
                 }
             }
-            return false;
+            return false
         }
-        return true;
+        return true
     }
     
 

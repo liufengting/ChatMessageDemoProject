@@ -16,7 +16,7 @@ class FTChatMessageRecordView: UIView {
      override init(frame: CGRect) {
         super.init(frame:frame)
         
-        self.backgroundColor = FTDefaultInputViewBackgroundColor
+        self.backgroundColor = FTDefaultIncomingColor
         
         recordButton = UIButton.init(frame: CGRectMake( (self.frame.size.width-FTDefaultRecordButtonSize)/2, (self.frame.height-FTDefaultRecordButtonSize)/2, FTDefaultRecordButtonSize, FTDefaultRecordButtonSize))
         recordButton.setTitle("Record", forState: .Normal)
@@ -25,7 +25,6 @@ class FTChatMessageRecordView: UIView {
         recordButton.layer.cornerRadius = FTDefaultRecordButtonSize/2
         recordButton.clipsToBounds = true
         self.addSubview(recordButton)
-        
         
     }
     

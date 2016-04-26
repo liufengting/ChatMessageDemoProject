@@ -11,14 +11,7 @@ import SDWebImage
 
 extension FTChatMessageBubbleItem {
     
-    
-    
-    
-    
 }
-
-
-
 
 class FTChatMessageBubbleItem: UIButton {
     
@@ -28,88 +21,7 @@ class FTChatMessageBubbleItem: UIButton {
 
     convenience init(frame: CGRect, aMessage : FTChatMessageModel , image : UIImage?) {
         self.init(frame: frame)
-        self.backgroundColor = UIColor.clearColor()
-        message = aMessage
-        
-        messageBubblePath = self.getBubbleShapePathWithSize(frame.size, isUserSelf: aMessage.isUserSelf)
-        
-        
-        switch message.messageType {
-        case .Text:
-            let layer = CAShapeLayer()
-            layer.path = messageBubblePath.CGPath
-            layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
-            self.layer.addSublayer(layer)
-            
-            
-            //text
-            messageLabel = UILabel(frame: self.getTextRectWithSize(frame.size, isUserSelf: aMessage.isUserSelf));
-            messageLabel.text = message.messageText
-            messageLabel.numberOfLines = 0
-            messageLabel.textColor = aMessage.messageSender.isUserSelf ? UIColor.whiteColor() : UIColor.blackColor()
-            messageLabel.font = FTDefaultFontSize
-            self.addSubview(messageLabel)
-            let attributeString = NSMutableAttributedString(attributedString: messageLabel.attributedText!)
-            attributeString.addAttributes([NSFontAttributeName:FTDefaultFontSize,NSParagraphStyleAttributeName: FTChatMessagePublicMethods.getFTDefaultMessageParagraphStyle()], range: NSMakeRange(0, (messageLabel.text! as NSString).length))
-            messageLabel.attributedText = attributeString
-        case .Image:
-            
-            
-            let maskLayer = CAShapeLayer();
-            maskLayer.path = messageBubblePath.CGPath
-            maskLayer.frame = self.bounds
-            maskLayer.contentsScale = UIScreen.mainScreen().scale;
-            
-            let layer = CAShapeLayer()
-            layer.mask = maskLayer
-            layer.frame = self.bounds
-            self.layer.addSublayer(layer)
-            
-            if let image = UIImage(named : "dog.jpg") {
-                layer.contents = image.CGImage
-            }
-//
-            SDWebImageManager.sharedManager().downloadWithURL(NSURL(string : message.messageText),
-                                                              options: .ProgressiveDownload,
-                                                              progress: { (a, b) in
-                                                                
-                },
-                                                              completed: { (imageDownloaded, error, cachType, finished) in
-                                     
-                                                                layer.contents = imageDownloaded.CGImage
-
-            })
-
-            
-            
-            
-
-        case .Audio:
-            let layer = CAShapeLayer()
-            layer.path = messageBubblePath.CGPath
-            layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
-            self.layer.addSublayer(layer)
-
-        case .Location:
-            let layer = CAShapeLayer()
-            layer.path = messageBubblePath.CGPath
-            layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
-            self.layer.addSublayer(layer)
-
-        case .Video:
-            let layer = CAShapeLayer()
-            layer.path = messageBubblePath.CGPath
-            layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
-            self.layer.addSublayer(layer)
-
-            
-        }
-        
-
-        
-        
-
-        
+        NSException(name: "SubClassing", reason: "Subclass must impliment this ethod", userInfo: nil).raise()
     }
     
     
@@ -167,6 +79,36 @@ class FTChatMessageBubbleItem: UIButton {
         return path;
     }
     
+}
+
+class FTChatMessageBubbleTextItem: FTChatMessageBubbleItem {
+    
+    convenience init(frame: CGRect, aMessage : FTChatMessageModel ) {
+        self.init(frame:frame)
+        self.backgroundColor = UIColor.clearColor()
+        message = aMessage
+        
+        messageBubblePath = self.getBubbleShapePathWithSize(frame.size, isUserSelf: aMessage.isUserSelf)
+        
+        let layer = CAShapeLayer()
+        layer.path = messageBubblePath.CGPath
+        layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
+        self.layer.addSublayer(layer)
+        
+        
+        //text
+        messageLabel = UILabel(frame: self.getTextRectWithSize(frame.size, isUserSelf: aMessage.isUserSelf));
+        messageLabel.text = message.messageText
+        messageLabel.numberOfLines = 0
+        messageLabel.textColor = aMessage.messageSender.isUserSelf ? UIColor.whiteColor() : UIColor.blackColor()
+        messageLabel.font = FTDefaultFontSize
+        self.addSubview(messageLabel)
+        let attributeString = NSMutableAttributedString(attributedString: messageLabel.attributedText!)
+        attributeString.addAttributes([NSFontAttributeName:FTDefaultFontSize,NSParagraphStyleAttributeName: FTChatMessagePublicMethods.getFTDefaultMessageParagraphStyle()], range: NSMakeRange(0, (messageLabel.text! as NSString).length))
+        messageLabel.attributedText = attributeString
+        
+    }
+
     func getTextRectWithSize(size:CGSize , isUserSelf : Bool) -> CGRect {
         let bubbleWidth = size.width - FTDefaultAngleWidth  - FTDefaultTextMargin*2
         let bubbleHeight = size.height - FTDefaultTextMargin*2
@@ -174,34 +116,110 @@ class FTChatMessageBubbleItem: UIButton {
         let x : CGFloat = isUserSelf ? FTDefaultTextMargin : FTDefaultAngleWidth + FTDefaultTextMargin
         return CGRectMake(x,y,bubbleWidth,bubbleHeight);
     }
-    func getImageFrameWithSize(size:CGSize , isUserSelf : Bool) -> CGRect {
-        let bubbleWidth = size.width - FTDefaultAngleWidth
-        let bubbleHeight = size.height
-        let y : CGFloat = 0
-        var x : CGFloat = 0
-        if (!isUserSelf){
-            x = FTDefaultAngleWidth
-        }
-        return CGRectMake(x, y, bubbleWidth, bubbleHeight)
-    }
-}
 
-class FTChatMessageBubbleTextItem: FTChatMessageBubbleItem {
+    
+
     
 }
 
 class FTChatMessageBubbleImageItem: FTChatMessageBubbleItem {
     
+    convenience init(frame: CGRect, aMessage : FTChatMessageModel ) {
+        self.init(frame:frame)
+        self.backgroundColor = UIColor.clearColor()
+        message = aMessage
+        messageBubblePath = self.getBubbleShapePathWithSize(frame.size, isUserSelf: aMessage.isUserSelf)
+        
+        
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = messageBubblePath.CGPath
+        maskLayer.frame = self.bounds
+        maskLayer.contentsScale = UIScreen.mainScreen().scale;
+        
+        let layer = CAShapeLayer()
+        layer.mask = maskLayer
+        layer.frame = self.bounds
+        self.layer.addSublayer(layer)
+        
+        if let image = UIImage(named : "dog.jpg") {
+            layer.contents = image.CGImage
+        }
+        //
+        SDWebImageManager.sharedManager().downloadWithURL(NSURL(string : message.messageText),
+                                                          options: .ProgressiveDownload,
+                                                          progress: { (a, b) in
+                                                            },
+                                                          completed: { (downloadImage, error, cachType, finished) in
+                                                            
+                                                            if finished == true && downloadImage != nil{
+                                                                layer.contents = downloadImage.CGImage
+                                                            }
+                                                            
+                                                            })
+    }
+    
+    
+    
 }
 class FTChatMessageBubbleVideoItem: FTChatMessageBubbleItem {
+    
+    convenience init(frame: CGRect, aMessage : FTChatMessageModel ) {
+        self.init(frame:frame)
+        self.backgroundColor = UIColor.clearColor()
+        message = aMessage
+        messageBubblePath = self.getBubbleShapePathWithSize(frame.size, isUserSelf: aMessage.isUserSelf)
+        
+        let layer = CAShapeLayer()
+        layer.path = messageBubblePath.CGPath
+        layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
+        self.layer.addSublayer(layer)
+
+    }
     
 }
 class FTChatMessageBubbleAudioItem: FTChatMessageBubbleItem {
     
+    convenience init(frame: CGRect, aMessage : FTChatMessageModel ) {
+        self.init(frame:frame)
+        self.backgroundColor = UIColor.clearColor()
+        message = aMessage
+        messageBubblePath = self.getAudioBubblePath(frame.size, isUserSelf: aMessage.isUserSelf)
+        
+        let layer = CAShapeLayer()
+        layer.path = messageBubblePath.CGPath
+        layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
+        self.layer.addSublayer(layer)
+
+    }
+    
+    func getAudioBubblePath(size:CGSize , isUserSelf : Bool) -> UIBezierPath {
+        
+        let bubbleRect = CGRectMake(isUserSelf ? 0 : FTDefaultAngleWidth, 0, size.width - FTDefaultAngleWidth , size.height)
+
+        let path = UIBezierPath.init(roundedRect: bubbleRect, cornerRadius:  size.height/2)
+        
+        return path;
+    }
+    
+    
+
 }
 
 class FTChatMessageBubbleLocationItem: FTChatMessageBubbleItem {
     
+    convenience init(frame: CGRect, aMessage : FTChatMessageModel ) {
+        self.init(frame:frame)
+        self.backgroundColor = UIColor.clearColor()
+        message = aMessage
+        messageBubblePath = self.getBubbleShapePathWithSize(frame.size, isUserSelf: aMessage.isUserSelf)
+        
+        let layer = CAShapeLayer()
+        layer.path = messageBubblePath.CGPath
+        layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
+        self.layer.addSublayer(layer)
+
+    }
+
 }
 
 

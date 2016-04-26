@@ -8,9 +8,6 @@
 
 import UIKit
 
-
-
-
 class FTChatMessageCell: UITableViewCell {
 
     var messageTimeLabel: UILabel!
@@ -18,9 +15,8 @@ class FTChatMessageCell: UITableViewCell {
     var messageBubbleItem: FTChatMessageBubbleItem!
     var message : FTChatMessageModel!
     var cellDesiredHeight : CGFloat = 60
-    var imageResource : UIImage?
 
-
+    
     
     
     
@@ -76,14 +72,9 @@ class FTChatMessageCell: UITableViewCell {
             bubbleWidth = rect.width + FTDefaultTextMargin*2 + FTDefaultAngleWidth
             bubbleHeight = rect.height + FTDefaultTextMargin*2
         case .Image:
-            imageResource =  UIImage(named : "dog.jpg")
             bubbleWidth = FTDefaultMessageBubbleWidth
-            bubbleHeight = imageResource == nil ? FTDefaultMessageBubbleHeight : (imageResource?.size.height)! * (FTDefaultMessageBubbleWidth/(imageResource?.size.width)!)
-            
-            
-            
-            
-            
+//            bubbleHeight = imageResource == nil ? FTDefaultMessageBubbleHeight : (imageResource?.size.height)! * (FTDefaultMessageBubbleWidth/(imageResource?.size.width)!)
+            bubbleHeight = FTDefaultMessageBubbleHeight
         case .Audio:
             bubbleWidth = FTDefaultMessageBubbleWidth
             bubbleHeight = FTDefaultMessageBubbleAudioHeight
@@ -99,13 +90,7 @@ class FTChatMessageCell: UITableViewCell {
         
         bubbleRect = CGRectMake(x, y, bubbleWidth, bubbleHeight)
         self.cellDesiredHeight = bubbleRect.origin.y + bubbleHeight + FTDefaultMargin*2
-        
-//        if message.messageType == .Image {
-//            messageBubbleItem = FTChatMessageBubbleItem(frame: bubbleRect, aMessage: message ,image: imageResource)
-//        }else{
-//            messageBubbleItem = FTChatMessageBubbleItem(frame: bubbleRect, aMessage: message ,image: nil)
-//        }
-//        self.addSubview(messageBubbleItem)
+
         
         self.setupCellBubbleItem(bubbleRect)
 
@@ -115,33 +100,31 @@ class FTChatMessageCell: UITableViewCell {
     
         switch message.messageType {
         case .Text:
-
-            messageBubbleItem = FTChatMessageBubbleTextItem(frame: bubbleFrame, aMessage: message ,image: nil)
-
+            messageBubbleItem = FTChatMessageBubbleTextItem(frame: bubbleFrame, aMessage: message)
         
         case .Image:
-            messageBubbleItem = FTChatMessageBubbleImageItem(frame: bubbleFrame, aMessage: message ,image: imageResource)
+            messageBubbleItem = FTChatMessageBubbleImageItem(frame: bubbleFrame, aMessage: message)
+        
         case .Audio:
 
-            messageBubbleItem = FTChatMessageBubbleAudioItem(frame: bubbleFrame, aMessage: message ,image: nil)
+            messageBubbleItem = FTChatMessageBubbleAudioItem(frame: bubbleFrame, aMessage: message)
 
         case .Location:
 
-            messageBubbleItem = FTChatMessageBubbleLocationItem(frame: bubbleFrame, aMessage: message ,image: nil)
+            messageBubbleItem = FTChatMessageBubbleLocationItem(frame: bubbleFrame, aMessage: message)
 
         case .Video:
         
-            messageBubbleItem = FTChatMessageBubbleVideoItem(frame: bubbleFrame, aMessage: message ,image: nil)
+            messageBubbleItem = FTChatMessageBubbleVideoItem(frame: bubbleFrame, aMessage: message)
 
-            
         }
+        
 
         self.addSubview(messageBubbleItem)
 
-        
-        
-        
     }
+    
+    
     
     
     

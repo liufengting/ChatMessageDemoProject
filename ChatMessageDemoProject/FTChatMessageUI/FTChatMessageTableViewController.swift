@@ -24,7 +24,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     var messageInputView : FTChatMessageInputView!
     var messageRecordView : FTChatMessageRecordView!
     var messageAccessoryView : FTChatMessageAccessoryView!
-
+    var messageInputMode : FTChatMessageInputMode = FTChatMessageInputMode.None
     
     var messageArray : [FTChatMessageModel] = []
     let sender1 = FTChatMessageSenderModel.init(id: "1", name: "SomeOne", icon_url: "https://avatars1.githubusercontent.com/u/4414522?v=3&s=400", extra_data: nil, isSelf: false)
@@ -86,93 +86,181 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         message1,message2,message3,message4,message5,message6,message7,message8,
         message1,message2,message3,message4,message5,message6,message7,message8,
         message1,message2,message3,message4,message5,message6,message7,message8,]
+//        messageArray = [message1,message2];
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FTChatMessageTableViewController.keyboradWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboradWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
+
 
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillChangeFrameNotification, object: nil)
     
     }
     /**
-     notification functions
+     keyborad notification functions
      */
     func keyboradWillChangeFrame(notification : NSNotification) {
         
-        //TODO:
+        if messageInputMode == FTChatMessageInputMode.Keyboard {
+            if let userInfo = notification.userInfo {
+                let duration = userInfo["UIKeyboardAnimationDurationUserInfoKey"]!.doubleValue
+                let keyFrame = userInfo["UIKeyboardFrameEndUserInfoKey"]!.CGRectValue()
+                let keyboradOriginY = min(keyFrame.origin.y, FTScreenHeight)
+                let inputBarHeight = messageInputView.frame.height
+                
+                
+                UIView.animateWithDuration(duration, animations: {
+                    self.messageTableView.frame = CGRectMake(0 , 0 , FTScreenWidth, keyboradOriginY)
+                    self.messageInputView.frame = CGRectMake(0, keyboradOriginY - inputBarHeight, FTScreenWidth, inputBarHeight)
+                    self.scrollToBottom()
+                    }, completion: { (finished) in
+                        if finished {
+                            if self.messageInputView.inputTextView.isFirstResponder() {
+                                self.dismissInputRecordView()
+                                self.dismissInputAccessoryView()
+                            }
+                        }
 
-        if let userInfo = notification.userInfo {
-            let duration = userInfo["UIKeyboardAnimationDurationUserInfoKey"]!.doubleValue
-            let keyFrame = userInfo["UIKeyboardFrameEndUserInfoKey"]!.CGRectValue()
-            let keyboradOriginY = min(keyFrame.origin.y, FTScreenHeight)
-            
-            UIView.animateWithDuration(duration, animations: {
-                self.view.frame = CGRectMake(0, keyboradOriginY-FTScreenHeight, FTScreenWidth, FTScreenHeight)
-                }, completion: { (finished) in
-                    if (finished){
-                        
-                    }
-            })
+                })
+            }
         }
-    }
 
-    
+    }
     
     /**
      FTChatMessageInputViewDelegate
      */
+    func FTChatMessageInputViewShouldBeginEditing() {
+        let originMode = messageInputMode
+        messageInputMode = FTChatMessageInputMode.Keyboard;
+        switch originMode {
+        case .Keyboard: break
+        case .Accessory:
+            self.dismissInputAccessoryView()
+        case .Record:
+            self.dismissInputRecordView()
+        case .None: break
+        }
+    }
+    func FTChatMessageInputViewShouldEndEditing() {
+        messageInputMode = FTChatMessageInputMode.None;
+    }
+    
     func FTChatMessageInputViewShouldUpdateHeight(desiredHeight: CGFloat) {
         var origin = messageInputView.frame;
         origin.origin.y = origin.origin.y + origin.size.height - desiredHeight;
         origin.size.height = desiredHeight;
         
-        messageTableView.frame = CGRectMake(0, origin.origin.y + FTDefaultInputViewHeight - FTScreenHeight, FTScreenWidth, FTScreenHeight)
+        messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, origin.origin.y + FTDefaultInputViewHeight)
         messageInputView.frame = origin
+        self.scrollToBottom()
         messageInputView.updateSubViewFrame()
     }
     func FTChatMessageInputViewShouldDoneWithText(textString: String) {
         
-        messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, FTScreenHeight)
         self.addNewMessage(textString)
-        messageInputView.clearText()
         
     }
-    func FTChatMessageInputViewShouldShowRecordView(shouldShowRecordView : Bool){
-        //TODO:
+    func FTChatMessageInputViewShouldShowRecordView(){
+        let originMode = messageInputMode
 
-        if shouldShowRecordView {
-            messageInputView.frame = CGRectMake(0, FTScreenHeight - FTDefaultInputViewHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
-            messageRecordView.frame = CGRectMake(0, FTScreenHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultRecordViewHeight)
-        }else{
-            messageInputView.frame = CGRectMake(0, FTScreenHeight - FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
-            messageRecordView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
-
-        }
+        let inputViewFrameHeight = self.messageInputView.frame.size.height
         
-
-    }
-    
-    func FTChatMessageInputViewShouldShowAccessoryView(shouldShowAccessoryView : Bool){
-        //TODO:
-        if shouldShowAccessoryView {
-            messageInputView.frame = CGRectMake(0, FTScreenHeight - FTDefaultInputViewHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
-            messageAccessoryView.frame = CGRectMake(0, FTScreenHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultRecordViewHeight)
-        }else{
-            messageInputView.frame = CGRectMake(0, FTScreenHeight - FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
-            messageAccessoryView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+        if originMode == FTChatMessageInputMode.Record {
+            messageInputMode = FTChatMessageInputMode.None
             
+            UIView.animateWithDuration(FTDefaultMessageDefaultAnimationDuration, animations: {
+                
+                self.messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, FTScreenHeight - inputViewFrameHeight + FTDefaultInputViewHeight )
+                self.messageInputView.frame = CGRectMake(0, FTScreenHeight - inputViewFrameHeight, FTScreenWidth, inputViewFrameHeight)
+                self.messageRecordView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+                self.scrollToBottom()
+                }, completion: { (finished) in
+            })
+        }else{
+            switch originMode {
+            case .Keyboard:
+                self.messageInputView.inputTextView.resignFirstResponder()
+            case .Accessory:
+                self.dismissInputAccessoryView()
+            case .None: break
+            case .Record: break
+            }
+            messageInputMode = FTChatMessageInputMode.Record
+
+            UIView.animateWithDuration(FTDefaultMessageDefaultAnimationDuration, animations: {
+                self.messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, FTScreenHeight - inputViewFrameHeight - FTDefaultRecordViewHeight + FTDefaultInputViewHeight )
+                self.messageInputView.frame = CGRectMake(0, FTScreenHeight - inputViewFrameHeight - FTDefaultRecordViewHeight, FTScreenWidth, inputViewFrameHeight)
+                self.messageRecordView.frame = CGRectMake(0, FTScreenHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+                self.scrollToBottom()
+                }, completion: { (finished) in
+
+            })
+
         }
-        
     }
     
-    
+    func FTChatMessageInputViewShouldShowAccessoryView(){
+        let originMode = messageInputMode
+
+        let inputViewFrameHeight = self.messageInputView.frame.size.height
+        
+        if originMode == FTChatMessageInputMode.Accessory {
+            messageInputMode = FTChatMessageInputMode.None
+            UIView.animateWithDuration(FTDefaultMessageDefaultAnimationDuration, animations: {
+                
+                self.messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, FTScreenHeight - inputViewFrameHeight + FTDefaultInputViewHeight )
+                self.messageInputView.frame = CGRectMake(0, FTScreenHeight - inputViewFrameHeight, FTScreenWidth, inputViewFrameHeight)
+                self.messageAccessoryView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+                self.scrollToBottom()
+                }, completion: { (finished) in
+
+            })
+        }else{
+            switch originMode {
+            case .Keyboard:
+                self.messageInputView.inputTextView.resignFirstResponder()
+            case .Record:
+                self.dismissInputRecordView()
+            case .None: break
+            case .Accessory: break
+            }
+            messageInputMode = FTChatMessageInputMode.Accessory
+
+            UIView.animateWithDuration(FTDefaultMessageDefaultAnimationDuration, animations: {
+                
+                self.messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, FTScreenHeight - inputViewFrameHeight - FTDefaultRecordViewHeight + FTDefaultInputViewHeight )
+                
+                self.messageInputView.frame = CGRectMake(0, FTScreenHeight - inputViewFrameHeight - FTDefaultRecordViewHeight, FTScreenWidth, inputViewFrameHeight)
+                self.messageAccessoryView.frame = CGRectMake(0, FTScreenHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+                self.scrollToBottom()
+                }, completion: { (finished) in
+
+            })
+        }
+    }
+    /**
+     dismissInputRecordView
+     */
+    func dismissInputRecordView(){
+        UIView.animateWithDuration(FTDefaultMessageDefaultAnimationDuration, animations: {
+            self.messageRecordView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+            })
+    }
+    /**
+     dismissInputAccessoryView
+     */
+    func dismissInputAccessoryView(){
+        UIView.animateWithDuration(FTDefaultMessageDefaultAnimationDuration, animations: {
+            self.messageAccessoryView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+        })
+    }
     
     
     /**
@@ -202,11 +290,12 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         self.scrollToBottom()
         
     }
-    
+    /**
+     scrollToBottom
+     */
     func scrollToBottom() {
         self.messageTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messageArray.count-1), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
     }
-    
     
     /**
      UITableViewDelegate,UITableViewDataSource
@@ -218,11 +307,8 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         return 1;
     }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let message = messageArray[section]
-
-        let header = FTChatMessageHeader(frame: CGRectMake(0,0,FTScreenWidth,40), isSender: message.messageSender.isUserSelf, imageUrl: NSURL(string: message.messageSender.senderIconUrl))
-
+        let header = FTChatMessageHeader(frame: CGRectMake(0,0,FTScreenWidth,40), isSender: message.isUserSelf, imageUrl: NSURL(string: message.messageSender.senderIconUrl))
         return header
     }
     
@@ -233,11 +319,6 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         return 0
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-//        let cell : FTChatMessageCell = self.tableView(self.messageTableView, cellForRowAtIndexPath: indexPath) as! FTChatMessageCell
-//        
-//        return cell.cellDesiredHeight;
-        
         return FTChatMessageCell.getCellHeightWithMessage(messageArray[indexPath.section], shouldShowSendTime: true, shouldShowSenderName: true)
     }
     
@@ -245,8 +326,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         
         let message = messageArray[indexPath.section]
         
-        let cell = FTChatMessageCell.init(style: UITableViewCellStyle.Default, reuseIdentifier: FTChatMessageCellReuseIndentifier, theMessage: message, shouldShowSendTime: true , shouldShowSenderName: true);
-
+        let cell = FTChatMessageCell.init(style: UITableViewCellStyle.Default, reuseIdentifier: FTChatMessageCellReuseIndentifier, theMessage: message, shouldShowSendTime: true , shouldShowSenderName: true );
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

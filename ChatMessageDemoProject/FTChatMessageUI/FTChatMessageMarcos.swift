@@ -36,7 +36,7 @@ let FTDefaultNameLabelHeight : CGFloat = 20.0
 let FTDefaultTimeLabelFont : UIFont = UIFont.systemFontOfSize(10)
 let FTDefaultNameLabelFont : UIFont = UIFont.systemFontOfSize(12)
 let FTDefaultAngleWidth : CGFloat = 8.0
-let FTDefaultTextMargin : CGFloat = 8.0
+let FTDefaultTextMargin : CGFloat = 10.0
 let FTDefaultLineSpacing : CGFloat = 2.0
 let FTDefaultSectionHeight : CGFloat = 40.0
 let FTDefaultIconSize : CGFloat = 30.0
@@ -57,13 +57,14 @@ let FTDefaultRecordButtonSize : CGFloat = 100.0
 let FTDefaultRecordViewHeight : CGFloat = 216.0
 
 
-let FTDefaultMessageBubbleWidth : CGFloat = FTScreenWidth*0.48
-let FTDefaultMessageBubbleHeight : CGFloat = FTScreenWidth*0.30
+let FTDefaultMessageBubbleWidth : CGFloat = FTScreenWidth*0.55
+let FTDefaultMessageBubbleHeight : CGFloat = FTScreenWidth*0.35
 let FTDefaultMessageBubbleAudioHeight : CGFloat = 40.0
 
 
 
 
+let FTDefaultMessageDefaultAnimationDuration : Double = 0.3
 
 
 
