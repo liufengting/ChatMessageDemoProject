@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SDWebImage
+//import SDWebImage
 
 class FTChatMessageHeader: UIView {
     
@@ -32,7 +32,7 @@ class FTChatMessageHeader: UIView {
         iconButton = UIButton(frame: iconRect)
         iconButton.backgroundColor = isSender ? FTDefaultOutgoingColor : FTDefaultIncomingColor
         iconButton.layer.cornerRadius = FTDefaultIconSize/2;
-        iconButton.layer.masksToBounds = true
+        iconButton.clipsToBounds = true
         if image != nil{
             iconButton.setImage(image!, forState: UIControlState.Normal)
         }else if (imageUrl != nil){
@@ -40,13 +40,5 @@ class FTChatMessageHeader: UIView {
         }
         self.addSubview(iconButton)
     }
-    
-    
-    
-    
-    
-    
-    
-    
 
 }

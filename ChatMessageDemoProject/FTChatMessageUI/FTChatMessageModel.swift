@@ -8,7 +8,16 @@
 
 import UIKit
 
- /// FTChatMessageSenderModel
+enum FTChatMessageDeliverStatus {
+    case Sending
+    case Succeeded
+    case failed
+}
+
+
+
+
+/// FTChatMessageSenderModel
 
 class FTChatMessageSenderModel : NSObject{
     
@@ -39,6 +48,7 @@ class FTChatMessageModel: NSObject {
     var messageType : FTChatMessageType = .Text
     var messageSender : FTChatMessageSenderModel!
     var messageExtraData : NSDictionary?
+    var messageDeliverStatus : FTChatMessageDeliverStatus = FTChatMessageDeliverStatus.Succeeded
 
     
     convenience init(data : String? ,time : String?, from : FTChatMessageSenderModel, type : FTChatMessageType){

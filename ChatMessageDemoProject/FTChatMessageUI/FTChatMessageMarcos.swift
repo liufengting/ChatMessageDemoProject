@@ -56,6 +56,10 @@ let FTDefaultInputViewBackgroundColor : UIColor = UIColor(red: 210/255, green: 2
 let FTDefaultRecordButtonSize : CGFloat = 100.0
 let FTDefaultRecordViewHeight : CGFloat = 216.0
 
+let FTDefaultAccessoryViewMinMargin : CGFloat = 10.0
+let FTDefaultAccessoryViewDefaltMargin : CGFloat = 25.0
+let FTDefaultAccessoryViewMaxTotalCount : NSInteger = 10
+let FTDefaultAccessoryViewMaxEachRowCount : NSInteger = 5
 
 let FTDefaultMessageBubbleWidth : CGFloat = FTScreenWidth*0.55
 let FTDefaultMessageBubbleHeight : CGFloat = FTScreenWidth*0.35
@@ -65,11 +69,6 @@ let FTDefaultMessageBubbleAudioHeight : CGFloat = 40.0
 
 
 let FTDefaultMessageDefaultAnimationDuration : Double = 0.3
-
-
-
-
-
 
 
 

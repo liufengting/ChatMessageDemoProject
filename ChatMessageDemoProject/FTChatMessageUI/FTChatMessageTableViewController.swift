@@ -8,17 +8,11 @@
 
 import UIKit
 
-//@objc
-//public protocol ChartViewDelegate{
-//    
-//    optional func numberOfMessages() -> NSInteger
-//
-//    
-//    
-//}
 
 
-class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,FTChatMessageInputViewDelegate{
+
+
+class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,FTChatMessageInputViewDelegate,FTChatMessageAccessoryViewDataSource,FTChatMessageAccessoryViewDelegate{
     
     var messageTableView : UITableView!
     var messageInputView : FTChatMessageInputView!
@@ -26,7 +20,9 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     var messageAccessoryView : FTChatMessageAccessoryView!
     var messageInputMode : FTChatMessageInputMode = FTChatMessageInputMode.None
     
-    var messageArray : [FTChatMessageModel] = []
+    var messageArray : NSMutableArray!
+    
+    
     let sender1 = FTChatMessageSenderModel.init(id: "1", name: "SomeOne", icon_url: "https://avatars1.githubusercontent.com/u/4414522?v=3&s=400", extra_data: nil, isSelf: false)
     let sender2 = FTChatMessageSenderModel.init(id: "2", name: "Liufengting", icon_url: "https://avatars1.githubusercontent.com/u/4414522?v=3&s=400", extra_data: nil, isSelf: true)
 
@@ -61,7 +57,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         messageRecordView = FTChatMessageRecordView(frame: CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight))
         self.view.addSubview(messageRecordView)
         
-        messageAccessoryView = FTChatMessageAccessoryView(frame: CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight))
+        messageAccessoryView = FTChatMessageAccessoryView.init(frame: CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight), accessoryViewDataSource: self, accessoryViewDelegate: self)
         self.view.addSubview(messageAccessoryView)
         
         dispatch_after( dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
@@ -80,12 +76,12 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         let message7 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:55", from: sender1, type: .Text)
         let message8 = FTChatMessageModel(data: "https://raw.githubusercontent.com/liufengting/liufengting.github.io/master/img/macbookpro.jpg", time: "4.12 21:09:56", from: sender2, type: .Image)
         
-        messageArray = [message1,message2,message3,message4,message5,message6,message7,message8,
-        message1,message2,message3,message4,message5,message6,message7,message8,
-        message1,message2,message3,message4,message5,message6,message7,message8,
-        message1,message2,message3,message4,message5,message6,message7,message8,
-        message1,message2,message3,message4,message5,message6,message7,message8,
-        message1,message2,message3,message4,message5,message6,message7,message8,]
+        messageArray = NSMutableArray(array: [message1,message2,message3,message4,message5,message6,message7,message8,
+            message1,message2,message3,message4,message5,message6,message7,message8,
+            message1,message2,message3,message4,message5,message6,message7,message8,
+            message1,message2,message3,message4,message5,message6,message7,message8,
+            message1,message2,message3,message4,message5,message6,message7,message8,
+            message1,message2,message3,message4,message5,message6,message7,message8,])
 //        messageArray = [message1,message2];
     }
     
@@ -102,9 +98,9 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillChangeFrameNotification, object: nil)
     
     }
-    /**
-     keyborad notification functions
-     */
+
+    //MARK: - keyborad notification functions -
+
     func keyboradWillChangeFrame(notification : NSNotification) {
         
         if messageInputMode == FTChatMessageInputMode.Keyboard {
@@ -126,17 +122,15 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
                                 self.dismissInputAccessoryView()
                             }
                         }
-
                 })
             }
         }
 
     }
-    
-    /**
-     FTChatMessageInputViewDelegate
-     */
-    func FTChatMessageInputViewShouldBeginEditing() {
+
+    //MARK: - FTChatMessageInputViewDelegate -
+
+    func ftChatMessageInputViewShouldBeginEditing() {
         let originMode = messageInputMode
         messageInputMode = FTChatMessageInputMode.Keyboard;
         switch originMode {
@@ -148,11 +142,11 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         case .None: break
         }
     }
-    func FTChatMessageInputViewShouldEndEditing() {
+    func ftChatMessageInputViewShouldEndEditing() {
         messageInputMode = FTChatMessageInputMode.None;
     }
     
-    func FTChatMessageInputViewShouldUpdateHeight(desiredHeight: CGFloat) {
+    func ftChatMessageInputViewShouldUpdateHeight(desiredHeight: CGFloat) {
         var origin = messageInputView.frame;
         origin.origin.y = origin.origin.y + origin.size.height - desiredHeight;
         origin.size.height = desiredHeight;
@@ -162,12 +156,12 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         self.scrollToBottom()
         messageInputView.updateSubViewFrame()
     }
-    func FTChatMessageInputViewShouldDoneWithText(textString: String) {
+    func ftChatMessageInputViewShouldDoneWithText(textString: String) {
         
         self.addNewMessage(textString)
         
     }
-    func FTChatMessageInputViewShouldShowRecordView(){
+    func ftChatMessageInputViewShouldShowRecordView(){
         let originMode = messageInputMode
 
         let inputViewFrameHeight = self.messageInputView.frame.size.height
@@ -206,7 +200,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         }
     }
     
-    func FTChatMessageInputViewShouldShowAccessoryView(){
+    func ftChatMessageInputViewShouldShowAccessoryView(){
         let originMode = messageInputMode
 
         let inputViewFrameHeight = self.messageInputView.frame.size.height
@@ -245,17 +239,18 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
             })
         }
     }
-    /**
-     dismissInputRecordView
-     */
+
+    //MARK: - dismissInputRecordView -
+
     func dismissInputRecordView(){
         UIView.animateWithDuration(FTDefaultMessageDefaultAnimationDuration, animations: {
             self.messageRecordView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
             })
     }
-    /**
-     dismissInputAccessoryView
-     */
+
+    
+    //MARK: - dismissInputAccessoryView -
+
     func dismissInputAccessoryView(){
         UIView.animateWithDuration(FTDefaultMessageDefaultAnimationDuration, animations: {
             self.messageAccessoryView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
@@ -263,14 +258,15 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     }
     
     
-    /**
-     addNewIncomingMessage
-     */
+ 
+    
+    //MARK: - addNewIncomingMessage -
+
     func addNewIncomingMessage() {
         
         let message8 = FTChatMessageModel(data: "New Message", time: "4.12 22:42", from: sender1, type: .Text)
         
-        messageArray.append(message8);
+        messageArray.addObject(message8);
         
         messageTableView.insertSections(NSIndexSet.init(indexesInRange: NSMakeRange(messageArray.count-1, 1)), withRowAnimation: UITableViewRowAnimation.Bottom)
         
@@ -282,24 +278,37 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     func addNewMessage(text:String) {
         
         let message8 = FTChatMessageModel(data: text, time: "4.12 22:43", from: sender2, type: .Text)
-
-        messageArray.append(message8);
+        message8.messageDeliverStatus = FTChatMessageDeliverStatus.Sending
+        messageArray.addObject(message8);
         
         messageTableView.insertSections(NSIndexSet.init(indexesInRange: NSMakeRange(messageArray.count-1, 1)), withRowAnimation: UITableViewRowAnimation.Bottom)
         
         self.scrollToBottom()
         
+
+        
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+
+            
+            message8.messageDeliverStatus = FTChatMessageDeliverStatus.Succeeded
+            
+            self.messageTableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: self.messageArray.indexOfObject(message8))], withRowAnimation: UITableViewRowAnimation.None)
+            
+            
+        })
+
+        
     }
-    /**
-     scrollToBottom
-     */
+    
+    //MARK: - scrollToBottom -
+
     func scrollToBottom() {
         self.messageTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messageArray.count-1), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
     }
-    
-    /**
-     UITableViewDelegate,UITableViewDataSource
-     */
+
+    //MARK: - UITableViewDelegate,UITableViewDataSource -
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return messageArray.count;
     }
@@ -307,7 +316,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         return 1;
     }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let message = messageArray[section]
+        let message = messageArray[section] as! FTChatMessageModel
         let header = FTChatMessageHeader(frame: CGRectMake(0,0,FTScreenWidth,40), isSender: message.isUserSelf, imageUrl: NSURL(string: message.messageSender.senderIconUrl))
         return header
     }
@@ -319,12 +328,14 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         return 0
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return FTChatMessageCell.getCellHeightWithMessage(messageArray[indexPath.section], shouldShowSendTime: true, shouldShowSenderName: true)
+        let message = messageArray[indexPath.section] as! FTChatMessageModel
+
+        return FTChatMessageCell.getCellHeightWithMessage(message, shouldShowSendTime: true, shouldShowSenderName: true)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let message = messageArray[indexPath.section]
+        let message = messageArray[indexPath.section] as! FTChatMessageModel
         
         let cell = FTChatMessageCell.init(style: UITableViewCellStyle.Default, reuseIdentifier: FTChatMessageCellReuseIndentifier, theMessage: message, shouldShowSendTime: true , shouldShowSenderName: true );
         return cell
@@ -332,6 +343,44 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+
+    //MARK: - FTChatMessageAccessoryViewDataSource -
+
+    func ftChatMessageAccessoryViewItemCount() -> NSInteger {
+        return 7
+    }
+    func ftChatMessageAccessoryViewItemCountEachRow() -> NSInteger {
+        return 4
+    }
+    func ftChatMessageAccessoryViewItemSize() -> CGFloat {
+        return 70
+    }
+    func ftChatMessageAccessoryViewImageForItemAtIndex(index: NSInteger) -> UIImage {
+        return UIImage(named: "FT_Record")!
+    }
+    func ftChatMessageAccessoryViewBackgroundColorForItemAtIndex(index: NSInteger) -> UIColor {
+        return self.colors()[index]
+    }
+    
+    func colors() -> [UIColor] {
+        return [UIColor(red: 254/255, green: 255/255, blue: 51/255, alpha: 1),
+                UIColor(red: 232/255, green: 170/255, blue: 108/255, alpha: 1),
+                UIColor(red: 255/255, green: 38/255, blue: 172/255, alpha: 1),
+                UIColor(red: 112/255, green: 101/255, blue: 232/255, alpha: 1),
+                UIColor(red: 29/255, green: 255/255, blue: 252/255, alpha: 1),
+                UIColor(red: 255/255, green: 38/255, blue: 172/255, alpha: 1),
+                UIColor(red: 112/255, green: 101/255, blue: 232/255, alpha: 1)]
+    }
+    
+    //MARK: - FTChatMessageAccessoryViewDelegate -
+
+    func ftChatMessageAccessoryViewDidTappedOnItemAtIndex(index: NSInteger) {
+        print("tapped : \(index)")
+    }
+    
+    
+    
+    //MARK: - preferredInterfaceOrientationForPresentation -
 
     override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
         return UIInterfaceOrientation.Portrait

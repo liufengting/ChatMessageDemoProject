@@ -16,12 +16,12 @@ enum FTChatMessageInputMode {
 }
 
 protocol FTChatMessageInputViewDelegate {
-    func FTChatMessageInputViewShouldBeginEditing()
-    func FTChatMessageInputViewShouldEndEditing()
-    func FTChatMessageInputViewShouldUpdateHeight(desiredHeight : CGFloat)
-    func FTChatMessageInputViewShouldDoneWithText(textString : String)
-    func FTChatMessageInputViewShouldShowRecordView()
-    func FTChatMessageInputViewShouldShowAccessoryView()
+    func ftChatMessageInputViewShouldBeginEditing()
+    func ftChatMessageInputViewShouldEndEditing()
+    func ftChatMessageInputViewShouldUpdateHeight(desiredHeight : CGFloat)
+    func ftChatMessageInputViewShouldDoneWithText(textString : String)
+    func ftChatMessageInputViewShouldShowRecordView()
+    func ftChatMessageInputViewShouldShowAccessoryView()
 }
 
 class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
@@ -78,12 +78,12 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
      */
     func recordButtonTapped(sender : UIButton) {
         if (inputDelegate != nil) {
-            inputDelegate!.FTChatMessageInputViewShouldShowRecordView()
+            inputDelegate!.ftChatMessageInputViewShouldShowRecordView()
         }
     }
     func addButtonTapped(sender : UIButton) {
         if (inputDelegate != nil) {
-            inputDelegate!.FTChatMessageInputViewShouldShowAccessoryView()
+            inputDelegate!.ftChatMessageInputViewShouldShowAccessoryView()
         }
     }
     
@@ -94,7 +94,7 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
     func clearText(){
         inputTextView.text = ""
         if (inputDelegate != nil) {
-            inputDelegate!.FTChatMessageInputViewShouldUpdateHeight(FTDefaultInputViewHeight)
+            inputDelegate!.ftChatMessageInputViewShouldUpdateHeight(FTDefaultInputViewHeight)
         }
     }
     
@@ -107,13 +107,13 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
     
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         if (inputDelegate != nil) {
-            inputDelegate!.FTChatMessageInputViewShouldBeginEditing()
+            inputDelegate!.ftChatMessageInputViewShouldBeginEditing()
         }
         return true
     }
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
         if (inputDelegate != nil) {
-            inputDelegate!.FTChatMessageInputViewShouldEndEditing()
+            inputDelegate!.ftChatMessageInputViewShouldEndEditing()
         }
         return true
     }
@@ -123,7 +123,7 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
             let textRect = text.boundingRectWithSize(CGSizeMake(textViewWidth - textView.textContainerInset.left - textView.textContainerInset.right, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:FTDefaultFontSize], context: nil);
 
             if (inputDelegate != nil) {
-                inputDelegate!.FTChatMessageInputViewShouldUpdateHeight(min(max(textRect.height + FTDefaultInputTextViewMargin*2 + textView.textContainerInset.top + textView.textContainerInset.bottom, FTDefaultInputViewHeight), FTDefaultInputViewMaxHeight))
+                inputDelegate!.ftChatMessageInputViewShouldUpdateHeight(min(max(textRect.height + FTDefaultInputTextViewMargin*2 + textView.textContainerInset.top + textView.textContainerInset.bottom, FTDefaultInputViewHeight), FTDefaultInputViewMaxHeight))
             }
         }
     }
@@ -132,7 +132,7 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
         if (text == "\n") {
             if (textView.text as NSString).length > 0 {
                 if (inputDelegate != nil) {
-                    inputDelegate!.FTChatMessageInputViewShouldDoneWithText(textView.text)
+                    inputDelegate!.ftChatMessageInputViewShouldDoneWithText(textView.text)
                     self.clearText()
                 }
             }

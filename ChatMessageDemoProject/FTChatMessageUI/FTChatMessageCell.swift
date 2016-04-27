@@ -10,14 +10,12 @@ import UIKit
 
 class FTChatMessageCell: UITableViewCell {
 
+    var message : FTChatMessageModel!
+    
     var messageTimeLabel: UILabel!
     var messageSenderLabel: UILabel!
     var messageBubbleItem: FTChatMessageBubbleItem!
-    var message : FTChatMessageModel!
-    var cellDesiredHeight : CGFloat = 60
-
-    
-    
+    var messageDeliverStatusView : FTChatMessageDeliverStatusView?
     
     
     convenience init(style: UITableViewCellStyle, reuseIdentifier: String?, theMessage : FTChatMessageModel, shouldShowSendTime : Bool , shouldShowSenderName : Bool) {
@@ -89,7 +87,7 @@ class FTChatMessageCell: UITableViewCell {
         let x = theMessage.isUserSelf ? FTScreenWidth - (FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin) - bubbleWidth : FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin
         
         bubbleRect = CGRectMake(x, y, bubbleWidth, bubbleHeight)
-        self.cellDesiredHeight = bubbleRect.origin.y + bubbleHeight + FTDefaultMargin*2
+//        self.cellDesiredHeight = bubbleRect.origin.y + bubbleHeight + FTDefaultMargin*2
 
         
         self.setupCellBubbleItem(bubbleRect)
@@ -119,18 +117,24 @@ class FTChatMessageCell: UITableViewCell {
 
         }
         
+        
+        
+        if message.isUserSelf  && message.messageDeliverStatus != FTChatMessageDeliverStatus.Succeeded{
+            if messageDeliverStatusView == nil {
+                messageDeliverStatusView = FTChatMessageDeliverStatusView(frame: CGRectZero)
+            }
+            let statusViewRect = CGRectMake(bubbleFrame.origin.x - 20 - FTDefaultMargin, (bubbleFrame.origin.y + bubbleFrame.size.height - 20)/2, 20, 20)
+            messageDeliverStatusView?.frame = statusViewRect
+            messageDeliverStatusView?.setupWithDeliverStatus(message.messageDeliverStatus)
+            self.addSubview(messageDeliverStatusView!)
+        }
+        
+        
+        
 
         self.addSubview(messageBubbleItem)
 
     }
-    
-    
-    
-    
-    
-    
-    
-    
     
 
     class func getCellHeightWithMessage(theMessage : FTChatMessageModel, shouldShowSendTime : Bool , shouldShowSenderName : Bool) -> CGFloat{
@@ -162,6 +166,40 @@ class FTChatMessageCell: UITableViewCell {
     }
     
     
+    
+    
+}
+class FTChatMessageDeliverStatusView: UIView {
+    
+    var activityIndicator : UIActivityIndicatorView?
+    var failedImageView : UIImageView?
+    
+    func setupWithDeliverStatus(status : FTChatMessageDeliverStatus) {
+        
+        self.backgroundColor = UIColor.clearColor()
+        
+        switch status {
+        case .Sending:
+            activityIndicator = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+            activityIndicator?.frame = self.bounds
+            activityIndicator?.startAnimating()
+            self.addSubview(activityIndicator!)
+            failedImageView?.hidden = true
+        case .Succeeded:
+            activityIndicator?.stopAnimating()
+            activityIndicator?.hidden = true
+            failedImageView?.hidden = true
+        case .failed:
+            activityIndicator?.stopAnimating()
+            activityIndicator?.hidden = true
+            failedImageView = UIImageView.init(frame: CGRectMake(0, 0, 20, 20))
+            failedImageView?.backgroundColor = UIColor.clearColor();
+            failedImageView?.image = UIImage(named: "FT_Add")
+            failedImageView?.hidden = false
+            self.addSubview(failedImageView!)
+        }
+        
+    }
     
     
 }

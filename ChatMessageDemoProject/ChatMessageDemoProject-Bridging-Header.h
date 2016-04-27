@@ -3,3 +3,4 @@
 //
 
 #import <SDWebImage/SDWebImageManager.h>
+#import <SDWebImage/UIButton+WebCache.h>
