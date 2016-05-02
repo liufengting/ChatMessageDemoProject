@@ -23,6 +23,8 @@ enum FTChatMessageType {
     case Audio
     case Video
     case Location
+//    case Share
+//    case More
 }
 
 let FTChatMessageCellReuseIndentifier = "FTChatMessageCellReuseIndentifier"
@@ -64,7 +66,8 @@ let FTDefaultAccessoryViewMaxEachRowCount : NSInteger = 5
 let FTDefaultMessageBubbleWidth : CGFloat = FTScreenWidth*0.55
 let FTDefaultMessageBubbleHeight : CGFloat = FTScreenWidth*0.35
 let FTDefaultMessageBubbleAudioHeight : CGFloat = 40.0
-
+let FTDefaultMessageBubbleAudioIconHeight : CGFloat = 28.0
+let FTDefaultMessageBubbleMediaIconHeight : CGFloat = 36.0
 
 
 

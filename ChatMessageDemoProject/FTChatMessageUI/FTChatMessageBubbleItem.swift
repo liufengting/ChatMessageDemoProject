@@ -145,23 +145,26 @@ class FTChatMessageBubbleImageItem: FTChatMessageBubbleItem {
             layer.contents = image.CGImage
         }
         //
-        SDWebImageManager.sharedManager().downloadWithURL(NSURL(string : message.messageText),
-                                                          options: .ProgressiveDownload,
-                                                          progress: { (a, b) in
-                                                            },
-                                                          completed: { (downloadImage, error, cachType, finished) in
-                                                            
-                                                            if finished == true && downloadImage != nil{
-                                                                layer.contents = downloadImage.CGImage
-                                                            }
-                                                            
-                                                            })
+//        SDWebImageManager.sharedManager().downloadWithURL(NSURL(string : message.messageText),
+//                                                          options: .ProgressiveDownload,
+//                                                          progress: { (a, b) in
+//                                                            },
+//                                                          completed: { (downloadImage, error, cachType, finished) in
+//                                                            
+//                                                            if finished == true && downloadImage != nil{
+//                                                                layer.contents = downloadImage.CGImage
+//                                                            }
+//                                                            
+//                                                            })
     }
     
     
     
 }
 class FTChatMessageBubbleVideoItem: FTChatMessageBubbleItem {
+    
+    var mediaPlayImageView : UIImageView!
+
     
     convenience init(frame: CGRect, aMessage : FTChatMessageModel ) {
         self.init(frame:frame)
@@ -173,11 +176,29 @@ class FTChatMessageBubbleVideoItem: FTChatMessageBubbleItem {
         layer.path = messageBubblePath.CGPath
         layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
         self.layer.addSublayer(layer)
+        
+        let mediaImageRect = self.getMediaImageViewFrame(aMessage.isUserSelf)
+
+        mediaPlayImageView = UIImageView(frame : mediaImageRect)
+        mediaPlayImageView.backgroundColor = UIColor.clearColor()
+        mediaPlayImageView.image = UIImage(named: "Media_Play")
+        self.addSubview(mediaPlayImageView)
 
     }
-    
+    func getMediaImageViewFrame(isUserSelf : Bool) -> CGRect {
+        let xx = isUserSelf ?
+            (self.frame.size.width - FTDefaultAngleWidth - FTDefaultMessageBubbleMediaIconHeight)/2 :
+            FTDefaultAngleWidth + (self.frame.size.width - FTDefaultAngleWidth - FTDefaultMessageBubbleMediaIconHeight)/2
+        
+        let yy = (self.frame.size.height - FTDefaultMessageBubbleMediaIconHeight)/2
+        return CGRectMake(xx, yy, FTDefaultMessageBubbleMediaIconHeight, FTDefaultMessageBubbleMediaIconHeight)
+    }
 }
 class FTChatMessageBubbleAudioItem: FTChatMessageBubbleItem {
+    
+    var playImageView : UIImageView!
+    var mediaInfoLabel : UILabel!
+    
     
     convenience init(frame: CGRect, aMessage : FTChatMessageModel ) {
         self.init(frame:frame)
@@ -189,23 +210,49 @@ class FTChatMessageBubbleAudioItem: FTChatMessageBubbleItem {
         layer.path = messageBubblePath.CGPath
         layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
         self.layer.addSublayer(layer)
+        
+        let mediaImageRect = self.getPlayImageViewFrame(aMessage.isUserSelf)
+        playImageView = UIImageView(frame : mediaImageRect)
+        playImageView.backgroundColor = UIColor.clearColor()
+        playImageView.image = UIImage(named: "Media_Play")
+        self.addSubview(playImageView)
+        
+        let mediaInfoLabelRect = self.getMediaInfoLabelFrame(aMessage.isUserSelf)
+        mediaInfoLabel = UILabel(frame : mediaInfoLabelRect)
+        mediaInfoLabel.backgroundColor = UIColor.clearColor()
+        mediaInfoLabel.font = FTDefaultFontSize
+        mediaInfoLabel.textColor = UIColor.whiteColor()
+        mediaInfoLabel.textAlignment = aMessage.isUserSelf ? NSTextAlignment.Left : NSTextAlignment.Right
+        mediaInfoLabel.text = "1′ 22″"
+        self.addSubview(mediaInfoLabel)
 
     }
     
     func getAudioBubblePath(size:CGSize , isUserSelf : Bool) -> UIBezierPath {
-        
         let bubbleRect = CGRectMake(isUserSelf ? 0 : FTDefaultAngleWidth, 0, size.width - FTDefaultAngleWidth , size.height)
-
         let path = UIBezierPath.init(roundedRect: bubbleRect, cornerRadius:  size.height/2)
-        
         return path;
     }
     
-    
+    func getPlayImageViewFrame(isUserSelf : Bool) -> CGRect {
+        let margin = (FTDefaultMessageBubbleAudioHeight - FTDefaultMessageBubbleAudioIconHeight)/2
+        return isUserSelf ?
+            CGRectMake(margin, margin, FTDefaultMessageBubbleAudioIconHeight, FTDefaultMessageBubbleAudioIconHeight) :
+            CGRectMake(self.frame.size.width - FTDefaultMessageBubbleAudioHeight + margin , margin, FTDefaultMessageBubbleAudioIconHeight, FTDefaultMessageBubbleAudioIconHeight)
+        
+    }
+    func getMediaInfoLabelFrame(isUserSelf : Bool) -> CGRect {
+        let margin = (FTDefaultMessageBubbleAudioHeight - FTDefaultMessageBubbleAudioIconHeight)/2
+        return isUserSelf ?
+            CGRectMake(FTDefaultMessageBubbleAudioHeight, margin, self.frame.size.width - FTDefaultMessageBubbleAudioHeight - FTDefaultAngleWidth - margin, FTDefaultMessageBubbleAudioIconHeight) :
+            CGRectMake( FTDefaultAngleWidth + margin, margin, self.frame.size.width - FTDefaultMessageBubbleAudioHeight - FTDefaultAngleWidth - margin, FTDefaultMessageBubbleAudioIconHeight)
+    }
 
 }
 
 class FTChatMessageBubbleLocationItem: FTChatMessageBubbleItem {
+    
+    
     
     convenience init(frame: CGRect, aMessage : FTChatMessageModel ) {
         self.init(frame:frame)
@@ -217,6 +264,11 @@ class FTChatMessageBubbleLocationItem: FTChatMessageBubbleItem {
         layer.path = messageBubblePath.CGPath
         layer.fillColor = aMessage.messageSender.isUserSelf ? FTDefaultOutgoingColor.CGColor : FTDefaultIncomingColor.CGColor
         self.layer.addSublayer(layer)
+        
+//        let map = MKMapView()
+//        
+//        layer.contents = map
+        
 
     }
 
