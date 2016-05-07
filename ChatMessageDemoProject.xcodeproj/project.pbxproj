@@ -15,6 +15,11 @@
 		5A57A1381C82ED4500D8906E /* FTChatMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A57A1371C82ED4500D8906E /* FTChatMessageModel.swift */; };
 		5A63A2271CC7C2C00072E286 /* FTChatMessageRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A63A2261CC7C2C00072E286 /* FTChatMessageRecordView.swift */; };
 		5A7E0D711C82B2760046483E /* FTChatMessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E0D701C82B2760046483E /* FTChatMessageHeader.swift */; };
+		5A82C3C41CDDC3470090C5C5 /* FTChatMessageBubbleLocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82C3C31CDDC3470090C5C5 /* FTChatMessageBubbleLocationItem.swift */; };
+		5A82C3C71CDDC69A0090C5C5 /* FTChatMessageBubbleTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82C3C61CDDC69A0090C5C5 /* FTChatMessageBubbleTextItem.swift */; };
+		5A82C3C91CDDC6CF0090C5C5 /* FTChatMessageBubbleImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82C3C81CDDC6CF0090C5C5 /* FTChatMessageBubbleImageItem.swift */; };
+		5A82C3CB1CDDC7010090C5C5 /* FTChatMessageBubbleAudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82C3CA1CDDC7010090C5C5 /* FTChatMessageBubbleAudioItem.swift */; };
+		5A82C3CD1CDDC71B0090C5C5 /* FTChatMessageBubbleVideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82C3CC1CDDC71B0090C5C5 /* FTChatMessageBubbleVideoItem.swift */; };
 		5A9230621CA82891008DC3CB /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9230611CA82891008DC3CB /* ChatListTableViewCell.swift */; };
 		5AC1B7CE1C71AC2900232C1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC1B7CD1C71AC2900232C1C /* AppDelegate.swift */; };
 		5AC1B7D01C71AC2900232C1C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC1B7CF1C71AC2900232C1C /* HomeViewController.swift */; };
@@ -61,6 +66,11 @@
 		5A57A1371C82ED4500D8906E /* FTChatMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageModel.swift; sourceTree = "<group>"; };
 		5A63A2261CC7C2C00072E286 /* FTChatMessageRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageRecordView.swift; sourceTree = "<group>"; };
 		5A7E0D701C82B2760046483E /* FTChatMessageHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageHeader.swift; sourceTree = "<group>"; };
+		5A82C3C31CDDC3470090C5C5 /* FTChatMessageBubbleLocationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleLocationItem.swift; sourceTree = "<group>"; };
+		5A82C3C61CDDC69A0090C5C5 /* FTChatMessageBubbleTextItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleTextItem.swift; sourceTree = "<group>"; };
+		5A82C3C81CDDC6CF0090C5C5 /* FTChatMessageBubbleImageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleImageItem.swift; sourceTree = "<group>"; };
+		5A82C3CA1CDDC7010090C5C5 /* FTChatMessageBubbleAudioItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleAudioItem.swift; sourceTree = "<group>"; };
+		5A82C3CC1CDDC71B0090C5C5 /* FTChatMessageBubbleVideoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleVideoItem.swift; sourceTree = "<group>"; };
 		5A9230611CA82891008DC3CB /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
 		5AC1B7CA1C71AC2900232C1C /* ChatMessageDemoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatMessageDemoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC1B7CD1C71AC2900232C1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,13 +138,26 @@
 				5A57A1371C82ED4500D8906E /* FTChatMessageModel.swift */,
 				5A7E0D701C82B2760046483E /* FTChatMessageHeader.swift */,
 				5AC509A61C82C3240040F2A7 /* FTChatMessageCell.swift */,
-				5AFAD0621CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift */,
+				5A82C3C51CDDC6830090C5C5 /* FTChatMessageBubbleItem */,
 				5A07C8CF1CA18006009F2460 /* FTChatMessageInputView.swift */,
 				5A63A2261CC7C2C00072E286 /* FTChatMessageRecordView.swift */,
 				5AF917631CC91BE60052DCB3 /* FTChatMessageAccessoryView.swift */,
 				5AC509AC1C82CA630040F2A7 /* FTChatMessageTableViewController.swift */,
 			);
 			path = FTChatMessageUI;
+			sourceTree = "<group>";
+		};
+		5A82C3C51CDDC6830090C5C5 /* FTChatMessageBubbleItem */ = {
+			isa = PBXGroup;
+			children = (
+				5AFAD0621CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift */,
+				5A82C3CA1CDDC7010090C5C5 /* FTChatMessageBubbleAudioItem.swift */,
+				5A82C3C81CDDC6CF0090C5C5 /* FTChatMessageBubbleImageItem.swift */,
+				5A82C3C61CDDC69A0090C5C5 /* FTChatMessageBubbleTextItem.swift */,
+				5A82C3C31CDDC3470090C5C5 /* FTChatMessageBubbleLocationItem.swift */,
+				5A82C3CC1CDDC71B0090C5C5 /* FTChatMessageBubbleVideoItem.swift */,
+			);
+			name = FTChatMessageBubbleItem;
 			sourceTree = "<group>";
 		};
 		5AC1B7C11C71AC2900232C1C = {
@@ -396,16 +419,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AC509A51C82BC090040F2A7 /* DemoTableViewController.swift in Sources */,
+				5A82C3C71CDDC69A0090C5C5 /* FTChatMessageBubbleTextItem.swift in Sources */,
+				5A82C3C41CDDC3470090C5C5 /* FTChatMessageBubbleLocationItem.swift in Sources */,
 				5AC509A71C82C3240040F2A7 /* FTChatMessageCell.swift in Sources */,
 				5AC509A31C82B84B0040F2A7 /* FTChatMessageMarcos.swift in Sources */,
+				5A82C3C91CDDC6CF0090C5C5 /* FTChatMessageBubbleImageItem.swift in Sources */,
 				5AF917641CC91BE60052DCB3 /* FTChatMessageAccessoryView.swift in Sources */,
 				5AC1B7D01C71AC2900232C1C /* HomeViewController.swift in Sources */,
 				5AC1B7CE1C71AC2900232C1C /* AppDelegate.swift in Sources */,
 				5A07C8D01CA18006009F2460 /* FTChatMessageInputView.swift in Sources */,
 				5A07C8CB1CA17CA6009F2460 /* ImageSize.m in Sources */,
+				5A82C3CB1CDDC7010090C5C5 /* FTChatMessageBubbleAudioItem.swift in Sources */,
 				5A57A1381C82ED4500D8906E /* FTChatMessageModel.swift in Sources */,
 				5A7E0D711C82B2760046483E /* FTChatMessageHeader.swift in Sources */,
 				5A63A2271CC7C2C00072E286 /* FTChatMessageRecordView.swift in Sources */,
+				5A82C3CD1CDDC71B0090C5C5 /* FTChatMessageBubbleVideoItem.swift in Sources */,
 				5AFAD0631CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift in Sources */,
 				5A9230621CA82891008DC3CB /* ChatListTableViewCell.swift in Sources */,
 				5AC509AD1C82CA630040F2A7 /* FTChatMessageTableViewController.swift in Sources */,

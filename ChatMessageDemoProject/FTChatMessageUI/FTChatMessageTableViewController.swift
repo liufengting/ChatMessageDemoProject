@@ -23,8 +23,8 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     var messageArray : NSMutableArray!
     
     
-    let sender1 = FTChatMessageSenderModel.init(id: "1", name: "SomeOne", icon_url: "https://avatars1.githubusercontent.com/u/4414522?v=3&s=400", extra_data: nil, isSelf: false)
-    let sender2 = FTChatMessageSenderModel.init(id: "2", name: "Liufengting", icon_url: "https://avatars1.githubusercontent.com/u/4414522?v=3&s=400", extra_data: nil, isSelf: true)
+    let sender1 = FTChatMessageSenderModel.init(id: "1", name: "SomeOne", icon_url: "http://ww3.sinaimg.cn/mw600/6cca1403jw1f3lrknzxczj20gj0g0t96.jpg", extra_data: nil, isSelf: false)
+    let sender2 = FTChatMessageSenderModel.init(id: "2", name: "Liufengting", icon_url: "http://ww3.sinaimg.cn/mw600/9d319f9agw1f3k8e4pixfj20u00u0ac6.jpg", extra_data: nil, isSelf: true)
 
     override func viewDidLoad() {
         super.viewDidLoad()

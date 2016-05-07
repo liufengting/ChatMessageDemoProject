@@ -10,9 +10,18 @@
 
 Still working in progress. Please be patient.
 
-#Preview
+##ScreenShots
 
-<center><img src="/ResourceImages/ChatMessageDemo.gif" width="300"/></center>
+<table>
+  <tr>
+    <th><img src="/ResourceImages/1.jpg" width="250"/></th>
+    <th><img src="/ResourceImages/2.jpg" width="250"/></th>
+    <th><img src="/ResourceImages/3.jpg" width="250"/></th>
+  </tr>
+</table>
+
+
+
 
 ##Update Log
 
@@ -26,6 +35,12 @@ Still working in progress. Please be patient.
 * 2016.04.27 -- add deliver status and finish accessory view ! it's 4.28 now...
 * 2016.05.02 -- Audio!
 * 2016.05.__ -- more media ui coming up
+
+
+
+#Preview
+
+<center><img src="/ResourceImages/ChatMessageDemo.gif" width="300"/></center>
 
 
 
