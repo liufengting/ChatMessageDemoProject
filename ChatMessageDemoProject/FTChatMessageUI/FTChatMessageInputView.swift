@@ -155,6 +155,12 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
         self.accessoryButton.frame = CGRectMake(FTScreenWidth - FTDefaultInputButtonSize - FTDefaultInputViewMargin, self.bounds.height - FTDefaultInputButtonSize - buttonBottomMargin, FTDefaultInputButtonSize,FTDefaultInputButtonSize)
         
         self.inputTextView.frame = CGRectMake(FTDefaultInputViewMargin*2 + FTDefaultInputButtonSize, FTDefaultInputTextViewMargin, self.textViewWidth, self.bounds.height - FTDefaultInputTextViewMargin*2)
+        
+        let textLength = (self.inputTextView.text as NSString).length
+        if textLength > 0 {
+            self.inputTextView.scrollRangeToVisible(NSMakeRange(textLength-1, 1))
+
+        }
     }
     
 }

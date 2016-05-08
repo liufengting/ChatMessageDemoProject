@@ -19,6 +19,7 @@ class FTChatMessageBubbleVideoItem: FTChatMessageBubbleItem {
         message = aMessage
         messageBubblePath = self.getBubbleShapePathWithSize(frame.size, isUserSelf: aMessage.isUserSelf)
         
+        
         let maskLayer = CAShapeLayer()
         maskLayer.path = messageBubblePath.CGPath
         maskLayer.frame = self.bounds
@@ -32,6 +33,7 @@ class FTChatMessageBubbleVideoItem: FTChatMessageBubbleItem {
         if let image = UIImage(named : "dog.jpg") {
             layer.contents = image.CGImage
         }
+
         
         let mediaImageRect = self.getMediaImageViewFrame(aMessage.isUserSelf)
         
@@ -39,9 +41,9 @@ class FTChatMessageBubbleVideoItem: FTChatMessageBubbleItem {
         mediaPlayImageView.backgroundColor = UIColor.clearColor()
         mediaPlayImageView.image = UIImage(named: "Media_Play")
         self.addSubview(mediaPlayImageView)
-        
     }
-    func getMediaImageViewFrame(isUserSelf : Bool) -> CGRect {
+    
+    private func getMediaImageViewFrame(isUserSelf : Bool) -> CGRect {
         let xx = isUserSelf ?
             (self.frame.size.width - FTDefaultAngleWidth - FTDefaultMessageBubbleMediaIconHeight)/2 :
             FTDefaultAngleWidth + (self.frame.size.width - FTDefaultAngleWidth - FTDefaultMessageBubbleMediaIconHeight)/2

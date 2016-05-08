@@ -41,7 +41,7 @@ let FTDefaultAngleWidth : CGFloat = 8.0
 let FTDefaultTextMargin : CGFloat = 10.0
 let FTDefaultLineSpacing : CGFloat = 2.0
 let FTDefaultSectionHeight : CGFloat = 40.0
-let FTDefaultIconSize : CGFloat = 32.0
+let FTDefaultIconSize : CGFloat = 30.0
 let FTDefaultMessageRoundCorner : CGFloat = 10.0
 let FTDefaultFontSize : UIFont = UIFont.systemFontOfSize(16)
 let FTDefaultOutgoingColor : UIColor = UIColor(red: 1/255, green: 123/255, blue: 225/255, alpha: 1)
@@ -63,11 +63,15 @@ let FTDefaultAccessoryViewDefaltMargin : CGFloat = 25.0
 let FTDefaultAccessoryViewMaxTotalCount : NSInteger = 10
 let FTDefaultAccessoryViewMaxEachRowCount : NSInteger = 5
 
-let FTDefaultMessageBubbleWidth : CGFloat = FTScreenWidth*0.62
-let FTDefaultMessageBubbleHeight : CGFloat = FTScreenWidth*0.4
-let FTDefaultMessageBubbleAudioHeight : CGFloat = 40.0
-let FTDefaultMessageBubbleAudioIconHeight : CGFloat = 28.0
-let FTDefaultMessageBubbleMediaIconHeight : CGFloat = 40.0
+let FTDefaultMessageBubbleWidth : CGFloat = FTScreenWidth*0.52
+let FTDefaultMessageBubbleHeight : CGFloat = FTScreenWidth*0.32
+
+let FTDefaultMapMessageBubbleWidth : CGFloat = FTScreenWidth*0.62
+let FTDefaultMapMessageBubbleHeight : CGFloat = FTScreenWidth*0.40
+
+let FTDefaultMessageBubbleAudioHeight : CGFloat = 36.0
+let FTDefaultMessageBubbleAudioIconHeight : CGFloat = 24.0
+let FTDefaultMessageBubbleMediaIconHeight : CGFloat = 30.0
 
 
 

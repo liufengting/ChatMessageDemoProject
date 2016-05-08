@@ -19,7 +19,6 @@ class FTChatMessageBubbleLocationItem: FTChatMessageBubbleItem {
         message = aMessage
         
         let mapRect = self.getMapSize(aMessage.isUserSelf)
-        
         mapView = MKMapView(frame : mapRect)
         mapView.scrollEnabled = false
         mapView.userInteractionEnabled = false
@@ -38,13 +37,10 @@ class FTChatMessageBubbleLocationItem: FTChatMessageBubbleItem {
         let pin = MapPin.init(coordinate: coordinate, title: "My Location", subtitle: string as String)
         mapView.addAnnotation(pin as MKAnnotation)
         
-//        mapView.selectAnnotation(pin as MKAnnotation, animated: false);
-        
-        
     }
     
     
-    func getMapSize(isUserSelf : Bool) -> CGRect {
+    private func getMapSize(isUserSelf : Bool) -> CGRect {
         let bubbleRect = CGRectMake(isUserSelf ? 0 : FTDefaultAngleWidth, 0, self.bounds.size.width - FTDefaultAngleWidth , self.bounds.size.height)
         return bubbleRect;
     }

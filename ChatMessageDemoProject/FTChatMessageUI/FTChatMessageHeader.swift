@@ -9,23 +9,30 @@
 import UIKit
 import SDWebImage
 
+protocol FTChatMessageHeaderDelegate {
+
+    func fTChatMessageHeaderDidTappedOnIcon(messageSenderModel : FTChatMessageSenderModel)
+    
+}
+
 class FTChatMessageHeader: UIView {
     
     var iconButton : UIButton!
+    var messageSenderModel : FTChatMessageSenderModel!
+    var headerViewDelegate : FTChatMessageHeaderDelegate?
+
 
     
-    convenience init(frame: CGRect, isSender: Bool , imageUrl : NSURL?) {
+    convenience init(frame: CGRect, senderModel: FTChatMessageSenderModel ) {
         self.init(frame : frame)
-        setupHeader(nil, imageUrl: imageUrl, isSender: isSender)
-    }
-    
-    convenience init(frame: CGRect, isSender: Bool , image : UIImage?) {
-        self.init(frame : frame)
-        setupHeader(image, imageUrl: nil, isSender: isSender)
-    }
+        
+        messageSenderModel = senderModel;
+        
+        self.setupHeader(NSURL(string: senderModel.senderIconUrl), isSender: senderModel.isUserSelf)
 
+    }
     
-    private func setupHeader(image: UIImage?, imageUrl : NSURL?, isSender: Bool){
+    private func setupHeader(imageUrl : NSURL?, isSender: Bool){
         self.backgroundColor = UIColor.clearColor()
         
         let iconRect = isSender ? CGRectMake(self.frame.width-FTDefaultMargin-FTDefaultIconSize, FTDefaultMargin, FTDefaultIconSize, FTDefaultIconSize) : CGRectMake(FTDefaultMargin, FTDefaultMargin, FTDefaultIconSize, FTDefaultIconSize)
@@ -35,11 +42,17 @@ class FTChatMessageHeader: UIView {
         iconButton.clipsToBounds = true
         self.addSubview(iconButton)
         
-        if image != nil{
-            iconButton.setImage(image!, forState: UIControlState.Normal)
-        }else if (imageUrl != nil){
+        if (imageUrl != nil){
             iconButton.sd_setImageWithURL(imageUrl!, forState: UIControlState.Normal)
         }
     }
 
+    func iconTapped() {
+        if (headerViewDelegate != nil) {
+            headerViewDelegate?.fTChatMessageHeaderDidTappedOnIcon(messageSenderModel)
+        }
+    }
+    
+    
+    
 }

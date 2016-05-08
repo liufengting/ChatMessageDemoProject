@@ -36,7 +36,7 @@ class FTChatMessageBubbleTextItem: FTChatMessageBubbleItem {
         
     }
     
-    func getTextRectWithSize(size:CGSize , isUserSelf : Bool) -> CGRect {
+    private func getTextRectWithSize(size:CGSize , isUserSelf : Bool) -> CGRect {
         let bubbleWidth = size.width - FTDefaultAngleWidth  - FTDefaultTextMargin*2
         let bubbleHeight = size.height - FTDefaultTextMargin*2
         let y = FTDefaultTextMargin

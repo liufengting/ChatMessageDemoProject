@@ -40,7 +40,8 @@ class FTChatMessageCell: UITableViewCell {
         }else{
             nameLabelRect = CGRectMake(0, -FTDefaultSectionHeight, FTScreenWidth, 0);
         }
-        
+        print(timeLabelRect);
+
         if shouldShowSenderName {
             var nameLabelTextAlignment : NSTextAlignment = .Left
             
@@ -60,8 +61,8 @@ class FTChatMessageCell: UITableViewCell {
         }
         
         let y : CGFloat = nameLabelRect.origin.y + nameLabelRect.height + FTDefaultMargin
-        var bubbleWidth : CGFloat = 200
-        var bubbleHeight : CGFloat = 200
+        var bubbleWidth : CGFloat = 0
+        var bubbleHeight : CGFloat = 0
         
         switch message.messageType {
         case .Text:
@@ -71,17 +72,18 @@ class FTChatMessageCell: UITableViewCell {
             bubbleHeight = rect.height + FTDefaultTextMargin*2
         case .Image:
             bubbleWidth = FTDefaultMessageBubbleWidth
-//            bubbleHeight = imageResource == nil ? FTDefaultMessageBubbleHeight : (imageResource?.size.height)! * (FTDefaultMessageBubbleWidth/(imageResource?.size.width)!)
             bubbleHeight = FTDefaultMessageBubbleHeight
         case .Audio:
             bubbleWidth = FTDefaultMessageBubbleWidth
             bubbleHeight = FTDefaultMessageBubbleAudioHeight
         case .Location:
-            bubbleWidth = FTDefaultMessageBubbleWidth
-            bubbleHeight = FTDefaultMessageBubbleHeight
+            bubbleWidth = FTDefaultMapMessageBubbleWidth
+            bubbleHeight = FTDefaultMapMessageBubbleHeight
         case .Video:
             bubbleWidth = FTDefaultMessageBubbleWidth
             bubbleHeight = FTDefaultMessageBubbleHeight
+            
+            
         }
         
         let x = theMessage.isUserSelf ? FTScreenWidth - (FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin) - bubbleWidth : FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin
@@ -156,7 +158,7 @@ class FTChatMessageCell: UITableViewCell {
         case .Audio:
             cellDesiredHeight += FTDefaultMessageBubbleAudioHeight
         case .Location:
-            cellDesiredHeight += FTDefaultMessageBubbleHeight
+            cellDesiredHeight += FTDefaultMapMessageBubbleHeight
         case .Video:
             cellDesiredHeight += FTDefaultMessageBubbleHeight
         }

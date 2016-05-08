@@ -107,7 +107,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="chatListTableView" destination="mU5-Db-lRS" id="pfZ-OJ-zEX"/>
-                        <segue destination="yp7-sx-RoE" kind="show" id="15c-Yg-2mv"/>
+                        <segue destination="yp7-sx-RoE" kind="show" identifier="ToChat" id="15c-Yg-2mv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xNg-od-XWv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -151,7 +151,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2Y-ir-Qzs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8" y="880"/>
+            <point key="canvasLocation" x="-54" y="880"/>
         </scene>
     </scenes>
 </document>
