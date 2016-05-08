@@ -10,6 +10,9 @@
 
 Still working in progress. Please be patient.
 
+* 2016.05.08 -- I hope I can finish this up by the end of May. I was not so focused lately. There is not much work left now. I really wanna write some more functions. Keep calm and carry on! 
+
+
 ##ScreenShots
 
 <table>
@@ -34,6 +37,7 @@ Still working in progress. Please be patient.
 * 2016.04.26 -- switch input view done !
 * 2016.04.27 -- add deliver status and finish accessory view ! it's 4.28 now...
 * 2016.05.02 -- Audio!
+* 2016.05.08 -- fix something, test something
 * 2016.05.__ -- more media ui coming up
 
 
