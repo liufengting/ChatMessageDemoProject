@@ -38,7 +38,7 @@ Still working in progress. Please be patient.
 * 2016.04.27 -- add deliver status and finish accessory view ! it's 4.28 now...
 * 2016.05.02 -- Audio!
 * 2016.05.08 -- fix something, test something
-* 2016.05.__ -- more media ui coming up
+* 2016.06.04 -- Holy Shit.
 
 
 
