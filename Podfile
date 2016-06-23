@@ -1,5 +1,5 @@
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
-use_frameworks!
 
-pod 'SDWebImage', '~> 3.7.5'
+target 'ChatMessageDemoProject' do
+use_frameworks!
+pod 'AlamofireImage', '~> 2.0'
+end

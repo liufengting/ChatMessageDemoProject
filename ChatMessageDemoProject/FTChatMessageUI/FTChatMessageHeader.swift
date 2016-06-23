@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SDWebImage
+import AlamofireImage
 
 protocol FTChatMessageHeaderDelegate {
 
@@ -43,7 +43,9 @@ class FTChatMessageHeader: UIView {
         self.addSubview(iconButton)
         
         if (imageUrl != nil){
-            iconButton.sd_setImageWithURL(imageUrl!, forState: UIControlState.Normal)
+//            iconButton.sd_setImageWithURL(imageUrl!, forState: UIControlState.Normal)
+//            iconButton.af_setImageForState(UIControlState.Normal, URL: imageUrl!)
+            iconButton.af_setImageForState(UIControlState.Normal, URL: imageUrl!)
         }
     }
 
