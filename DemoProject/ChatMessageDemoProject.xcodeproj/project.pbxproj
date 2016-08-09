@@ -8,18 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		5A07C8CB1CA17CA6009F2460 /* ImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A07C8CA1CA17CA6009F2460 /* ImageSize.m */; };
-		5A07C8D01CA18006009F2460 /* FTChatMessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A07C8CF1CA18006009F2460 /* FTChatMessageInputView.swift */; };
-		5A17BFE21CAF7894007384CD /* setting.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A17BFE11CAF7894007384CD /* setting.jpg */; };
-		5A2382851CD788F300770732 /* Media_Pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2382831CD788F300770732 /* Media_Pause.png */; };
-		5A2382861CD788F300770732 /* Media_Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2382841CD788F300770732 /* Media_Play.png */; };
-		5A57A1381C82ED4500D8906E /* FTChatMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A57A1371C82ED4500D8906E /* FTChatMessageModel.swift */; };
-		5A63A2271CC7C2C00072E286 /* FTChatMessageRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A63A2261CC7C2C00072E286 /* FTChatMessageRecordView.swift */; };
-		5A7E0D711C82B2760046483E /* FTChatMessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E0D701C82B2760046483E /* FTChatMessageHeader.swift */; };
-		5A82C3C41CDDC3470090C5C5 /* FTChatMessageBubbleLocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82C3C31CDDC3470090C5C5 /* FTChatMessageBubbleLocationItem.swift */; };
-		5A82C3C71CDDC69A0090C5C5 /* FTChatMessageBubbleTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82C3C61CDDC69A0090C5C5 /* FTChatMessageBubbleTextItem.swift */; };
-		5A82C3C91CDDC6CF0090C5C5 /* FTChatMessageBubbleImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82C3C81CDDC6CF0090C5C5 /* FTChatMessageBubbleImageItem.swift */; };
-		5A82C3CB1CDDC7010090C5C5 /* FTChatMessageBubbleAudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82C3CA1CDDC7010090C5C5 /* FTChatMessageBubbleAudioItem.swift */; };
-		5A82C3CD1CDDC71B0090C5C5 /* FTChatMessageBubbleVideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82C3CC1CDDC71B0090C5C5 /* FTChatMessageBubbleVideoItem.swift */; };
+		5A324F721D5A1C0400E57CE3 /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A324F6E1D5A1C0400E57CE3 /* dog.jpg */; };
+		5A324F731D5A1C0400E57CE3 /* Media_Pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A324F6F1D5A1C0400E57CE3 /* Media_Pause.png */; };
+		5A324F741D5A1C0400E57CE3 /* Media_Play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A324F701D5A1C0400E57CE3 /* Media_Play.png */; };
+		5A324F751D5A1C0400E57CE3 /* setting.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A324F711D5A1C0400E57CE3 /* setting.jpg */; };
+		5A6275301D5A1C9800DCCB85 /* FTChatMessageAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6275211D5A1C9800DCCB85 /* FTChatMessageAccessoryView.swift */; };
+		5A6275311D5A1C9800DCCB85 /* FTChatMessageBubbleAudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6275221D5A1C9800DCCB85 /* FTChatMessageBubbleAudioItem.swift */; };
+		5A6275321D5A1C9800DCCB85 /* FTChatMessageBubbleImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6275231D5A1C9800DCCB85 /* FTChatMessageBubbleImageItem.swift */; };
+		5A6275331D5A1C9800DCCB85 /* FTChatMessageBubbleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6275241D5A1C9800DCCB85 /* FTChatMessageBubbleItem.swift */; };
+		5A6275341D5A1C9800DCCB85 /* FTChatMessageBubbleLocationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6275251D5A1C9800DCCB85 /* FTChatMessageBubbleLocationItem.swift */; };
+		5A6275351D5A1C9800DCCB85 /* FTChatMessageBubbleTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6275261D5A1C9800DCCB85 /* FTChatMessageBubbleTextItem.swift */; };
+		5A6275361D5A1C9800DCCB85 /* FTChatMessageBubbleVideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6275271D5A1C9800DCCB85 /* FTChatMessageBubbleVideoItem.swift */; };
+		5A6275371D5A1C9800DCCB85 /* FTChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6275281D5A1C9800DCCB85 /* FTChatMessageCell.swift */; };
+		5A6275381D5A1C9800DCCB85 /* FTChatMessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6275291D5A1C9800DCCB85 /* FTChatMessageHeader.swift */; };
+		5A6275391D5A1C9800DCCB85 /* FTChatMessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62752A1D5A1C9800DCCB85 /* FTChatMessageInputView.swift */; };
+		5A62753A1D5A1C9800DCCB85 /* FTChatMessageMarcos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62752B1D5A1C9800DCCB85 /* FTChatMessageMarcos.swift */; };
+		5A62753B1D5A1C9800DCCB85 /* FTChatMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62752C1D5A1C9800DCCB85 /* FTChatMessageModel.swift */; };
+		5A62753C1D5A1C9800DCCB85 /* FTChatMessageRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62752D1D5A1C9800DCCB85 /* FTChatMessageRecordView.swift */; };
+		5A62753D1D5A1C9800DCCB85 /* FTChatMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62752E1D5A1C9800DCCB85 /* FTChatMessageTableViewController.swift */; };
+		5A62753E1D5A1C9800DCCB85 /* FTChatMessageUIHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62752F1D5A1C9800DCCB85 /* FTChatMessageUIHeader.swift */; };
 		5A9230621CA82891008DC3CB /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9230611CA82891008DC3CB /* ChatListTableViewCell.swift */; };
 		5AC1B7CE1C71AC2900232C1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC1B7CD1C71AC2900232C1C /* AppDelegate.swift */; };
 		5AC1B7D01C71AC2900232C1C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC1B7CF1C71AC2900232C1C /* HomeViewController.swift */; };
@@ -28,13 +35,7 @@
 		5AC1B7D81C71AC2900232C1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AC1B7D61C71AC2900232C1C /* LaunchScreen.storyboard */; };
 		5AC1B7E31C71AC2900232C1C /* ChatMessageDemoProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC1B7E21C71AC2900232C1C /* ChatMessageDemoProjectTests.swift */; };
 		5AC1B7EE1C71AC2900232C1C /* ChatMessageDemoProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC1B7ED1C71AC2900232C1C /* ChatMessageDemoProjectUITests.swift */; };
-		5AC509A31C82B84B0040F2A7 /* FTChatMessageMarcos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC509A21C82B84B0040F2A7 /* FTChatMessageMarcos.swift */; };
 		5AC509A51C82BC090040F2A7 /* DemoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC509A41C82BC090040F2A7 /* DemoTableViewController.swift */; };
-		5AC509A71C82C3240040F2A7 /* FTChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC509A61C82C3240040F2A7 /* FTChatMessageCell.swift */; };
-		5AC509AD1C82CA630040F2A7 /* FTChatMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC509AC1C82CA630040F2A7 /* FTChatMessageTableViewController.swift */; };
-		5AD3344C1CA198E30064C30B /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5AD3344B1CA198E30064C30B /* dog.jpg */; };
-		5AF917641CC91BE60052DCB3 /* FTChatMessageAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF917631CC91BE60052DCB3 /* FTChatMessageAccessoryView.swift */; };
-		5AFAD0631CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFAD0621CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift */; };
 		A363744F8CF43B95FB9CAAE8 /* Pods_ChatMessageDemoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE55182EBB1DFACB0076AE17 /* Pods_ChatMessageDemoProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,19 +60,26 @@
 		1874552D0980D4FC4FBBAEF8 /* Pods-ChatMessageDemoProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatMessageDemoProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatMessageDemoProject/Pods-ChatMessageDemoProject.release.xcconfig"; sourceTree = "<group>"; };
 		5A07C8C91CA17CA6009F2460 /* ImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSize.h; sourceTree = "<group>"; };
 		5A07C8CA1CA17CA6009F2460 /* ImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSize.m; sourceTree = "<group>"; };
-		5A07C8CF1CA18006009F2460 /* FTChatMessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageInputView.swift; sourceTree = "<group>"; };
-		5A17BFE11CAF7894007384CD /* setting.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = setting.jpg; sourceTree = "<group>"; };
-		5A2382831CD788F300770732 /* Media_Pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Media_Pause.png; sourceTree = "<group>"; };
-		5A2382841CD788F300770732 /* Media_Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Media_Play.png; sourceTree = "<group>"; };
+		5A324F6E1D5A1C0400E57CE3 /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
+		5A324F6F1D5A1C0400E57CE3 /* Media_Pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Media_Pause.png; sourceTree = "<group>"; };
+		5A324F701D5A1C0400E57CE3 /* Media_Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Media_Play.png; sourceTree = "<group>"; };
+		5A324F711D5A1C0400E57CE3 /* setting.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = setting.jpg; sourceTree = "<group>"; };
 		5A57A1361C82E99800D8906E /* ChatMessageDemoProject-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChatMessageDemoProject-Bridging-Header.h"; sourceTree = "<group>"; };
-		5A57A1371C82ED4500D8906E /* FTChatMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageModel.swift; sourceTree = "<group>"; };
-		5A63A2261CC7C2C00072E286 /* FTChatMessageRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageRecordView.swift; sourceTree = "<group>"; };
-		5A7E0D701C82B2760046483E /* FTChatMessageHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageHeader.swift; sourceTree = "<group>"; };
-		5A82C3C31CDDC3470090C5C5 /* FTChatMessageBubbleLocationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleLocationItem.swift; sourceTree = "<group>"; };
-		5A82C3C61CDDC69A0090C5C5 /* FTChatMessageBubbleTextItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleTextItem.swift; sourceTree = "<group>"; };
-		5A82C3C81CDDC6CF0090C5C5 /* FTChatMessageBubbleImageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleImageItem.swift; sourceTree = "<group>"; };
-		5A82C3CA1CDDC7010090C5C5 /* FTChatMessageBubbleAudioItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleAudioItem.swift; sourceTree = "<group>"; };
-		5A82C3CC1CDDC71B0090C5C5 /* FTChatMessageBubbleVideoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleVideoItem.swift; sourceTree = "<group>"; };
+		5A6275211D5A1C9800DCCB85 /* FTChatMessageAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageAccessoryView.swift; sourceTree = "<group>"; };
+		5A6275221D5A1C9800DCCB85 /* FTChatMessageBubbleAudioItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleAudioItem.swift; sourceTree = "<group>"; };
+		5A6275231D5A1C9800DCCB85 /* FTChatMessageBubbleImageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleImageItem.swift; sourceTree = "<group>"; };
+		5A6275241D5A1C9800DCCB85 /* FTChatMessageBubbleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleItem.swift; sourceTree = "<group>"; };
+		5A6275251D5A1C9800DCCB85 /* FTChatMessageBubbleLocationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleLocationItem.swift; sourceTree = "<group>"; };
+		5A6275261D5A1C9800DCCB85 /* FTChatMessageBubbleTextItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleTextItem.swift; sourceTree = "<group>"; };
+		5A6275271D5A1C9800DCCB85 /* FTChatMessageBubbleVideoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleVideoItem.swift; sourceTree = "<group>"; };
+		5A6275281D5A1C9800DCCB85 /* FTChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageCell.swift; sourceTree = "<group>"; };
+		5A6275291D5A1C9800DCCB85 /* FTChatMessageHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageHeader.swift; sourceTree = "<group>"; };
+		5A62752A1D5A1C9800DCCB85 /* FTChatMessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageInputView.swift; sourceTree = "<group>"; };
+		5A62752B1D5A1C9800DCCB85 /* FTChatMessageMarcos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageMarcos.swift; sourceTree = "<group>"; };
+		5A62752C1D5A1C9800DCCB85 /* FTChatMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageModel.swift; sourceTree = "<group>"; };
+		5A62752D1D5A1C9800DCCB85 /* FTChatMessageRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageRecordView.swift; sourceTree = "<group>"; };
+		5A62752E1D5A1C9800DCCB85 /* FTChatMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageTableViewController.swift; sourceTree = "<group>"; };
+		5A62752F1D5A1C9800DCCB85 /* FTChatMessageUIHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageUIHeader.swift; sourceTree = "<group>"; };
 		5A9230611CA82891008DC3CB /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
 		5AC1B7CA1C71AC2900232C1C /* ChatMessageDemoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatMessageDemoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC1B7CD1C71AC2900232C1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,13 +94,7 @@
 		5AC1B7E91C71AC2900232C1C /* ChatMessageDemoProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatMessageDemoProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC1B7ED1C71AC2900232C1C /* ChatMessageDemoProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageDemoProjectUITests.swift; sourceTree = "<group>"; };
 		5AC1B7EF1C71AC2900232C1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5AC509A21C82B84B0040F2A7 /* FTChatMessageMarcos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageMarcos.swift; sourceTree = "<group>"; };
 		5AC509A41C82BC090040F2A7 /* DemoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTableViewController.swift; sourceTree = "<group>"; };
-		5AC509A61C82C3240040F2A7 /* FTChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageCell.swift; sourceTree = "<group>"; };
-		5AC509AC1C82CA630040F2A7 /* FTChatMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageTableViewController.swift; sourceTree = "<group>"; };
-		5AD3344B1CA198E30064C30B /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = dog.jpg; path = FTChatMessageUI/dog.jpg; sourceTree = "<group>"; };
-		5AF917631CC91BE60052DCB3 /* FTChatMessageAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageAccessoryView.swift; sourceTree = "<group>"; };
-		5AFAD0621CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleItem.swift; sourceTree = "<group>"; };
 		A137EBF7393A06679EF7917D /* Pods-ChatMessageDemoProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatMessageDemoProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatMessageDemoProject/Pods-ChatMessageDemoProject.debug.xcconfig"; sourceTree = "<group>"; };
 		B95AC03B81F67E81161B82DC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE55182EBB1DFACB0076AE17 /* Pods_ChatMessageDemoProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatMessageDemoProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,33 +135,46 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5A7E0D6F1C82B2760046483E /* FTChatMessageUI */ = {
+		5A324F6D1D5A1C0400E57CE3 /* demoImages */ = {
 			isa = PBXGroup;
 			children = (
-				5AC509A21C82B84B0040F2A7 /* FTChatMessageMarcos.swift */,
-				5A57A1371C82ED4500D8906E /* FTChatMessageModel.swift */,
-				5A7E0D701C82B2760046483E /* FTChatMessageHeader.swift */,
-				5AC509A61C82C3240040F2A7 /* FTChatMessageCell.swift */,
-				5A82C3C51CDDC6830090C5C5 /* FTChatMessageBubbleItem */,
-				5A07C8CF1CA18006009F2460 /* FTChatMessageInputView.swift */,
-				5A63A2261CC7C2C00072E286 /* FTChatMessageRecordView.swift */,
-				5AF917631CC91BE60052DCB3 /* FTChatMessageAccessoryView.swift */,
-				5AC509AC1C82CA630040F2A7 /* FTChatMessageTableViewController.swift */,
+				5A324F6E1D5A1C0400E57CE3 /* dog.jpg */,
+				5A324F6F1D5A1C0400E57CE3 /* Media_Pause.png */,
+				5A324F701D5A1C0400E57CE3 /* Media_Play.png */,
+				5A324F711D5A1C0400E57CE3 /* setting.jpg */,
 			);
-			path = FTChatMessageUI;
+			path = demoImages;
 			sourceTree = "<group>";
 		};
-		5A82C3C51CDDC6830090C5C5 /* FTChatMessageBubbleItem */ = {
+		5A6275201D5A1C9800DCCB85 /* FTChatMessage */ = {
 			isa = PBXGroup;
 			children = (
-				5AFAD0621CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift */,
-				5A82C3CA1CDDC7010090C5C5 /* FTChatMessageBubbleAudioItem.swift */,
-				5A82C3C81CDDC6CF0090C5C5 /* FTChatMessageBubbleImageItem.swift */,
-				5A82C3C61CDDC69A0090C5C5 /* FTChatMessageBubbleTextItem.swift */,
-				5A82C3C31CDDC3470090C5C5 /* FTChatMessageBubbleLocationItem.swift */,
-				5A82C3CC1CDDC71B0090C5C5 /* FTChatMessageBubbleVideoItem.swift */,
+				5A62753F1D5A1CBA00DCCB85 /* BubbleItems */,
+				5A62752F1D5A1C9800DCCB85 /* FTChatMessageUIHeader.swift */,
+				5A6275211D5A1C9800DCCB85 /* FTChatMessageAccessoryView.swift */,
+				5A6275281D5A1C9800DCCB85 /* FTChatMessageCell.swift */,
+				5A6275291D5A1C9800DCCB85 /* FTChatMessageHeader.swift */,
+				5A62752A1D5A1C9800DCCB85 /* FTChatMessageInputView.swift */,
+				5A62752B1D5A1C9800DCCB85 /* FTChatMessageMarcos.swift */,
+				5A62752C1D5A1C9800DCCB85 /* FTChatMessageModel.swift */,
+				5A62752D1D5A1C9800DCCB85 /* FTChatMessageRecordView.swift */,
+				5A62752E1D5A1C9800DCCB85 /* FTChatMessageTableViewController.swift */,
 			);
-			name = FTChatMessageBubbleItem;
+			name = FTChatMessage;
+			path = ../../FTChatMessage;
+			sourceTree = "<group>";
+		};
+		5A62753F1D5A1CBA00DCCB85 /* BubbleItems */ = {
+			isa = PBXGroup;
+			children = (
+				5A6275221D5A1C9800DCCB85 /* FTChatMessageBubbleAudioItem.swift */,
+				5A6275231D5A1C9800DCCB85 /* FTChatMessageBubbleImageItem.swift */,
+				5A6275241D5A1C9800DCCB85 /* FTChatMessageBubbleItem.swift */,
+				5A6275251D5A1C9800DCCB85 /* FTChatMessageBubbleLocationItem.swift */,
+				5A6275261D5A1C9800DCCB85 /* FTChatMessageBubbleTextItem.swift */,
+				5A6275271D5A1C9800DCCB85 /* FTChatMessageBubbleVideoItem.swift */,
+			);
+			name = BubbleItems;
 			sourceTree = "<group>";
 		};
 		5AC1B7C11C71AC2900232C1C = {
@@ -189,15 +204,12 @@
 			children = (
 				5AC1B7CD1C71AC2900232C1C /* AppDelegate.swift */,
 				5AC1B7CF1C71AC2900232C1C /* HomeViewController.swift */,
-				5A9230611CA82891008DC3CB /* ChatListTableViewCell.swift */,
 				5AC509A41C82BC090040F2A7 /* DemoTableViewController.swift */,
-				5A7E0D6F1C82B2760046483E /* FTChatMessageUI */,
+				5A9230611CA82891008DC3CB /* ChatListTableViewCell.swift */,
+				5A6275201D5A1C9800DCCB85 /* FTChatMessage */,
 				5A07C8C91CA17CA6009F2460 /* ImageSize.h */,
 				5A07C8CA1CA17CA6009F2460 /* ImageSize.m */,
-				5AD3344B1CA198E30064C30B /* dog.jpg */,
-				5A17BFE11CAF7894007384CD /* setting.jpg */,
-				5A2382831CD788F300770732 /* Media_Pause.png */,
-				5A2382841CD788F300770732 /* Media_Play.png */,
+				5A324F6D1D5A1C0400E57CE3 /* demoImages */,
 				5AC1B7D11C71AC2900232C1C /* Main.storyboard */,
 				5AC1B7D41C71AC2900232C1C /* Assets.xcassets */,
 				5AC1B7D61C71AC2900232C1C /* LaunchScreen.storyboard */,
@@ -341,12 +353,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AD3344C1CA198E30064C30B /* dog.jpg in Resources */,
+				5A324F741D5A1C0400E57CE3 /* Media_Play.png in Resources */,
+				5A324F731D5A1C0400E57CE3 /* Media_Pause.png in Resources */,
+				5A324F721D5A1C0400E57CE3 /* dog.jpg in Resources */,
+				5A324F751D5A1C0400E57CE3 /* setting.jpg in Resources */,
 				5AC1B7D81C71AC2900232C1C /* LaunchScreen.storyboard in Resources */,
 				5AC1B7D51C71AC2900232C1C /* Assets.xcassets in Resources */,
-				5A2382851CD788F300770732 /* Media_Pause.png in Resources */,
-				5A17BFE21CAF7894007384CD /* setting.jpg in Resources */,
-				5A2382861CD788F300770732 /* Media_Play.png in Resources */,
 				5AC1B7D31C71AC2900232C1C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,25 +432,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A6275381D5A1C9800DCCB85 /* FTChatMessageHeader.swift in Sources */,
+				5A62753D1D5A1C9800DCCB85 /* FTChatMessageTableViewController.swift in Sources */,
+				5A6275301D5A1C9800DCCB85 /* FTChatMessageAccessoryView.swift in Sources */,
+				5A62753B1D5A1C9800DCCB85 /* FTChatMessageModel.swift in Sources */,
+				5A62753E1D5A1C9800DCCB85 /* FTChatMessageUIHeader.swift in Sources */,
+				5A6275341D5A1C9800DCCB85 /* FTChatMessageBubbleLocationItem.swift in Sources */,
+				5A6275331D5A1C9800DCCB85 /* FTChatMessageBubbleItem.swift in Sources */,
+				5A6275391D5A1C9800DCCB85 /* FTChatMessageInputView.swift in Sources */,
 				5AC509A51C82BC090040F2A7 /* DemoTableViewController.swift in Sources */,
-				5A82C3C71CDDC69A0090C5C5 /* FTChatMessageBubbleTextItem.swift in Sources */,
-				5A82C3C41CDDC3470090C5C5 /* FTChatMessageBubbleLocationItem.swift in Sources */,
-				5AC509A71C82C3240040F2A7 /* FTChatMessageCell.swift in Sources */,
-				5AC509A31C82B84B0040F2A7 /* FTChatMessageMarcos.swift in Sources */,
-				5A82C3C91CDDC6CF0090C5C5 /* FTChatMessageBubbleImageItem.swift in Sources */,
-				5AF917641CC91BE60052DCB3 /* FTChatMessageAccessoryView.swift in Sources */,
+				5A6275321D5A1C9800DCCB85 /* FTChatMessageBubbleImageItem.swift in Sources */,
 				5AC1B7D01C71AC2900232C1C /* HomeViewController.swift in Sources */,
+				5A62753A1D5A1C9800DCCB85 /* FTChatMessageMarcos.swift in Sources */,
+				5A6275371D5A1C9800DCCB85 /* FTChatMessageCell.swift in Sources */,
+				5A62753C1D5A1C9800DCCB85 /* FTChatMessageRecordView.swift in Sources */,
+				5A6275361D5A1C9800DCCB85 /* FTChatMessageBubbleVideoItem.swift in Sources */,
+				5A6275351D5A1C9800DCCB85 /* FTChatMessageBubbleTextItem.swift in Sources */,
 				5AC1B7CE1C71AC2900232C1C /* AppDelegate.swift in Sources */,
-				5A07C8D01CA18006009F2460 /* FTChatMessageInputView.swift in Sources */,
 				5A07C8CB1CA17CA6009F2460 /* ImageSize.m in Sources */,
-				5A82C3CB1CDDC7010090C5C5 /* FTChatMessageBubbleAudioItem.swift in Sources */,
-				5A57A1381C82ED4500D8906E /* FTChatMessageModel.swift in Sources */,
-				5A7E0D711C82B2760046483E /* FTChatMessageHeader.swift in Sources */,
-				5A63A2271CC7C2C00072E286 /* FTChatMessageRecordView.swift in Sources */,
-				5A82C3CD1CDDC71B0090C5C5 /* FTChatMessageBubbleVideoItem.swift in Sources */,
-				5AFAD0631CA2CD7600ADC640 /* FTChatMessageBubbleItem.swift in Sources */,
+				5A6275311D5A1C9800DCCB85 /* FTChatMessageBubbleAudioItem.swift in Sources */,
 				5A9230621CA82891008DC3CB /* ChatListTableViewCell.swift in Sources */,
-				5AC509AD1C82CA630040F2A7 /* FTChatMessageTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,17 +10,8 @@ import UIKit
 
 class DemoTableViewController: FTChatMessageTableViewController{
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
-    
-    
-    
-    
-    
-    
 
 }

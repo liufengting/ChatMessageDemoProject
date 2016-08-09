@@ -19,7 +19,6 @@ class ChatListTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         iconImageView.layer.cornerRadius = iconImageView.bounds.size.height/2
-        
     }
 
     var message : FTChatMessageModel! {
