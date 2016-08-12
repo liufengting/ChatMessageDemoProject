@@ -3,6 +3,7 @@
 [![Twitter](https://img.shields.io/badge/twitter-@liufengting-blue.svg?style=flat)](http://twitter.com/liufengting) 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/liufengting/FTChatMessageDemoProject/master/LICENSE)
 [![CI Status](http://img.shields.io/travis/liufengting/FTChatMessageDemoProject.svg?style=flat)](https://travis-ci.org/liufengting/FTChatMessageDemoProject)
+[![codebeat badge](https://codebeat.co/badges/0fce523b-7c42-43a4-aa57-12b18f68c815)](https://codebeat.co/projects/github-com-liufengting-ftchatmessagedemoproject)
 [![GitHub stars](https://img.shields.io/github/stars/liufengting/FTChatMessageDemoProject.svg)](https://github.com/liufengting/FTChatMessageDemoProject/stargazers)
 
 
