@@ -27,6 +27,7 @@ enum FTChatMessageType {
 //    case More
 }
 
+
 let FTChatMessageCellReuseIndentifier = "FTChatMessageCellReuseIndentifier"
 let FTScreenWidth = UIScreen.mainScreen().bounds.size.width
 let FTScreenHeight = UIScreen.mainScreen().bounds.size.height
@@ -100,7 +101,9 @@ class FTChatMessagePublicMethods {
 //        return rect.size.width
 //    }
     
-    
+//    func getScreenWidth() -> CGFloat {
+//        return UIScreen.mainScreen().bounds.size.width
+//    }
 }
 
 
