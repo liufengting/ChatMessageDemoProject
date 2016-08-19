@@ -2,8 +2,8 @@
 //  FTChatMessageBubbleItem.swift
 //  ChatMessageDemoProject
 //
-//  Created by liufengting https://github.com/liufengting on 16/3/23.
-//  Copyright © 2016年 liufengting. All rights reserved.
+//  Created by liufengting on 16/3/23.
+//  Copyright © 2016年 liufengting https://github.com/liufengting . All rights reserved.
 //
 
 import UIKit

@@ -2,8 +2,8 @@
 //  FTChatMessageCell.swift
 //  ChatMessageDemoProject
 //
-//  Created by liufengting https://github.com/liufengting on 16/2/28.
-//  Copyright © 2016年 liufengting. All rights reserved.
+//  Created by liufengting on 16/2/28.
+//  Copyright © 2016年 liufengting https://github.com/liufengting . All rights reserved.
 //
 
 import UIKit
@@ -40,7 +40,7 @@ class FTChatMessageCell: UITableViewCell {
         }else{
             nameLabelRect = CGRectMake(0, -FTDefaultSectionHeight, FTScreenWidth, 0);
         }
-        print(timeLabelRect);
+
 
         if shouldShowSenderName {
             var nameLabelTextAlignment : NSTextAlignment = .Left
@@ -89,7 +89,6 @@ class FTChatMessageCell: UITableViewCell {
         let x = theMessage.isUserSelf ? FTScreenWidth - (FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin) - bubbleWidth : FTDefaultIconSize + FTDefaultMargin + FTDefaultIconToMessageMargin
         
         bubbleRect = CGRectMake(x, y, bubbleWidth, bubbleHeight)
-//        self.cellDesiredHeight = bubbleRect.origin.y + bubbleHeight + FTDefaultMargin*2
 
         
         self.setupCellBubbleItem(bubbleRect)
@@ -172,33 +171,37 @@ class FTChatMessageCell: UITableViewCell {
     
 }
 class FTChatMessageDeliverStatusView: UIView {
+
+    lazy var activityIndicator : UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        activity.frame = self.bounds
+        return activity
+    }()
     
-    var activityIndicator : UIActivityIndicatorView?
-    var failedImageView : UIImageView?
+    lazy var failedImageView : UIImageView = {
+        let imageView = UIImageView.init(frame: CGRectMake(0, 0, 20, 20))
+        imageView.backgroundColor = UIColor.clearColor();
+        imageView.image = UIImage(named: "FT_Add")
+        return imageView
+    }()
     
     func setupWithDeliverStatus(status : FTChatMessageDeliverStatus) {
-        
         self.backgroundColor = UIColor.clearColor()
         
         switch status {
         case .Sending:
-            activityIndicator = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-            activityIndicator?.frame = self.bounds
-            activityIndicator?.startAnimating()
-            self.addSubview(activityIndicator!)
-            failedImageView?.hidden = true
+            activityIndicator.startAnimating()
+            self.addSubview(activityIndicator)
+            failedImageView.hidden = true
         case .Succeeded:
-            activityIndicator?.stopAnimating()
-            activityIndicator?.hidden = true
-            failedImageView?.hidden = true
+            activityIndicator.stopAnimating()
+            activityIndicator.hidden = true
+            failedImageView.hidden = true
         case .failed:
-            activityIndicator?.stopAnimating()
-            activityIndicator?.hidden = true
-            failedImageView = UIImageView.init(frame: CGRectMake(0, 0, 20, 20))
-            failedImageView?.backgroundColor = UIColor.clearColor();
-            failedImageView?.image = UIImage(named: "FT_Add")
-            failedImageView?.hidden = false
-            self.addSubview(failedImageView!)
+            activityIndicator.stopAnimating()
+            activityIndicator.hidden = true
+            self.addSubview(failedImageView)
+            failedImageView.hidden = false
         }
         
     }

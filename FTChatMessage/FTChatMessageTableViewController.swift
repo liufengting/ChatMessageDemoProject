@@ -2,8 +2,8 @@
 //  FTChatMessageTableViewController.swift
 //  ChatMessageDemoProject
 //
-//  Created by liufengting https://github.com/liufengting on 16/2/28.
-//  Copyright © 2016年 liufengting. All rights reserved.
+//  Created by liufengting on 16/2/28.
+//  Copyright © 2016年 liufengting https://github.com/liufengting . All rights reserved.
 //
 
 import UIKit
@@ -79,7 +79,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         let message5 = FTChatMessageModel(data: "文字背景不是图片，是用贝塞尔曲线画的，效率应该不高，后期优化", time: "4.12 21:09:53", from: sender1, type: .Text)
         let message6 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:54", from: sender2, type: .Text)
         let message7 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:55", from: sender1, type: .Text)
-        let message8 = FTChatMessageModel(data: "https://raw.githubusercontent.com/liufengting/liufengting.github.io/master/img/macbookpro.jpg", time: "4.12 21:09:56", from: sender2, type: .Image)
+        let message8 = FTChatMessageModel(data: "https://raw.githubusercontent.com/liufengting/liufengting https://github.com/liufengting .github.io/master/img/macbookpro.jpg", time: "4.12 21:09:56", from: sender2, type: .Image)
 
         messageArray = NSMutableArray(array: [message1,message2,message3,message4,message5,message6,message7,message8,
             message1,message2,message3,message4,message5,message6,message7,message8,
