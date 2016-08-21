@@ -11,19 +11,19 @@ import AlamofireImage
 
 protocol FTChatMessageHeaderDelegate {
 
-    func fTChatMessageHeaderDidTappedOnIcon(messageSenderModel : FTChatMessageSenderModel)
+    func fTChatMessageHeaderDidTappedOnIcon(messageSenderModel : FTChatMessageUserModel)
     
 }
 
 class FTChatMessageHeader: UIView {
     
     var iconButton : UIButton!
-    var messageSenderModel : FTChatMessageSenderModel!
+    var messageSenderModel : FTChatMessageUserModel!
     var headerViewDelegate : FTChatMessageHeaderDelegate?
 
 
     
-    convenience init(frame: CGRect, senderModel: FTChatMessageSenderModel ) {
+    convenience init(frame: CGRect, senderModel: FTChatMessageUserModel ) {
         self.init(frame : frame)
         
         messageSenderModel = senderModel;
@@ -40,6 +40,7 @@ class FTChatMessageHeader: UIView {
         iconButton.backgroundColor = isSender ? FTDefaultOutgoingColor : FTDefaultIncomingColor
         iconButton.layer.cornerRadius = FTDefaultIconSize/2;
         iconButton.clipsToBounds = true
+        iconButton.addTarget(self, action: #selector(self.iconTapped), forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(iconButton)
         
         if (imageUrl != nil){

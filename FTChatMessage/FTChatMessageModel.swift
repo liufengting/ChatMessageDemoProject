@@ -8,36 +8,15 @@
 
 import UIKit
 
+// MARK: - FTChatMessageDeliverStatus
+
 enum FTChatMessageDeliverStatus {
     case Sending
     case Succeeded
     case failed
 }
 
-
-
-
-/// FTChatMessageSenderModel
-
-class FTChatMessageSenderModel : NSObject{
-    
-    var isUserSelf : Bool = false;
-    var senderId : String!
-    var senderName : String!
-    var senderIconUrl : String!
-    var senderExtraData : NSDictionary?
-    
-    convenience init(id : String? ,name : String?, icon_url : String?, extra_data : NSDictionary?, isSelf : Bool){
-        self.init()
-        senderId = id
-        senderName = name
-        senderIconUrl = icon_url
-        senderExtraData = extra_data
-        isUserSelf = isSelf
-    }
-}
-
- /// FTChatMessageModel
+ // MARK: - FTChatMessageModel
 
 class FTChatMessageModel: NSObject {
     
@@ -46,22 +25,22 @@ class FTChatMessageModel: NSObject {
     var messageText : String!
     var messageTimeStamp : String!
     var messageType : FTChatMessageType = .Text
-    var messageSender : FTChatMessageSenderModel!
+    var messageSender : FTChatMessageUserModel!
     var messageExtraData : NSDictionary?
     var messageDeliverStatus : FTChatMessageDeliverStatus = FTChatMessageDeliverStatus.Succeeded
 
     
-    convenience init(data : String? ,time : String?, from : FTChatMessageSenderModel, type : FTChatMessageType){
+    convenience init(data : String? ,time : String?, from : FTChatMessageUserModel, type : FTChatMessageType){
         self.init()
         self.transformMessage(data,time : time,extraDic: nil,from: from,type: type)
     }
     
-    convenience init(data : String?,time : String?, extraDic : NSDictionary?, from : FTChatMessageSenderModel, type : FTChatMessageType){
+    convenience init(data : String?,time : String?, extraDic : NSDictionary?, from : FTChatMessageUserModel, type : FTChatMessageType){
         self.init()
         self.transformMessage(data,time : time,extraDic: nil,from: from,type: type)
     }
     
-    private func transformMessage(data : String? ,time : String?, extraDic : NSDictionary?, from : FTChatMessageSenderModel, type : FTChatMessageType){
+    private func transformMessage(data : String? ,time : String?, extraDic : NSDictionary?, from : FTChatMessageUserModel, type : FTChatMessageType){
         messageType = type
         messageText = data
         messageTimeStamp = time

@@ -10,26 +10,29 @@ import UIKit
 
 class FTChatMessageRecordView: UIView {
     
-    var recordButton : UIButton!
+    @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.backgroundColor = FTDefaultInputViewBackgroundColor
+    }
 
-     override init(frame: CGRect) {
-        super.init(frame:frame)
+    @IBAction func buttonTouchUpInside(sender: UIButton) {
+
+    }
+    @IBAction func buttonTouchUpOutside(sender: UIButton) {
         
-        self.backgroundColor = FTDefaultIncomingColor
+    }
+    @IBAction func buttonTouchDown(sender: UIButton) {
         
-        recordButton = UIButton.init(frame: CGRectMake( (self.frame.size.width-FTDefaultRecordButtonSize)/2, (self.frame.height-FTDefaultRecordButtonSize)/2, FTDefaultRecordButtonSize, FTDefaultRecordButtonSize))
-        recordButton.setTitle("Record", forState: .Normal)
-        recordButton.titleLabel?.font = UIFont.systemFontOfSize(14)
-        recordButton.backgroundColor = FTDefaultOutgoingColor
-        recordButton.layer.cornerRadius = FTDefaultRecordButtonSize/2
-        recordButton.clipsToBounds = true
-        self.addSubview(recordButton)
+    }
+    @IBAction func buttonTouchCancel(sender: UIButton) {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    
+    
     
 }

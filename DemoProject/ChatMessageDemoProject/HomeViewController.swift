@@ -16,8 +16,8 @@ class HomeViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let sender1 = FTChatMessageSenderModel.init(id: "", name: "路人甲", icon_url: "", extra_data: nil, isSelf: false)
-        let sender2 = FTChatMessageSenderModel.init(id: "", name: "路人乙", icon_url: "", extra_data: nil, isSelf: false)
+        let sender1 = FTChatMessageUserModel.init(id: "", name: "路人甲", icon_url: "", extra_data: nil, isSelf: false)
+        let sender2 = FTChatMessageUserModel.init(id: "", name: "路人乙", icon_url: "", extra_data: nil, isSelf: false)
         
         let message1 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "", from: sender1, type: .Text)
         let message2 = FTChatMessageModel(data: "呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵", time: "", from: sender2, type: .Text)

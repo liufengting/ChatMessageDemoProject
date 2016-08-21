@@ -12,7 +12,7 @@ import UIKit
 
 
 
-class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,FTChatMessageInputViewDelegate,FTChatMessageAccessoryViewDataSource,FTChatMessageAccessoryViewDelegate{
+class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,FTChatMessageInputViewDelegate,FTChatMessageAccessoryViewDataSource,FTChatMessageAccessoryViewDelegate, FTChatMessageHeaderDelegate{
     
     var messageTableView : UITableView!
     var messageInputView : FTChatMessageInputView!
@@ -21,14 +21,13 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     var messageInputMode : FTChatMessageInputMode = FTChatMessageInputMode.None
     
     var messageArray : NSMutableArray!
-    
     var shouldShowSendTime : Bool = true
     var shouldShowSenderName : Bool = true
 
     
-    let sender1 = FTChatMessageSenderModel.init(id: "1", name: "SomeOne", icon_url: "http://ww3.sinaimg.cn/mw600/6cca1403jw1f3lrknzxczj20gj0g0t96.jpg", extra_data: nil, isSelf: false)
-    let sender2 = FTChatMessageSenderModel.init(id: "2", name: "Liufengting", icon_url: "http://ww3.sinaimg.cn/mw600/9d319f9agw1f3k8e4pixfj20u00u0ac6.jpg", extra_data: nil, isSelf: true)
-    let sender3 = FTChatMessageSenderModel.init(id: "2", name: "Liufengting", icon_url: "http://ww3.sinaimg.cn/mw600/9d319f9agw1f3k8e4pixfj20u00u0ac6.jpg", extra_data: nil, isSelf: true)
+    let sender1 = FTChatMessageUserModel.init(id: "1", name: "Someone", icon_url: "http://ww3.sinaimg.cn/mw600/6cca1403jw1f3lrknzxczj20gj0g0t96.jpg", extra_data: nil, isSelf: false)
+    let sender2 = FTChatMessageUserModel.init(id: "2", name: "LiuFengting", icon_url: "http://ww3.sinaimg.cn/mw600/9d319f9agw1f3k8e4pixfj20u00u0ac6.jpg", extra_data: nil, isSelf: true)
+    let sender3 = FTChatMessageUserModel.init(id: "3", name: "Someone else", icon_url: "http://ww3.sinaimg.cn/mw600/9d319f9agw1f3k8e4pixfj20u00u0ac6.jpg", extra_data: nil, isSelf: false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,18 +58,24 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         messageInputView.inputDelegate = self
         self.view.addSubview(messageInputView)
 
-        messageRecordView = FTChatMessageRecordView(frame: CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight))
+        messageRecordView = NSBundle.mainBundle().loadNibNamed("FTChatMessageRecordView", owner: nil, options: nil)[0] as! FTChatMessageRecordView
+        messageRecordView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
         self.view.addSubview(messageRecordView)
         
         messageAccessoryView = FTChatMessageAccessoryView.init(frame: CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight), accessoryViewDataSource: self, accessoryViewDelegate: self)
         self.view.addSubview(messageAccessoryView)
         
         dispatch_after( dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-            self.messageTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messageArray.count-1), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
-        }
-        
 
+            self.scrollToBottom(false)
+        }
     }
+    
+    
+    
+    
+    
+    
     func loadDefaultMessages(){
         let message1 = FTChatMessageModel(data: "最近有点无聊，抽点时间写了这个聊天的UI框架。", time: "4.12 21:09:50", from: sender1, type: .Text)
         let message2 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:51", from: sender2, type: .Audio)
@@ -79,7 +84,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         let message5 = FTChatMessageModel(data: "文字背景不是图片，是用贝塞尔曲线画的，效率应该不高，后期优化", time: "4.12 21:09:53", from: sender1, type: .Text)
         let message6 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:54", from: sender2, type: .Text)
         let message7 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:55", from: sender1, type: .Text)
-        let message8 = FTChatMessageModel(data: "https://raw.githubusercontent.com/liufengting/liufengting https://github.com/liufengting .github.io/master/img/macbookpro.jpg", time: "4.12 21:09:56", from: sender2, type: .Image)
+        let message8 = FTChatMessageModel(data: "https://raw.githubusercontent.com/liufengting/liufengting https://github.com/liufengting .github.io/master/img/macbookpro.jpg", time: "4.12 21:09:56", from: sender3, type: .Image)
 
         messageArray = NSMutableArray(array: [message1,message2,message3,message4,message5,message6,message7,message8,
             message1,message2,message3,message4,message5,message6,message7,message8,
@@ -129,7 +134,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
                 UIView.animateWithDuration(duration, animations: {
                     self.messageTableView.frame = CGRectMake(0 , 0 , FTScreenWidth, keyboradOriginY)
                     self.messageInputView.frame = CGRectMake(0, keyboradOriginY - inputBarHeight, FTScreenWidth, inputBarHeight)
-                    self.scrollToBottom()
+                    self.scrollToBottom(true)
                     }, completion: { (finished) in
                         if finished {
                             if self.messageInputView.inputTextView.isFirstResponder() {
@@ -168,7 +173,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         
         messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, origin.origin.y + FTDefaultInputViewHeight)
         messageInputView.frame = origin
-        self.scrollToBottom()
+        self.scrollToBottom(true)
         messageInputView.updateSubViewFrame()
     }
     func ftChatMessageInputViewShouldDoneWithText(textString: String) {
@@ -187,7 +192,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
                 self.messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, FTScreenHeight - inputViewFrameHeight + FTDefaultInputViewHeight )
                 self.messageInputView.frame = CGRectMake(0, FTScreenHeight - inputViewFrameHeight, FTScreenWidth, inputViewFrameHeight)
                 self.messageRecordView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
-                self.scrollToBottom()
+                self.scrollToBottom(true)
                 }, completion: { (finished) in
             })
         }else{
@@ -205,7 +210,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
                 self.messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, FTScreenHeight - inputViewFrameHeight - FTDefaultRecordViewHeight + FTDefaultInputViewHeight )
                 self.messageInputView.frame = CGRectMake(0, FTScreenHeight - inputViewFrameHeight - FTDefaultRecordViewHeight, FTScreenWidth, inputViewFrameHeight)
                 self.messageRecordView.frame = CGRectMake(0, FTScreenHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultRecordViewHeight)
-                self.scrollToBottom()
+                self.scrollToBottom(true)
                 }, completion: { (finished) in
 
             })
@@ -225,7 +230,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
                 self.messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, FTScreenHeight - inputViewFrameHeight + FTDefaultInputViewHeight )
                 self.messageInputView.frame = CGRectMake(0, FTScreenHeight - inputViewFrameHeight, FTScreenWidth, inputViewFrameHeight)
                 self.messageAccessoryView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
-                self.scrollToBottom()
+                self.scrollToBottom(true)
                 }, completion: { (finished) in
 
             })
@@ -246,7 +251,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
                 
                 self.messageInputView.frame = CGRectMake(0, FTScreenHeight - inputViewFrameHeight - FTDefaultRecordViewHeight, FTScreenWidth, inputViewFrameHeight)
                 self.messageAccessoryView.frame = CGRectMake(0, FTScreenHeight - FTDefaultRecordViewHeight, FTScreenWidth, FTDefaultRecordViewHeight)
-                self.scrollToBottom()
+                self.scrollToBottom(true)
                 }, completion: { (finished) in
 
             })
@@ -283,7 +288,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         
         messageTableView.insertSections(NSIndexSet.init(indexesInRange: NSMakeRange(messageArray.count-1, 1)), withRowAnimation: UITableViewRowAnimation.Bottom)
         
-        self.scrollToBottom()
+        self.scrollToBottom(true)
         
     }
     
@@ -296,7 +301,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         
         messageTableView.insertSections(NSIndexSet.init(indexesInRange: NSMakeRange(messageArray.count-1, 1)), withRowAnimation: UITableViewRowAnimation.Bottom)
         
-        self.scrollToBottom()
+        self.scrollToBottom(true)
         
 
         
@@ -316,8 +321,8 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     
     //MARK: - scrollToBottom -
 
-    func scrollToBottom() {
-        self.messageTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messageArray.count-1), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+    func scrollToBottom(animated: Bool) {
+        self.messageTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messageArray.count-1), atScrollPosition: UITableViewScrollPosition.Top, animated: animated)
     }
 
     //MARK: - UITableViewDelegate,UITableViewDataSource -
@@ -342,6 +347,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let message = messageArray[section] as! FTChatMessageModel
         let header = FTChatMessageHeader.init(frame: CGRectMake(0,0,FTScreenWidth,40), senderModel: message.messageSender)
+        header.headerViewDelegate = self
         return header
     }
     
@@ -371,29 +377,31 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     //MARK: - FTChatMessageAccessoryViewDataSource -
 
     func ftChatMessageAccessoryViewItemCount() -> NSInteger {
-        return 7
+        return self.getAccessoryItemTitle().count
     }
-    func ftChatMessageAccessoryViewItemCountEachRow() -> NSInteger {
-        return 4
+    func ftChatMessageAccessoryViewImageForItemAtIndex(index : NSInteger) -> UIImage {
+        return UIImage(named: self.getAccessoryItemTitle()[index])!
     }
-    func ftChatMessageAccessoryViewItemSize() -> CGFloat {
-        return 60
+    func ftChatMessageAccessoryViewTitleForItemAtIndex(index : NSInteger) -> String {
+        return self.getAccessoryItemTitle()[index]
     }
-    func ftChatMessageAccessoryViewImageForItemAtIndex(index: NSInteger) -> UIImage {
-        return UIImage(named: "FT_Record")!
-    }
-    func ftChatMessageAccessoryViewBackgroundColorForItemAtIndex(index: NSInteger) -> UIColor {
-        return UIColor(red: 255/255, green: 38/255, blue: 172/255, alpha: 1)
+    
+    func getAccessoryItemTitle() -> [String] {
+        return ["Alarm","Camera","Contacts","Mail","Messages","Music","Phone","Photos","Settings","VideoChat","Videos","Weather"]
     }
 
     
     //MARK: - FTChatMessageAccessoryViewDelegate -
 
     func ftChatMessageAccessoryViewDidTappedOnItemAtIndex(index: NSInteger) {
-        print("tapped : \(index)")
+        print("tapped at accessory view at index : \(index)")
     }
     
-    
+    //MARK: - FTChatMessageHeaderDelegate -
+    func fTChatMessageHeaderDidTappedOnIcon(messageSenderModel: FTChatMessageUserModel) {
+        print("tapped at user icon : \(messageSenderModel.senderName)")
+ 
+    }
     
     //MARK: - preferredInterfaceOrientationForPresentation -
 

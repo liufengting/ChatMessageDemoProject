@@ -8,89 +8,114 @@
 
 import UIKit
 
-protocol FTChatMessageAccessoryViewDataSource {
+@objc protocol FTChatMessageAccessoryViewDataSource : NSObjectProtocol {
 
     func ftChatMessageAccessoryViewItemCount() -> NSInteger
-    func ftChatMessageAccessoryViewItemCountEachRow() -> NSInteger
-    func ftChatMessageAccessoryViewItemSize() -> CGFloat
-    func ftChatMessageAccessoryViewBackgroundColorForItemAtIndex(index : NSInteger) -> UIColor
     func ftChatMessageAccessoryViewImageForItemAtIndex(index : NSInteger) -> UIImage
-    
-    
-    
+    func ftChatMessageAccessoryViewTitleForItemAtIndex(index : NSInteger) -> String
+ 
 }
-protocol FTChatMessageAccessoryViewDelegate {
+@objc protocol FTChatMessageAccessoryViewDelegate : NSObjectProtocol {
     
     func ftChatMessageAccessoryViewDidTappedOnItemAtIndex(index : NSInteger)
     
 }
 
 
-class FTChatMessageAccessoryView: UIView {
+
+
+
+
+class FTChatMessageAccessoryView: UIView, UIScrollViewDelegate{
     
-    var dataSource : FTChatMessageAccessoryViewDataSource!
-    var delegate : FTChatMessageAccessoryViewDelegate!
+    var accessoryDataSource : FTChatMessageAccessoryViewDataSource!
+    var accessoryDelegate : FTChatMessageAccessoryViewDelegate!
     
+    lazy var scrollView : UIScrollView = {
+        let scroll : UIScrollView = UIScrollView(frame : self.bounds)
+        scroll.backgroundColor = UIColor.clearColor()
+        scroll.delegate = self
+        scroll.alwaysBounceVertical = false
+        scroll.alwaysBounceHorizontal = true
+        scroll.showsVerticalScrollIndicator = false
+        scroll.showsHorizontalScrollIndicator = false;
+        return scroll
+    }()
     
+    lazy var pageControl : UIPageControl = {
+        let control : UIPageControl = UIPageControl(frame: CGRectMake(0, self.bounds.size.height - 20, self.bounds.width, 20))
+        control.pageIndicatorTintColor = UIColor.grayColor()
+        control.currentPageIndicatorTintColor = UIColor.whiteColor()
+        return control
+    }()
+ 
 
     convenience init(frame: CGRect , accessoryViewDataSource : FTChatMessageAccessoryViewDataSource , accessoryViewDelegate : FTChatMessageAccessoryViewDelegate) {
         self.init(frame:frame)
         
-        self.backgroundColor = FTDefaultIncomingColor
-        dataSource = accessoryViewDataSource
-        delegate = accessoryViewDelegate
+        self.backgroundColor = FTDefaultInputViewBackgroundColor
+
+        
+        accessoryDataSource = accessoryViewDataSource
+        accessoryDelegate = accessoryViewDelegate
         self.setupAccessoryView()
     }
     
     func setupAccessoryView() {
-        if dataSource == nil || delegate == nil {
-            NSException(name: "Notice", reason: "FTChatMessageAccessoryView. Missing dataSource or delegate", userInfo: nil).raise()
-            return
-        }
-        let count = min(dataSource.ftChatMessageAccessoryViewItemCount(), FTDefaultAccessoryViewMaxTotalCount)
-        let countEachRow = min(dataSource.ftChatMessageAccessoryViewItemCountEachRow(), FTDefaultAccessoryViewMaxEachRowCount)
-        if countEachRow < 1 {
-            NSException(name: "Notice", reason: "FTChatMessageAccessoryView. countEachRow is too small", userInfo: nil).raise()
-            return
-        }
-        let width = min(dataSource.ftChatMessageAccessoryViewItemSize(),(FTScreenWidth - FTDefaultAccessoryViewDefaltMargin*2 - CGFloat(FTDefaultAccessoryViewMinMargin)*CGFloat(countEachRow-1))/CGFloat(countEachRow))
-        let marginX = (FTScreenWidth - FTDefaultAccessoryViewDefaltMargin*2 - CGFloat(countEachRow) * width)/(CGFloat(countEachRow) - 1)
-        var marginY : CGFloat = 0
-        let row = CGFloat(ceil(Double(count)/Double(countEachRow)))
         
-        if row > 2 {
-            NSException(name: "Notice", reason: "FTChatMessageAccessoryView. countEachRow is too small", userInfo: nil).raise()
+        
+        if accessoryDelegate == nil || accessoryDataSource == nil {
+            NSException(name: "Notice", reason: "FTChatMessageAccessoryView. Missing accessoryDelegate or accessoryDelegate", userInfo: nil).raise()
             return
-        }else if row == 2 {
-            marginY = (FTDefaultRecordViewHeight - width * row - marginX * (row - 1))/2
-        }else{
-            marginY = FTDefaultAccessoryViewDefaltMargin
         }
+        let totalCount = accessoryDataSource.ftChatMessageAccessoryViewItemCount()
+        
+        let totalPage = NSInteger(ceilf(Float(totalCount) / 8))
+        self.pageControl.numberOfPages = totalPage
+        self.addSubview(self.pageControl)
+        self.scrollView.contentSize = CGSizeMake(self.bounds.width * CGFloat(totalPage), self.bounds.height)
+        self.addSubview(self.scrollView)
 
-        for i in 0...count-1 {
+        
+        let horizontalMargin : CGFloat = 25
+        let verticalMargin : CGFloat = 25
+        let width : CGFloat = 60
+        let height : CGFloat = width + 20
+        let xMargin : CGFloat = (self.bounds.width - horizontalMargin*2 - width*4)/3
+        let yMargin : CGFloat = (self.bounds.height - verticalMargin*2 - height*2)
+ 
+        for i in 0...totalCount-1 {
             
-            let x = CGFloat(i % countEachRow) * (width + marginX) + FTDefaultAccessoryViewDefaltMargin
-            let y = CGFloat(i / countEachRow) * (width + marginX) + marginY
+            let currentPage = i / 8
+            let indexForCurrentPage = i % 8
             
-            let button = UIButton(frame : CGRectMake( x, y, width, width));
-            button.backgroundColor = dataSource.ftChatMessageAccessoryViewBackgroundColorForItemAtIndex(i)
-            button.setImage(dataSource.ftChatMessageAccessoryViewImageForItemAtIndex(i), forState: UIControlState.Normal)
-            button.layer.cornerRadius = width*0.1
-            button.clipsToBounds = true
-            button.tag = i
-            button.addTarget(self, action: #selector(self.buttonItemTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            self.addSubview(button)
+            let x = self.bounds.width * CGFloat(currentPage) + horizontalMargin + (xMargin + width)*CGFloat(i % 4)
+            let y = verticalMargin + (yMargin + height) * CGFloat(indexForCurrentPage / 4)
+
+            let item : FTChatMessageAccessoryItem = NSBundle.mainBundle().loadNibNamed("FTChatMessageAccessoryItem", owner: nil, options: nil)[0] as! FTChatMessageAccessoryItem
+            item.frame  =  CGRectMake(x, y, width, height)
             
+            let image = accessoryDataSource.ftChatMessageAccessoryViewImageForItemAtIndex(i)
+            let string = accessoryDataSource.ftChatMessageAccessoryViewTitleForItemAtIndex(i)
+            
+            
+            item.setupWithImage(image, name: string, index: i)
+            item.addTarget(self, action: #selector(self.buttonItemTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            self.scrollView.addSubview(item)
+           
         }
-        
-        
-        
     }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let currentPage = lroundf(Float(scrollView.contentOffset.x/self.bounds.width))
+        self.pageControl.currentPage = currentPage
+    }
+
     
     func buttonItemTapped(sender : UIButton) {
         
-        if (delegate != nil) {
-            delegate.ftChatMessageAccessoryViewDidTappedOnItemAtIndex(sender.tag)
+        if (accessoryDelegate != nil) {
+            accessoryDelegate.ftChatMessageAccessoryViewDidTappedOnItemAtIndex(sender.tag)
         }
         
     }
