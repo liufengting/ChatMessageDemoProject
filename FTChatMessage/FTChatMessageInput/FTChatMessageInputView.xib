@@ -19,6 +19,9 @@
                         <constraint firstAttribute="width" constant="24" id="kEG-2g-9Kb"/>
                     </constraints>
                     <state key="normal" image="FT_Record"/>
+                    <connections>
+                        <action selector="recordButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="PPL-W6-1lS"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P30-HA-9gS">
                     <rect key="frame" x="288" y="10" width="24" height="24"/>
@@ -28,6 +31,9 @@
                         <constraint firstAttribute="height" constant="24" id="iT5-Rl-v5a"/>
                     </constraints>
                     <state key="normal" image="FT_Add"/>
+                    <connections>
+                        <action selector="accessoryButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Z0w-cI-RuR"/>
+                    </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cdt-Og-Dhr">
                     <rect key="frame" x="40" y="6" width="240" height="32"/>
@@ -36,7 +42,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
                 </textView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="P30-HA-9gS" firstAttribute="leading" secondItem="cdt-Og-Dhr" secondAttribute="trailing" constant="8" id="0nf-8J-oB2"/>
                 <constraint firstItem="Gqj-72-elv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="42o-Dj-QyR"/>

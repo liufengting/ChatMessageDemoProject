@@ -31,7 +31,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.automaticallyAdjustsScrollViewInsets = false
+//        self.automaticallyAdjustsScrollViewInsets = false
         
        self.navigationItem.setRightBarButtonItem(UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(self.addNewIncomingMessage)), animated: true)
        
@@ -156,7 +156,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
 
     //MARK: - FTChatMessageInputViewDelegate -
 
-    func ftChatMessageInputViewShouldBeginEditing() {
+    func ft_chatMessageInputViewShouldBeginEditing() {
         let originMode = messageInputMode
         messageInputMode = FTChatMessageInputMode.Keyboard;
         switch originMode {
@@ -168,11 +168,11 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         case .None: break
         }
     }
-    func ftChatMessageInputViewShouldEndEditing() {
+    func ft_chatMessageInputViewShouldEndEditing() {
         messageInputMode = FTChatMessageInputMode.None;
     }
     
-    func ftChatMessageInputViewShouldUpdateHeight(desiredHeight: CGFloat) {
+    func ft_chatMessageInputViewShouldUpdateHeight(desiredHeight: CGFloat) {
         var origin = messageInputView.frame;
         origin.origin.y = origin.origin.y + origin.size.height - desiredHeight;
         origin.size.height = desiredHeight;
@@ -182,12 +182,12 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         self.scrollToBottom(true)
         messageInputView.layoutIfNeeded()
     }
-    func ftChatMessageInputViewShouldDoneWithText(textString: String) {
+    func ft_chatMessageInputViewShouldDoneWithText(textString: String) {
         
         self.addNewMessage(textString)
         
     }
-    func ftChatMessageInputViewShouldShowRecordView(){
+    func ft_chatMessageInputViewShouldShowRecordView(){
         let originMode = messageInputMode
         let inputViewFrameHeight = self.messageInputView.frame.size.height
         if originMode == FTChatMessageInputMode.Record {
@@ -224,7 +224,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         }
     }
     
-    func ftChatMessageInputViewShouldShowAccessoryView(){
+    func ft_chatMessageInputViewShouldShowAccessoryView(){
         let originMode = messageInputMode
 
         let inputViewFrameHeight = self.messageInputView.frame.size.height
@@ -336,9 +336,9 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         switch self.messageInputMode {
         case .Accessory:
-            self.ftChatMessageInputViewShouldShowAccessoryView()
+            self.ft_chatMessageInputViewShouldShowAccessoryView()
         case .Record:
-            self.ftChatMessageInputViewShouldShowRecordView()
+            self.ft_chatMessageInputViewShouldShowRecordView()
         default:
             break;
         }
