@@ -21,20 +21,12 @@ import UIKit
     
 }
 
-
-
-
-
-
 class FTChatMessageAccessoryView: UIView, UIScrollViewDelegate{
     
-
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     var accessoryDataSource : FTChatMessageAccessoryViewDataSource!
     var accessoryDelegate : FTChatMessageAccessoryViewDelegate!
-
- 
 
     func setupWithDataSource(accessoryViewDataSource : FTChatMessageAccessoryViewDataSource , accessoryViewDelegate : FTChatMessageAccessoryViewDelegate) {
         
@@ -57,7 +49,6 @@ class FTChatMessageAccessoryView: UIView, UIScrollViewDelegate{
             return
         }
 
-        
         let totalCount = accessoryDataSource.ftChatMessageAccessoryViewItemCount()
         let totalPage = NSInteger(ceilf(Float(totalCount) / 8))
         self.pageControl.numberOfPages = totalPage
@@ -70,9 +61,6 @@ class FTChatMessageAccessoryView: UIView, UIScrollViewDelegate{
         let height : CGFloat = width + 20
         let xMargin : CGFloat = (self.bounds.width - horizontalMargin*2 - width*4)/3
         let yMargin : CGFloat = (self.bounds.height - verticalMargin*2 - height*2)
-        
-        
-        print(scrollView.frame,pageControl.frame,self.bounds)
         
  
         for i in 0...totalCount-1 {

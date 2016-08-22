@@ -51,8 +51,8 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        if (self.inputTextView.text as NSString).length > 0 {
-            self.inputTextView.scrollRangeToVisible(NSMakeRange((self.inputTextView.text as NSString).length-1, 1))
+        if self.inputTextView.attributedText.length > 0 {
+            self.inputTextView.scrollRangeToVisible(NSMakeRange(self.inputTextView.attributedText.length - 1, 1))
         }
     }
     

@@ -53,7 +53,6 @@ let FTDefaultInputViewTextCornerRadius : CGFloat = 8.0
 let FTDefaultInputViewHeight : CGFloat = 44.0
 let FTDefaultInputViewMaxHeight : CGFloat = 150.0
 let FTDefaultInputTextViewMargin : CGFloat = 6.0
-let FTDefaultInputViewMAXHeight : CGFloat = 150.0
 let FTDefaultInputViewBackgroundColor : UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
 
 let FTDefaultRecordButtonSize : CGFloat = 100.0

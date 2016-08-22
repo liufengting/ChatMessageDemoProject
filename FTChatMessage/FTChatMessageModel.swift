@@ -16,7 +16,7 @@ enum FTChatMessageDeliverStatus {
     case failed
 }
 
- // MARK: - FTChatMessageModel
+// MARK: - FTChatMessageModel
 
 class FTChatMessageModel: NSObject {
     
@@ -29,7 +29,7 @@ class FTChatMessageModel: NSObject {
     var messageExtraData : NSDictionary?
     var messageDeliverStatus : FTChatMessageDeliverStatus = FTChatMessageDeliverStatus.Succeeded
 
-    
+    // MARK: - convenience init
     convenience init(data : String? ,time : String?, from : FTChatMessageUserModel, type : FTChatMessageType){
         self.init()
         self.transformMessage(data,time : time,extraDic: nil,from: from,type: type)
@@ -40,6 +40,7 @@ class FTChatMessageModel: NSObject {
         self.transformMessage(data,time : time,extraDic: nil,from: from,type: type)
     }
     
+    // MARK: - transformMessage
     private func transformMessage(data : String? ,time : String?, extraDic : NSDictionary?, from : FTChatMessageUserModel, type : FTChatMessageType){
         messageType = type
         messageText = data

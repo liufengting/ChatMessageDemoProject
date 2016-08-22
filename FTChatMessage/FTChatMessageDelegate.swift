@@ -8,8 +8,7 @@
 
 import UIKit
 
-@objc protocol FTChatMessageDelegate : NSObjectProtocol
-{
+@objc protocol FTChatMessageDelegate : NSObjectProtocol {
     
     
     

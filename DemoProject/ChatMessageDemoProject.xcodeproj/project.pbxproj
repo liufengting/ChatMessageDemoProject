@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A07C8CB1CA17CA6009F2460 /* ImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A07C8CA1CA17CA6009F2460 /* ImageSize.m */; };
 		5A324F721D5A1C0400E57CE3 /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A324F6E1D5A1C0400E57CE3 /* dog.jpg */; };
 		5A565A1B1D67304F00819E8C /* FTChatMessageBubbleAudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A565A0A1D67304F00819E8C /* FTChatMessageBubbleAudioItem.swift */; };
 		5A565A1C1D67304F00819E8C /* FTChatMessageBubbleImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A565A0B1D67304F00819E8C /* FTChatMessageBubbleImageItem.swift */; };
@@ -63,8 +62,6 @@
 
 /* Begin PBXFileReference section */
 		1874552D0980D4FC4FBBAEF8 /* Pods-ChatMessageDemoProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatMessageDemoProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatMessageDemoProject/Pods-ChatMessageDemoProject.release.xcconfig"; sourceTree = "<group>"; };
-		5A07C8C91CA17CA6009F2460 /* ImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSize.h; sourceTree = "<group>"; };
-		5A07C8CA1CA17CA6009F2460 /* ImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSize.m; sourceTree = "<group>"; };
 		5A324F6E1D5A1C0400E57CE3 /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
 		5A565A0A1D67304F00819E8C /* FTChatMessageBubbleAudioItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleAudioItem.swift; sourceTree = "<group>"; };
 		5A565A0B1D67304F00819E8C /* FTChatMessageBubbleImageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageBubbleImageItem.swift; sourceTree = "<group>"; };
@@ -246,8 +243,6 @@
 				5AC509A41C82BC090040F2A7 /* DemoTableViewController.swift */,
 				5A9230611CA82891008DC3CB /* ChatListTableViewCell.swift */,
 				5A565A071D67304F00819E8C /* FTChatMessage */,
-				5A07C8C91CA17CA6009F2460 /* ImageSize.h */,
-				5A07C8CA1CA17CA6009F2460 /* ImageSize.m */,
 				5A324F6D1D5A1C0400E57CE3 /* demoImages */,
 				5AC1B7D11C71AC2900232C1C /* Main.storyboard */,
 				5AC1B7D41C71AC2900232C1C /* Assets.xcassets */,
@@ -490,7 +485,6 @@
 				5A565A351D673E9A00819E8C /* FTChatMessageDelegate.swift in Sources */,
 				5A565A1F1D67304F00819E8C /* FTChatMessageBubbleTextItem.swift in Sources */,
 				5A565A1C1D67304F00819E8C /* FTChatMessageBubbleImageItem.swift in Sources */,
-				5A07C8CB1CA17CA6009F2460 /* ImageSize.m in Sources */,
 				5A565A291D67304F00819E8C /* FTChatMessageTableViewController.swift in Sources */,
 				5A9230621CA82891008DC3CB /* ChatListTableViewCell.swift in Sources */,
 				5A565A231D67304F00819E8C /* FTChatMessageAccessoryView.swift in Sources */,

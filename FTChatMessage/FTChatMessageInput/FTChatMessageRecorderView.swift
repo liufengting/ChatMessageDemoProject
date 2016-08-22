@@ -25,10 +25,6 @@ class FTChatMessageRecorderView: UIView {
     
     var recorderDelegate : FTChatMessageRecorderViewDelegate!
  
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.backgroundColor = FTDefaultInputViewBackgroundColor
-    }
     
     @IBAction func buttonTouchDown(sender: UIButton) {
         self.startRecording()

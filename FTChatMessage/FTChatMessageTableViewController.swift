@@ -31,13 +31,10 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.automaticallyAdjustsScrollViewInsets = false
         
        self.navigationItem.setRightBarButtonItem(UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(self.addNewIncomingMessage)), animated: true)
        
         self.loadDefaultMessages()
-        
-
         
         messageTableView = UITableView(frame: CGRectMake(0, 0, FTScreenWidth, FTScreenHeight), style: .Plain)
         messageTableView.delegate = self
@@ -54,7 +51,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         let footer = UIView(frame: CGRectMake( 0, 0, FTScreenWidth, FTDefaultInputViewHeight))
         messageTableView.tableFooterView = footer
         
-//        messageInputView = FTChatMessageInputView(frame: CGRectMake(0, FTScreenHeight-FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight))
+
         
         messageInputView = NSBundle.mainBundle().loadNibNamed("FTChatMessageInputView", owner: nil, options: nil)[0] as! FTChatMessageInputView
        messageInputView.frame = CGRectMake(0, FTScreenHeight-FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
@@ -72,7 +69,6 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         self.view.addSubview(messageAccessoryView)
         
         dispatch_after( dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-
             self.scrollToBottom(false)
         }
     }
@@ -90,7 +86,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         let message5 = FTChatMessageModel(data: "文字背景不是图片，是用贝塞尔曲线画的，效率应该不高，后期优化", time: "4.12 21:09:53", from: sender1, type: .Text)
         let message6 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:54", from: sender2, type: .Text)
         let message7 = FTChatMessageModel(data: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", time: "4.12 21:09:55", from: sender1, type: .Text)
-        let message8 = FTChatMessageModel(data: "https://raw.githubusercontent.com/liufengting/liufengting https://github.com/liufengting .github.io/master/img/macbookpro.jpg", time: "4.12 21:09:56", from: sender3, type: .Image)
+        let message8 = FTChatMessageModel(data: "https://raw.githubusercontent.com/liufengting/liufengting.github.io/master/img/macbookpro.jpg", time: "4.12 21:09:56", from: sender3, type: .Image)
 
         messageArray = NSMutableArray(array: [message1,message2,message3,message4,message5,message6,message7,message8,
             message1,message2,message3,message4,message5,message6,message7,message8,
@@ -98,7 +94,6 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
             message1,message2,message3,message4,message5,message6,message7,message8,
             message1,message2,message3,message4,message5,message6,message7,message8,
             message1,message2,message3,message4,message5,message6,message7,message8,])
-//        messageArray = [message1,message2];
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -118,10 +113,6 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
 //    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
 //        self.messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, FTScreenHeight)
 //        self.messageTableView.reloadData()
-//    }
-//
-//    func setMessageTableViewConstraions() {
-//        
 //    }
     
     
@@ -382,6 +373,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
 
    
     //MARK: - FTChatMessageRecorderViewDelegate -
+    
     func ft_chatMessageRecordViewDidStartRecording(){
         FTIndicator.showProgressWithmessage("Recording...")
     }
@@ -416,6 +408,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     }
     
     //MARK: - FTChatMessageHeaderDelegate -
+    
     func fTChatMessageHeaderDidTappedOnIcon(messageSenderModel: FTChatMessageUserModel) {
         print("tapped at user icon : \(messageSenderModel.senderName)")
  
