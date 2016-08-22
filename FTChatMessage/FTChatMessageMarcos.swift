@@ -49,10 +49,10 @@ let FTDefaultOutgoingColor : UIColor = UIColor(red: 1/255, green: 123/255, blue:
 let FTDefaultIncomingColor : UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
 
 let FTDefaultInputViewMargin : CGFloat = 8.0
-let FTDefaultInputButtonSize : CGFloat = 25.0
+let FTDefaultInputViewTextCornerRadius : CGFloat = 8.0
 let FTDefaultInputViewHeight : CGFloat = 44.0
 let FTDefaultInputViewMaxHeight : CGFloat = 150.0
-let FTDefaultInputTextViewMargin : CGFloat = 7.0
+let FTDefaultInputTextViewMargin : CGFloat = 6.0
 let FTDefaultInputViewMAXHeight : CGFloat = 150.0
 let FTDefaultInputViewBackgroundColor : UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
 

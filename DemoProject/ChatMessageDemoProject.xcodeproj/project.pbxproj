@@ -39,6 +39,8 @@
 		5AC1B7E31C71AC2900232C1C /* ChatMessageDemoProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC1B7E21C71AC2900232C1C /* ChatMessageDemoProjectTests.swift */; };
 		5AC1B7EE1C71AC2900232C1C /* ChatMessageDemoProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC1B7ED1C71AC2900232C1C /* ChatMessageDemoProjectUITests.swift */; };
 		5AC509A51C82BC090040F2A7 /* DemoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC509A41C82BC090040F2A7 /* DemoTableViewController.swift */; };
+		5AD688AD1D6B101D0036C7C1 /* FTChatMessageAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD688AC1D6B101D0036C7C1 /* FTChatMessageAccessoryView.xib */; };
+		5AD688B31D6B26640036C7C1 /* FTChatMessageInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD688B21D6B26640036C7C1 /* FTChatMessageInputView.xib */; };
 		A363744F8CF43B95FB9CAAE8 /* Pods_ChatMessageDemoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE55182EBB1DFACB0076AE17 /* Pods_ChatMessageDemoProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +103,8 @@
 		5AC1B7ED1C71AC2900232C1C /* ChatMessageDemoProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageDemoProjectUITests.swift; sourceTree = "<group>"; };
 		5AC1B7EF1C71AC2900232C1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AC509A41C82BC090040F2A7 /* DemoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTableViewController.swift; sourceTree = "<group>"; };
+		5AD688AC1D6B101D0036C7C1 /* FTChatMessageAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FTChatMessageAccessoryView.xib; sourceTree = "<group>"; };
+		5AD688B21D6B26640036C7C1 /* FTChatMessageInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FTChatMessageInputView.xib; sourceTree = "<group>"; };
 		A137EBF7393A06679EF7917D /* Pods-ChatMessageDemoProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatMessageDemoProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatMessageDemoProject/Pods-ChatMessageDemoProject.debug.xcconfig"; sourceTree = "<group>"; };
 		B95AC03B81F67E81161B82DC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE55182EBB1DFACB0076AE17 /* Pods_ChatMessageDemoProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatMessageDemoProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,9 +205,11 @@
 			isa = PBXGroup;
 			children = (
 				5A565A141D67304F00819E8C /* FTChatMessageAccessoryView.swift */,
+				5AD688AC1D6B101D0036C7C1 /* FTChatMessageAccessoryView.xib */,
 				5AA48F0A1D69C63600DB7C23 /* FTChatMessageAccessoryItem.swift */,
 				5A914DD41D696CD300D0ACA5 /* FTChatMessageAccessoryItem.xib */,
 				5A565A151D67304F00819E8C /* FTChatMessageInputView.swift */,
+				5AD688B21D6B26640036C7C1 /* FTChatMessageInputView.xib */,
 				5A565A161D67304F00819E8C /* FTChatMessageRecorderView.swift */,
 				5AA48F0C1D69CA8400DB7C23 /* FTChatMessageRecorderView.xib */,
 			);
@@ -388,8 +394,10 @@
 			files = (
 				5A914DD51D696CD300D0ACA5 /* FTChatMessageAccessoryItem.xib in Resources */,
 				5AA48F0D1D69CA8400DB7C23 /* FTChatMessageRecorderView.xib in Resources */,
+				5AD688AD1D6B101D0036C7C1 /* FTChatMessageAccessoryView.xib in Resources */,
 				5A324F721D5A1C0400E57CE3 /* dog.jpg in Resources */,
 				5AC1B7D81C71AC2900232C1C /* LaunchScreen.storyboard in Resources */,
+				5AD688B31D6B26640036C7C1 /* FTChatMessageInputView.xib in Resources */,
 				5AC1B7D51C71AC2900232C1C /* Assets.xcassets in Resources */,
 				5AC1B7D31C71AC2900232C1C /* Main.storyboard in Resources */,
 			);

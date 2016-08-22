@@ -14,6 +14,7 @@
 +(CGSize)getImageSizeWithURL:(id)imageURL
 {
     NSURL* URL = nil;
+
     if([imageURL isKindOfClass:[NSURL class]]){
         URL = imageURL;
     }

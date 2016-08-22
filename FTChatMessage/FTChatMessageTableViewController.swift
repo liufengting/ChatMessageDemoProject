@@ -31,7 +31,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.automaticallyAdjustsScrollViewInsets = false
         
        self.navigationItem.setRightBarButtonItem(UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(self.addNewIncomingMessage)), animated: true)
        
@@ -54,7 +54,10 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         let footer = UIView(frame: CGRectMake( 0, 0, FTScreenWidth, FTDefaultInputViewHeight))
         messageTableView.tableFooterView = footer
         
-        messageInputView = FTChatMessageInputView(frame: CGRectMake(0, FTScreenHeight-FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight))
+//        messageInputView = FTChatMessageInputView(frame: CGRectMake(0, FTScreenHeight-FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight))
+        
+        messageInputView = NSBundle.mainBundle().loadNibNamed("FTChatMessageInputView", owner: nil, options: nil)[0] as! FTChatMessageInputView
+       messageInputView.frame = CGRectMake(0, FTScreenHeight-FTDefaultInputViewHeight, FTScreenWidth, FTDefaultInputViewHeight)
         messageInputView.inputDelegate = self
         self.view.addSubview(messageInputView)
 
@@ -63,7 +66,9 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         messageRecordView.recorderDelegate = self
         self.view.addSubview(messageRecordView)
         
-        messageAccessoryView = FTChatMessageAccessoryView.init(frame: CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight), accessoryViewDataSource: self, accessoryViewDelegate: self)
+        messageAccessoryView = NSBundle.mainBundle().loadNibNamed("FTChatMessageAccessoryView", owner: nil, options: nil)[0] as! FTChatMessageAccessoryView
+        messageAccessoryView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+        messageAccessoryView.setupWithDataSource(self , accessoryViewDelegate : self)
         self.view.addSubview(messageAccessoryView)
         
         dispatch_after( dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
@@ -175,7 +180,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         messageTableView.frame = CGRectMake(0, 0, FTScreenWidth, origin.origin.y + FTDefaultInputViewHeight)
         messageInputView.frame = origin
         self.scrollToBottom(true)
-        messageInputView.updateSubViewFrame()
+        messageInputView.layoutIfNeeded()
     }
     func ftChatMessageInputViewShouldDoneWithText(textString: String) {
         

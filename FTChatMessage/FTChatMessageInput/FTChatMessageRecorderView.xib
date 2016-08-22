@@ -32,7 +32,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold on to record..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFG-bC-cO4">
-                    <rect key="frame" x="142" y="12" width="118" height="16"/>
+                    <rect key="frame" x="142" y="10" width="118" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
                 <constraint firstItem="1LU-xr-sQf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="9dd-gO-IHB"/>
                 <constraint firstItem="1LU-xr-sQf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="EpW-0V-pV9"/>
                 <constraint firstItem="NFG-bC-cO4" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bkq-YK-zzZ"/>
-                <constraint firstItem="1LU-xr-sQf" firstAttribute="top" secondItem="NFG-bC-cO4" secondAttribute="bottom" constant="8" id="d2q-We-Yk0"/>
+                <constraint firstItem="1LU-xr-sQf" firstAttribute="top" secondItem="NFG-bC-cO4" secondAttribute="bottom" constant="10" id="d2q-We-Yk0"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -28,54 +28,40 @@ import UIKit
 
 class FTChatMessageAccessoryView: UIView, UIScrollViewDelegate{
     
+
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
     var accessoryDataSource : FTChatMessageAccessoryViewDataSource!
     var accessoryDelegate : FTChatMessageAccessoryViewDelegate!
-    
-    lazy var scrollView : UIScrollView = {
-        let scroll : UIScrollView = UIScrollView(frame : self.bounds)
-        scroll.backgroundColor = UIColor.clearColor()
-        scroll.delegate = self
-        scroll.pagingEnabled = true
-        scroll.alwaysBounceVertical = false
-        scroll.alwaysBounceHorizontal = true
-        scroll.showsVerticalScrollIndicator = false
-        scroll.showsHorizontalScrollIndicator = false;
-        return scroll
-    }()
-    
-    lazy var pageControl : UIPageControl = {
-        let control : UIPageControl = UIPageControl(frame: CGRectMake(0, self.bounds.size.height - 20, self.bounds.width, 20))
-        control.pageIndicatorTintColor = UIColor.grayColor()
-        control.currentPageIndicatorTintColor = UIColor.whiteColor()
-        return control
-    }()
+
  
 
-    convenience init(frame: CGRect , accessoryViewDataSource : FTChatMessageAccessoryViewDataSource , accessoryViewDelegate : FTChatMessageAccessoryViewDelegate) {
-        self.init(frame:frame)
+    func setupWithDataSource(accessoryViewDataSource : FTChatMessageAccessoryViewDataSource , accessoryViewDelegate : FTChatMessageAccessoryViewDelegate) {
         
-        self.backgroundColor = FTDefaultInputViewBackgroundColor
-
+        self.setNeedsLayout()
         
         accessoryDataSource = accessoryViewDataSource
         accessoryDelegate = accessoryViewDelegate
-        self.setupAccessoryView()
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(0.1) * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            self.setupAccessoryView()
+        }
     }
     
+
+    
     func setupAccessoryView() {
-        
         
         if accessoryDelegate == nil || accessoryDataSource == nil {
             NSException(name: "Notice", reason: "FTChatMessageAccessoryView. Missing accessoryDelegate or accessoryDelegate", userInfo: nil).raise()
             return
         }
-        let totalCount = accessoryDataSource.ftChatMessageAccessoryViewItemCount()
+
         
+        let totalCount = accessoryDataSource.ftChatMessageAccessoryViewItemCount()
         let totalPage = NSInteger(ceilf(Float(totalCount) / 8))
         self.pageControl.numberOfPages = totalPage
-        self.addSubview(self.pageControl)
         self.scrollView.contentSize = CGSizeMake(self.bounds.width * CGFloat(totalPage), self.bounds.height)
-        self.addSubview(self.scrollView)
 
         
         let horizontalMargin : CGFloat = 25
@@ -84,6 +70,10 @@ class FTChatMessageAccessoryView: UIView, UIScrollViewDelegate{
         let height : CGFloat = width + 20
         let xMargin : CGFloat = (self.bounds.width - horizontalMargin*2 - width*4)/3
         let yMargin : CGFloat = (self.bounds.height - verticalMargin*2 - height*2)
+        
+        
+        print(scrollView.frame,pageControl.frame,self.bounds)
+        
  
         for i in 0...totalCount-1 {
             
