@@ -35,6 +35,7 @@ class FTChatMessageAccessoryView: UIView, UIScrollViewDelegate{
         let scroll : UIScrollView = UIScrollView(frame : self.bounds)
         scroll.backgroundColor = UIColor.clearColor()
         scroll.delegate = self
+        scroll.pagingEnabled = true
         scroll.alwaysBounceVertical = false
         scroll.alwaysBounceHorizontal = true
         scroll.showsVerticalScrollIndicator = false
