@@ -58,6 +58,8 @@
             <connections>
                 <outlet property="accessoryButton" destination="P30-HA-9gS" id="f0W-5g-CH0"/>
                 <outlet property="inputTextView" destination="cdt-Og-Dhr" id="RZ3-BT-Mwt"/>
+                <outlet property="inputTextViewBottomMargin" destination="cVx-jb-8Hg" id="5R8-fd-e6A"/>
+                <outlet property="inputTextViewTopMargin" destination="8Q8-Dt-YyJ" id="Rpx-4m-sXE"/>
                 <outlet property="recordButton" destination="Gqj-72-elv" id="1sU-Oi-OVW"/>
             </connections>
             <point key="canvasLocation" x="203" y="52"/>

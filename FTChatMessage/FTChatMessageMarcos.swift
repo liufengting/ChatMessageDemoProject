@@ -3,7 +3,7 @@
 //  ChatMessageDemoProject
 //
 //  Created by liufengting on 16/2/28.
-//  Copyright © 2016年 liufengting https://github.com/liufengting . All rights reserved.
+//  Copyright © 2016年 liufengting ( https://github.com/liufengting ). All rights reserved.
 //
 
 import UIKit
@@ -43,29 +43,24 @@ let FTDefaultTextMargin : CGFloat = 10.0
 let FTDefaultLineSpacing : CGFloat = 2.0
 let FTDefaultSectionHeight : CGFloat = 40.0
 let FTDefaultIconSize : CGFloat = 30.0
-let FTDefaultMessageRoundCorner : CGFloat = 10.0
+let FTDefaultMessageRoundCorner : CGFloat = 12.0
 let FTDefaultFontSize : UIFont = UIFont.systemFontOfSize(16)
 let FTDefaultOutgoingColor : UIColor = UIColor(red: 1/255, green: 123/255, blue: 225/255, alpha: 1)
 let FTDefaultIncomingColor : UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
 
+let FTDefaultInputViewHeight : CGFloat = 44.0
 let FTDefaultInputViewMargin : CGFloat = 8.0
 let FTDefaultInputViewTextCornerRadius : CGFloat = 8.0
-let FTDefaultInputViewHeight : CGFloat = 44.0
 let FTDefaultInputViewMaxHeight : CGFloat = 150.0
-let FTDefaultInputTextViewMargin : CGFloat = 6.0
+let FTDefaultInputTextViewEdgeInset: UIEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
 let FTDefaultInputViewBackgroundColor : UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
 
-let FTDefaultRecordButtonSize : CGFloat = 100.0
 let FTDefaultRecordViewHeight : CGFloat = 216.0
-
-
 
 let FTDefaultMessageBubbleWidth : CGFloat = FTScreenWidth*0.52
 let FTDefaultMessageBubbleHeight : CGFloat = FTScreenWidth*0.32
-
-let FTDefaultMapMessageBubbleWidth : CGFloat = FTScreenWidth*0.62
-let FTDefaultMapMessageBubbleHeight : CGFloat = FTScreenWidth*0.40
-
+let FTDefaultMessageBubbleMapViewWidth : CGFloat = FTScreenWidth*0.62
+let FTDefaultMessageBubbleMapViewHeight : CGFloat = FTScreenWidth*0.40
 let FTDefaultMessageBubbleAudioHeight : CGFloat = 36.0
 let FTDefaultMessageBubbleAudioIconHeight : CGFloat = 24.0
 let FTDefaultMessageBubbleMediaIconHeight : CGFloat = 30.0

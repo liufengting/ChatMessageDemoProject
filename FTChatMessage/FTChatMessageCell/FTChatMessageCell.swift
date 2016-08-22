@@ -3,7 +3,7 @@
 //  ChatMessageDemoProject
 //
 //  Created by liufengting on 16/2/28.
-//  Copyright © 2016年 liufengting https://github.com/liufengting . All rights reserved.
+//  Copyright © 2016年 liufengting ( https://github.com/liufengting ). All rights reserved.
 //
 
 import UIKit
@@ -77,8 +77,8 @@ class FTChatMessageCell: UITableViewCell {
             bubbleWidth = FTDefaultMessageBubbleWidth
             bubbleHeight = FTDefaultMessageBubbleAudioHeight
         case .Location:
-            bubbleWidth = FTDefaultMapMessageBubbleWidth
-            bubbleHeight = FTDefaultMapMessageBubbleHeight
+            bubbleWidth = FTDefaultMessageBubbleMapViewWidth
+            bubbleHeight = FTDefaultMessageBubbleMapViewHeight
         case .Video:
             bubbleWidth = FTDefaultMessageBubbleWidth
             bubbleHeight = FTDefaultMessageBubbleHeight
@@ -157,7 +157,7 @@ class FTChatMessageCell: UITableViewCell {
         case .Audio:
             cellDesiredHeight += FTDefaultMessageBubbleAudioHeight
         case .Location:
-            cellDesiredHeight += FTDefaultMapMessageBubbleHeight
+            cellDesiredHeight += FTDefaultMessageBubbleMapViewHeight
         case .Video:
             cellDesiredHeight += FTDefaultMessageBubbleHeight
         }

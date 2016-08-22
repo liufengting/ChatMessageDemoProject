@@ -180,9 +180,9 @@
 		5A565A091D67304F00819E8C /* FTChatMessageBubbleItem */ = {
 			isa = PBXGroup;
 			children = (
+				5A565A0C1D67304F00819E8C /* FTChatMessageBubbleItem.swift */,
 				5A565A0A1D67304F00819E8C /* FTChatMessageBubbleAudioItem.swift */,
 				5A565A0B1D67304F00819E8C /* FTChatMessageBubbleImageItem.swift */,
-				5A565A0C1D67304F00819E8C /* FTChatMessageBubbleItem.swift */,
 				5A565A0D1D67304F00819E8C /* FTChatMessageBubbleLocationItem.swift */,
 				5A565A0E1D67304F00819E8C /* FTChatMessageBubbleTextItem.swift */,
 				5A565A0F1D67304F00819E8C /* FTChatMessageBubbleVideoItem.swift */,
@@ -347,7 +347,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = "liufengting https://github.com/liufengting ";
+				ORGANIZATIONNAME = "liufengting ( https://github.com/liufengting )";
 				TargetAttributes = {
 					5AC1B7C91C71AC2900232C1C = {
 						CreatedOnToolsVersion = 7.2;

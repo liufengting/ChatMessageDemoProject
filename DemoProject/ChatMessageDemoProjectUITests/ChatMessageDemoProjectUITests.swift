@@ -3,7 +3,7 @@
 //  ChatMessageDemoProjectUITests
 //
 //  Created by liufengting on 16/2/15.
-//  Copyright © 2016年 liufengting https://github.com/liufengting . All rights reserved.
+//  Copyright © 2016年 liufengting ( https://github.com/liufengting ). All rights reserved.
 //
 
 import XCTest

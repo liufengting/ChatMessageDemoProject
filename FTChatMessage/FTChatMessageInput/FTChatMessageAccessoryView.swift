@@ -3,7 +3,7 @@
 //  ChatMessageDemoProject
 //
 //  Created by liufengting on 16/4/21.
-//  Copyright © 2016年 liufengting https://github.com/liufengting . All rights reserved.
+//  Copyright © 2016年 liufengting ( https://github.com/liufengting ). All rights reserved.
 //
 
 import UIKit
@@ -28,6 +28,12 @@ class FTChatMessageAccessoryView: UIView, UIScrollViewDelegate{
     var accessoryDataSource : FTChatMessageAccessoryViewDataSource!
     var accessoryDelegate : FTChatMessageAccessoryViewDelegate!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        scrollView.scrollsToTop = false
+    }
+    
+    
     func setupWithDataSource(accessoryViewDataSource : FTChatMessageAccessoryViewDataSource , accessoryViewDelegate : FTChatMessageAccessoryViewDelegate) {
         
         self.setNeedsLayout()

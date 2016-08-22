@@ -3,7 +3,7 @@
 //  ChatMessageDemoProject
 //
 //  Created by liufengting on 16/2/28.
-//  Copyright © 2016年 liufengting https://github.com/liufengting . All rights reserved.
+//  Copyright © 2016年 liufengting ( https://github.com/liufengting ). All rights reserved.
 //
 
 import UIKit
@@ -41,6 +41,7 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         messageTableView.dataSource = self
         messageTableView.separatorStyle = .None
         messageTableView.allowsSelection = false
+        messageTableView.scrollsToTop = true
         messageTableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag
         messageTableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, FTDefaultInputViewHeight, 0)
         self.view.addSubview(messageTableView)

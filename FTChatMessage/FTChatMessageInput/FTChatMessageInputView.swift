@@ -3,7 +3,7 @@
 //  ChatMessageDemoProject
 //
 //  Created by liufengting on 16/3/22.
-//  Copyright © 2016年 liufengting https://github.com/liufengting . All rights reserved.
+//  Copyright © 2016年 liufengting ( https://github.com/liufengting ). All rights reserved.
 //
 
 import UIKit
@@ -26,14 +26,22 @@ protocol FTChatMessageInputViewDelegate {
 
 class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
 
+    var inputDelegate : FTChatMessageInputViewDelegate?
+    
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var accessoryButton: UIButton!
+    @IBOutlet weak var inputTextViewTopMargin: NSLayoutConstraint! {
+        didSet {
+            self.layoutIfNeeded()
+        }
+    }
+    @IBOutlet weak var inputTextViewBottomMargin: NSLayoutConstraint! {
+        didSet {
+            self.layoutIfNeeded()
+        }
+    }
 
-    var inputDelegate : FTChatMessageInputViewDelegate?
-    var buttonBottomMargin : CGFloat = 10
-    var textViewWidth : CGFloat = FTScreenWidth
-    var textEdgeInset: UIEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
 
     //MARK: - awakeFromNib -
     override func awakeFromNib() {
@@ -42,7 +50,7 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
         inputTextView.layer.cornerRadius = FTDefaultInputViewTextCornerRadius
         inputTextView.layer.borderColor = FTDefaultIncomingColor.CGColor
         inputTextView.layer.borderWidth = 0.8
-        inputTextView.textContainerInset = textEdgeInset
+        inputTextView.textContainerInset = FTDefaultInputTextViewEdgeInset
         inputTextView.delegate = self
 
     }
@@ -96,7 +104,7 @@ class FTChatMessageInputView: UIToolbar, UITextViewDelegate{
             let textRect = text.boundingRectWithSize(CGSizeMake(textView.bounds.width - textView.textContainerInset.left - textView.textContainerInset.right, CGFloat.max), options: [.UsesLineFragmentOrigin , .UsesFontLeading], context: nil);
 
             if (inputDelegate != nil) {
-                inputDelegate!.ft_chatMessageInputViewShouldUpdateHeight(min(max(textRect.height + FTDefaultInputTextViewMargin*2 + textView.textContainerInset.top + textView.textContainerInset.bottom, FTDefaultInputViewHeight), FTDefaultInputViewMaxHeight))
+                inputDelegate!.ft_chatMessageInputViewShouldUpdateHeight(min(max(textRect.height + inputTextViewTopMargin.constant + inputTextViewBottomMargin.constant + textView.textContainerInset.top + textView.textContainerInset.bottom, FTDefaultInputViewHeight), FTDefaultInputViewMaxHeight))
             }
         }
     }
