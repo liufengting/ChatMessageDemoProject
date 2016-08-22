@@ -19,7 +19,7 @@
 		5A565A221D67304F00819E8C /* FTChatMessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A565A121D67304F00819E8C /* FTChatMessageHeader.swift */; };
 		5A565A231D67304F00819E8C /* FTChatMessageAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A565A141D67304F00819E8C /* FTChatMessageAccessoryView.swift */; };
 		5A565A241D67304F00819E8C /* FTChatMessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A565A151D67304F00819E8C /* FTChatMessageInputView.swift */; };
-		5A565A251D67304F00819E8C /* FTChatMessageRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A565A161D67304F00819E8C /* FTChatMessageRecordView.swift */; };
+		5A565A251D67304F00819E8C /* FTChatMessageRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A565A161D67304F00819E8C /* FTChatMessageRecorderView.swift */; };
 		5A565A271D67304F00819E8C /* FTChatMessageMarcos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A565A181D67304F00819E8C /* FTChatMessageMarcos.swift */; };
 		5A565A281D67304F00819E8C /* FTChatMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A565A191D67304F00819E8C /* FTChatMessageModel.swift */; };
 		5A565A291D67304F00819E8C /* FTChatMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A565A1A1D67304F00819E8C /* FTChatMessageTableViewController.swift */; };
@@ -30,7 +30,7 @@
 		5A914DD71D69745C00D0ACA5 /* FTChatMessageUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A914DD61D69745C00D0ACA5 /* FTChatMessageUserModel.swift */; };
 		5A9230621CA82891008DC3CB /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9230611CA82891008DC3CB /* ChatListTableViewCell.swift */; };
 		5AA48F0B1D69C63600DB7C23 /* FTChatMessageAccessoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA48F0A1D69C63600DB7C23 /* FTChatMessageAccessoryItem.swift */; };
-		5AA48F0D1D69CA8400DB7C23 /* FTChatMessageRecordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AA48F0C1D69CA8400DB7C23 /* FTChatMessageRecordView.xib */; };
+		5AA48F0D1D69CA8400DB7C23 /* FTChatMessageRecorderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AA48F0C1D69CA8400DB7C23 /* FTChatMessageRecorderView.xib */; };
 		5AC1B7CE1C71AC2900232C1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC1B7CD1C71AC2900232C1C /* AppDelegate.swift */; };
 		5AC1B7D01C71AC2900232C1C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC1B7CF1C71AC2900232C1C /* HomeViewController.swift */; };
 		5AC1B7D31C71AC2900232C1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AC1B7D11C71AC2900232C1C /* Main.storyboard */; };
@@ -74,7 +74,7 @@
 		5A565A121D67304F00819E8C /* FTChatMessageHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageHeader.swift; sourceTree = "<group>"; };
 		5A565A141D67304F00819E8C /* FTChatMessageAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageAccessoryView.swift; sourceTree = "<group>"; };
 		5A565A151D67304F00819E8C /* FTChatMessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageInputView.swift; sourceTree = "<group>"; };
-		5A565A161D67304F00819E8C /* FTChatMessageRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageRecordView.swift; sourceTree = "<group>"; };
+		5A565A161D67304F00819E8C /* FTChatMessageRecorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageRecorderView.swift; sourceTree = "<group>"; };
 		5A565A181D67304F00819E8C /* FTChatMessageMarcos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageMarcos.swift; sourceTree = "<group>"; };
 		5A565A191D67304F00819E8C /* FTChatMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageModel.swift; sourceTree = "<group>"; };
 		5A565A1A1D67304F00819E8C /* FTChatMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageTableViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		5A914DD61D69745C00D0ACA5 /* FTChatMessageUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageUserModel.swift; sourceTree = "<group>"; };
 		5A9230611CA82891008DC3CB /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
 		5AA48F0A1D69C63600DB7C23 /* FTChatMessageAccessoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTChatMessageAccessoryItem.swift; sourceTree = "<group>"; };
-		5AA48F0C1D69CA8400DB7C23 /* FTChatMessageRecordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FTChatMessageRecordView.xib; sourceTree = "<group>"; };
+		5AA48F0C1D69CA8400DB7C23 /* FTChatMessageRecorderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FTChatMessageRecorderView.xib; sourceTree = "<group>"; };
 		5AC1B7CA1C71AC2900232C1C /* ChatMessageDemoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatMessageDemoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC1B7CD1C71AC2900232C1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AC1B7CF1C71AC2900232C1C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -204,8 +204,8 @@
 				5AA48F0A1D69C63600DB7C23 /* FTChatMessageAccessoryItem.swift */,
 				5A914DD41D696CD300D0ACA5 /* FTChatMessageAccessoryItem.xib */,
 				5A565A151D67304F00819E8C /* FTChatMessageInputView.swift */,
-				5A565A161D67304F00819E8C /* FTChatMessageRecordView.swift */,
-				5AA48F0C1D69CA8400DB7C23 /* FTChatMessageRecordView.xib */,
+				5A565A161D67304F00819E8C /* FTChatMessageRecorderView.swift */,
+				5AA48F0C1D69CA8400DB7C23 /* FTChatMessageRecorderView.xib */,
 			);
 			path = FTChatMessageInput;
 			sourceTree = "<group>";
@@ -387,7 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A914DD51D696CD300D0ACA5 /* FTChatMessageAccessoryItem.xib in Resources */,
-				5AA48F0D1D69CA8400DB7C23 /* FTChatMessageRecordView.xib in Resources */,
+				5AA48F0D1D69CA8400DB7C23 /* FTChatMessageRecorderView.xib in Resources */,
 				5A324F721D5A1C0400E57CE3 /* dog.jpg in Resources */,
 				5AC1B7D81C71AC2900232C1C /* LaunchScreen.storyboard in Resources */,
 				5AC1B7D51C71AC2900232C1C /* Assets.xcassets in Resources */,
@@ -467,7 +467,7 @@
 				5A565A331D673E1600819E8C /* FTChatMessageDataSource.swift in Sources */,
 				5AC509A51C82BC090040F2A7 /* DemoTableViewController.swift in Sources */,
 				5A914DD71D69745C00D0ACA5 /* FTChatMessageUserModel.swift in Sources */,
-				5A565A251D67304F00819E8C /* FTChatMessageRecordView.swift in Sources */,
+				5A565A251D67304F00819E8C /* FTChatMessageRecorderView.swift in Sources */,
 				5A565A221D67304F00819E8C /* FTChatMessageHeader.swift in Sources */,
 				5A565A211D67304F00819E8C /* FTChatMessageCell.swift in Sources */,
 				5A565A1E1D67304F00819E8C /* FTChatMessageBubbleLocationItem.swift in Sources */,

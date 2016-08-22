@@ -7,16 +7,16 @@
 //
 
 import UIKit
+import FTIndicator
 
 
 
 
-
-class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,FTChatMessageInputViewDelegate,FTChatMessageAccessoryViewDataSource,FTChatMessageAccessoryViewDelegate, FTChatMessageHeaderDelegate{
+class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,FTChatMessageInputViewDelegate,FTChatMessageAccessoryViewDataSource,FTChatMessageAccessoryViewDelegate, FTChatMessageHeaderDelegate, FTChatMessageRecorderViewDelegate{
     
     var messageTableView : UITableView!
     var messageInputView : FTChatMessageInputView!
-    var messageRecordView : FTChatMessageRecordView!
+    var messageRecordView : FTChatMessageRecorderView!
     var messageAccessoryView : FTChatMessageAccessoryView!
     var messageInputMode : FTChatMessageInputMode = FTChatMessageInputMode.None
     
@@ -58,8 +58,9 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         messageInputView.inputDelegate = self
         self.view.addSubview(messageInputView)
 
-        messageRecordView = NSBundle.mainBundle().loadNibNamed("FTChatMessageRecordView", owner: nil, options: nil)[0] as! FTChatMessageRecordView
+        messageRecordView = NSBundle.mainBundle().loadNibNamed("FTChatMessageRecorderView", owner: nil, options: nil)[0] as! FTChatMessageRecorderView
         messageRecordView.frame = CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight)
+        messageRecordView.recorderDelegate = self
         self.view.addSubview(messageRecordView)
         
         messageAccessoryView = FTChatMessageAccessoryView.init(frame: CGRectMake(0, FTScreenHeight, FTScreenWidth, FTDefaultRecordViewHeight), accessoryViewDataSource: self, accessoryViewDelegate: self)
@@ -374,6 +375,18 @@ class FTChatMessageTableViewController: UIViewController, UITableViewDelegate,UI
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
+   
+    //MARK: - FTChatMessageRecorderViewDelegate -
+    func ft_chatMessageRecordViewDidStartRecording(){
+        FTIndicator.showProgressWithmessage("Recording...")
+    }
+    func ft_chatMessageRecordViewDidCancelRecording(){
+        FTIndicator.dismissProgress()
+    }
+    func ft_chatMessageRecordViewDidStopRecording(duriation: NSTimeInterval, file: NSData?){
+        FTIndicator.dismissProgress()
+    }
+    
     //MARK: - FTChatMessageAccessoryViewDataSource -
 
     func ftChatMessageAccessoryViewItemCount() -> NSInteger {
