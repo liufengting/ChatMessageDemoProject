@@ -38,7 +38,8 @@ Still working in progress. Please be patient.
 * 2016.05.02 -- Audio!
 * 2016.05.08 -- fix something, test something
 * 2016.08.08 -- not doing anything. if anyone want use it, I will try finish it.
-* 2016.08.21 -- rewrite some module
+* 2016.08.21 -- rewriting some module
+* 2016.08.22 -- rewriting some module, make some of the view with xib
 
 
 
